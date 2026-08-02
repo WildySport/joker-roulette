@@ -349,7 +349,7 @@ function boardMeta(key) {
       };
     case 'colour': return {
       mult: 2,
-      label: a === 'red' ? 'Green' : 'Black',
+      label: a === 'red' ? 'Green' : 'White',
       wins: c => c.kind === 'standard' && SUITS[c.suit].color === a,
     };
     case 'group': return {
@@ -760,7 +760,7 @@ function buildBoard() {
   const outside = [
     ['parity:even', '', 'Even'],
     ['colour:red', 'cell-colour-red', 'Green'],
-    ['colour:black', 'cell-colour-black', 'Black'],
+    ['colour:black', 'cell-colour-black', 'White'],
     ['parity:odd', '', 'Odd'],
   ];
   for (const [key, cls, name] of outside) {
@@ -876,7 +876,10 @@ function stripPitch(strip) {
 
 function centerOffset(strip, index) {
   const winW = $('stripWindow').clientWidth;
-  const tileW = strip.children[0].getBoundingClientRect().width;
+  /* offsetWidth, NOT getBoundingClientRect(): the frame is CSS-scaled to fit
+     the window, so the rect is in scaled px while clientWidth/offsetLeft are
+     layout px. Mixing them lands the card off-centre by tileW*(1-scale)/2. */
+  const tileW = strip.children[0].offsetWidth;
   return index * stripPitch(strip) + tileW / 2 - winW / 2;
 }
 
