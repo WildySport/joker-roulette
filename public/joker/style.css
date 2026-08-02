@@ -1166,3 +1166,34 @@ input, select { font-family: inherit; }
 }
 .sound-btn:hover { opacity: 1; border-color: var(--green); }
 .sound-btn.muted { opacity: 0.45; }
+
+
+/* ── chip stacks on the simple panel options ── */
+.opt-chips {
+  position: absolute;
+  right: -13px;
+  bottom: -11px;
+  width: 30px;
+  height: 30px;
+  z-index: 3;
+  pointer-events: none;
+}
+.opt-chips .pchip {
+  width: 30px;
+  height: 30px;
+  border-width: 2px;
+  left: 0;
+  top: 0;
+}
+.opt-chips .pchip b { font-size: 0.5rem; }
+.opt-chips.lose { filter: grayscale(0.8) brightness(0.7); }
+.opt-chips.win .pchip:last-child {
+  box-shadow:
+    0 0 12px var(--glow),
+    0 3px 0 rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    inset 0 0 0 5px rgba(0, 0, 0, 0.16);
+  animation: bump 0.5s ease;
+}
+/* the value grid tiles are tighter — pull the stack in a little */
+.value-item .opt-chips { right: -10px; bottom: -9px; }

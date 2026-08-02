@@ -514,8 +514,20 @@ function placeChip(key) {
   if (chip) placeBetOn(key, chip.amount, chip.color);
 }
 
+/* pick the chip colour that matches an amount, so a simple-panel bet
+   shows the same chip a player would grab from the advanced tray */
+const CHIP_TIERS = [
+  [1000, 'c1k'], [500, 'c500'], [100, 'c100'], [50, 'c50'],
+  [5, 'c5'], [2, 'c2'], [1, 'c1'],
+];
+function chipColorFor(amount) {
+  for (const [v, cls] of CHIP_TIERS) if (amount >= v) return cls;
+  return 'custom';
+}
+
 function placeSimple(key) {
-  placeBetOn(key, betAmountValue(), 'custom');
+  const amt = betAmountValue();
+  placeBetOn(key, amt, chipColorFor(amt));
 }
 
 function clearBets() {
@@ -571,22 +583,29 @@ function renderBets(resultCard) {
     }
   }
 
-  /* simple panel: stake badges on the option buttons + value grid tiles */
+  /* simple panel: real chip stacks on the option buttons + value grid tiles */
   for (const [key, btn] of simpleOpts) {
-    let badge = btn.querySelector('.opt-stake');
+    let stackEl = btn.querySelector('.opt-chips');
     const bet = state.boardBets.get(key);
     if (bet && bet.total > 0) {
-      if (!badge) {
-        badge = document.createElement('span');
-        badge.className = 'opt-stake';
-        btn.appendChild(badge);
+      if (!stackEl) {
+        stackEl = document.createElement('span');
+        stackEl.className = 'opt-chips';
+        btn.appendChild(stackEl);
       }
-      badge.textContent = stakeText(bet.total);
-      badge.classList.toggle('win', !!resultCard && boardMeta(key).wins(resultCard));
-      badge.classList.toggle('lose', !!resultCard && !boardMeta(key).wins(resultCard));
+      const layers = bet.stack.slice(-4);
+      stackEl.innerHTML = layers.map((color, i) => {
+        const top = i === layers.length - 1;
+        return '<span class="pchip pchip-' + color + '" style="--i:' + i + '">'
+          + (top ? '<b>' + stakeText(bet.total) + '</b>' : '')
+          + '</span>';
+      }).join('');
+      const won = !!resultCard && boardMeta(key).wins(resultCard);
+      stackEl.classList.toggle('win', won);
+      stackEl.classList.toggle('lose', !!resultCard && !won);
       btn.classList.add('has-bet');
     } else {
-      if (badge) badge.remove();
+      if (stackEl) stackEl.remove();
       btn.classList.remove('has-bet');
     }
   }
