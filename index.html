@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<title>Joker Roulette</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,600;0,700;0,800;1,700;1,800&family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="stage">
+  <div class="app">
+
+    <header class="topbar">
+      <div class="logo"><span class="logo-badge">♛</span><em><span>JOKER</span> ROULETTE</em></div>
+      <div class="balance-box">
+        <button id="soundToggle" class="sound-btn" title="Sound on/off"></button>
+        <span class="balance-label">Balance</span>
+        <span class="balance-value" id="balance">$0.00</span>
+        <button id="resetBalance" class="reset-btn" hidden>Reset $100</button>
+      </div>
+    </header>
+
+    <!-- ══════════ SPINNER ══════════ -->
+    <section class="spin-area">
+      <div class="status-text" id="statusText">Place your bets!</div>
+      <div class="marker marker-top">▼</div>
+      <div class="strip-window" id="stripWindow">
+        <div class="strip" id="strip"></div>
+        <div class="strip-fade strip-fade-left"></div>
+        <div class="strip-fade strip-fade-right"></div>
+      </div>
+      <div class="marker marker-bottom">▲</div>
+      <div class="under-strip">
+        <div class="fair-bar" id="fairBar" title="Provably fair: card index = EOS block ID (hex) mod 54">ROUND #1 · EOS BLOCK · connecting…</div>
+        <div class="prev-row">
+          <span class="prev-label">Previous</span>
+          <div class="prev-cards" id="prevCards"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ BETTING PANEL ══════════ -->
+    <section class="panel-wrap">
+      <div class="mode-row">
+        <span>Advanced Betting</span>
+        <button class="toggle" id="modeToggle" role="switch" aria-checked="false"><span class="knob"></span></button>
+        <div class="repeat-ctl">
+          <button class="checkbox" id="repeatCheck" role="checkbox" aria-checked="false"></button>
+          <span>Repeat Bet Next Round</span>
+          <span class="repeat-count" id="repeatCount">×5</span>
+          <input id="repeatInput" class="repeat-input" type="number" min="1" max="999" hidden>
+          <button class="edit-btn" id="repeatEdit" title="Set how many rounds to repeat">✎</button>
+        </div>
+      </div>
+
+      <!-- ── ADVANCED BOARD ── -->
+      <div class="board" id="board" hidden>
+        <div class="chip-row">
+          <div class="chips" id="chipTray">
+            <button class="bchip chip-custom selected" data-chip="custom" data-color="custom"><span class="c-dollar">$</span><input id="customChip" value="1.00" inputmode="decimal"></button>
+            <button class="bchip chip-c1" data-chip="1" data-color="c1">$1</button>
+            <button class="bchip chip-c2" data-chip="2" data-color="c2">$2</button>
+            <button class="bchip chip-c5" data-chip="5" data-color="c5">$5</button>
+            <button class="bchip chip-c50" data-chip="50" data-color="c50">$50</button>
+            <button class="bchip chip-c100" data-chip="100" data-color="c100">$100</button>
+            <button class="bchip chip-c500" data-chip="500" data-color="c500">$500</button>
+            <button class="bchip chip-c1k" data-chip="1000" data-color="c1k">$1000</button>
+          </div>
+          <div class="board-total">
+            <span class="bt-label">TOTAL</span>
+            <span id="boardTotal">$0.00</span>
+            <button id="clearBoard" class="clear-btn">CLEAR</button>
+          </div>
+        </div>
+        <div class="board-grid" id="boardGrid"></div>
+      </div>
+
+      <!-- ── SIMPLE PANEL ── -->
+      <div class="panel" id="simplePanel">
+        <div class="bet-bar">
+          <div class="amount-group">
+            <span class="field-label">Bet Amount</span>
+            <div class="amount-line">
+              <div class="amount-pill">
+                <span class="dollar">$</span>
+                <input type="number" id="betAmount" value="1.00" min="0" step="0.01">
+              </div>
+              <button class="x2-btn" data-target="betAmount">&times;2</button>
+            </div>
+          </div>
+          <div class="total-group">
+            <div class="total-block">
+              <span class="field-label">Total Bet</span>
+              <span id="simpleTotal">$0.00</span>
+            </div>
+            <button id="clearSimple" class="clear-btn">CLEAR</button>
+          </div>
+        </div>
+
+        <div class="bet-grid">
+
+          <div class="bet-cell">
+            <div class="bet-label">Jokers <span class="sel-note">52&times; &middot; Any 26&times;</span></div>
+            <div class="bet-box">
+              <div class="opt-tray">
+                <button class="opt joker-opt joker-gold" data-key="joker:gold" title="Gold Joker &mdash; pays 52&times;"></button>
+                <button class="opt joker-opt joker-purple" data-key="joker:purple" title="Purple Joker &mdash; pays 52&times;"></button>
+                <button class="opt any-opt" data-key="joker:both" title="Any joker &mdash; pays 26&times;"><span class="ac">&#9819;</span><span class="at">ANY</span></button>
+              </div>
+              <div class="cell-summary" id="sum-joker"></div>
+            </div>
+          </div>
+
+          <div class="bet-cell">
+            <div class="bet-label">Values <span class="sel-note">13&times; each</span></div>
+            <div class="bet-box">
+              <div class="opt-tray">
+                <button class="value-btn" id="valueBtn"><span id="valueBtnLabel">Pick</span><span class="caret">&#9662;</span></button>
+                <div class="value-menu" id="valueMenu" hidden></div>
+              </div>
+              <div class="cell-summary" id="sum-value"></div>
+            </div>
+          </div>
+
+          <div class="bet-cell">
+            <div class="bet-label">Suits <span class="sel-note">4&times; each</span></div>
+            <div class="bet-box">
+              <div class="opt-tray">
+                <button class="opt suit-opt black-suit" data-key="suit:spades">&#9824;</button>
+                <button class="opt suit-opt red-suit" data-key="suit:diamonds">&#9830;</button>
+                <button class="opt suit-opt black-suit" data-key="suit:clubs">&#9827;</button>
+                <button class="opt suit-opt red-suit" data-key="suit:hearts">&#9829;</button>
+              </div>
+              <div class="cell-summary" id="sum-suit"></div>
+            </div>
+          </div>
+
+          <div class="bet-cell">
+            <div class="bet-label">Colours <span class="sel-note">2&times;</span></div>
+            <div class="bet-box">
+              <div class="opt-tray">
+                <button class="opt colour-opt colour-black" data-key="colour:black" title="Black &mdash; pays 2&times;"></button>
+                <button class="opt colour-opt colour-red" data-key="colour:red" title="Green &mdash; pays 2&times;"></button>
+              </div>
+              <div class="cell-summary" id="sum-colour"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="bet-summary">
+          <div class="summary-head">
+            <h3>Bet Summary</h3>
+            <div class="summary-stats">
+              <div class="sum-stat"><span class="bt-label">Total Bet</span><span class="summary-total" id="summaryTotal">$0.00</span></div>
+              <div class="sum-stat"><span class="bt-label">Max Win</span><span class="summary-max" id="summaryMax">$0.00</span></div>
+            </div>
+          </div>
+          <div class="summary-chips" id="summaryChips"><span class="summary-empty">No bets placed yet</span></div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<button id="forceJoker" class="dev-toggle" title="Demo: force the next spins to land on a joker">FORCE<br>JOKER</button>
+
+<script src="game.js"></script>
+</body>
+</html>

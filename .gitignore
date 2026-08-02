@@ -1,0 +1,6 @@
+# local/session files — not part of the game
+EXAMPLES/
+.claude/
+*.zip
+figma-card-strip.svg
+1.png
