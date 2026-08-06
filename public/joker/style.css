@@ -1430,6 +1430,10 @@ input, select { font-family: inherit; }
     grid-template-columns: 34px repeat(4, 1fr);
     grid-template-rows: 26px repeat(13, 23px) 28px 27px 27px;
   }
+  /* split/corner zones are too fiddly for fingers and swallow taps
+     meant for cards — let taps pass through to the cells. Stakes
+     already placed on zones (e.g. desktop, then rotated) still render. */
+  .zone { pointer-events: none; }
   .cell { font-size: 0.66rem; border-radius: 6px; }
   .cell-head { font-size: 0.66rem; }
   .cell-suit { font-size: 0.9rem; }
