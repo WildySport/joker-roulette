@@ -1386,7 +1386,7 @@ function init() {
   const fitFrame = () => {
     const pad = 28;
     const scale = Math.min(
-      1.35,
+      2,
       (window.innerWidth - pad * 2) / 1080,
       (window.innerHeight - pad * 2) / 700
     );
