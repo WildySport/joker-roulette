@@ -816,7 +816,8 @@ function highlightCoverage(key, on) {
 }
 
 /* split & corner hit-zones overlaid on the card grid boundaries.
-   Built lazily the first time the board is shown (it needs layout). */
+   Built lazily the first time the board is shown (it needs layout);
+   geometry lives in layoutZones so a resize can reposition them. */
 let zonesBuilt = false;
 function buildZones() {
   if (zonesBuilt) return;
@@ -825,16 +826,11 @@ function buildZones() {
   zonesBuilt = true;
   const grid = $('boardGrid');
   grid.style.position = 'relative';
-  const S = 18;
-  const mk = (key, x, y, w, h, z) => {
+  const mk = (key, z) => {
     const meta = boardMeta(key);
     const el = document.createElement('button');
     el.className = 'zone';
     el.title = meta.label + ' — pays ' + multLabel(meta.mult);
-    el.style.left = x + 'px';
-    el.style.top = y + 'px';
-    el.style.width = w + 'px';
-    el.style.height = h + 'px';
     el.style.zIndex = z;
     el.addEventListener('click', () => placeChip(key));
     el.addEventListener('mouseenter', () => highlightCoverage(key, true));
@@ -844,11 +840,34 @@ function buildZones() {
   };
   SUIT_ORDER.forEach((suit, si) => {
     VALUES.forEach((v, vi) => {
+      if (vi < 12) mk('pairh:' + v + ':' + suit, 6);
+      if (si < 3) mk('pairv:' + v + ':' + suit, 6);
+      if (vi < 12 && si < 3) mk('quad:' + v + ':' + suit, 7);
+    });
+  });
+  layoutZones();
+}
+
+function layoutZones() {
+  if (!zonesBuilt) return;
+  const probe = boardCells.get('card:A:spades');
+  if (!probe || probe.offsetWidth === 0) return;   /* board hidden — re-laid out on next show */
+  const S = 18;
+  const put = (key, x, y, w, h) => {
+    const el = boardCells.get(key);
+    if (!el) return;
+    el.style.left = x + 'px';
+    el.style.top = y + 'px';
+    el.style.width = w + 'px';
+    el.style.height = h + 'px';
+  };
+  SUIT_ORDER.forEach((suit, si) => {
+    VALUES.forEach((v, vi) => {
       const cell = boardCells.get('card:' + v + ':' + suit);
       const L = cell.offsetLeft, T = cell.offsetTop, w = cell.offsetWidth, h = cell.offsetHeight;
-      if (vi < 12) mk('pairh:' + v + ':' + suit, L + w + 2 - S / 2, T + 4, S, h - 8, 6);
-      if (si < 3) mk('pairv:' + v + ':' + suit, L + 4, T + h + 2 - S / 2, w - 8, S, 6);
-      if (vi < 12 && si < 3) mk('quad:' + v + ':' + suit, L + w - S / 2, T + h - S / 2, S + 4, S + 4, 7);
+      if (vi < 12) put('pairh:' + v + ':' + suit, L + w + 2 - S / 2, T + 4, S, h - 8);
+      if (si < 3) put('pairv:' + v + ':' + suit, L + 4, T + h + 2 - S / 2, w - 8, S);
+      if (vi < 12 && si < 3) put('quad:' + v + ':' + suit, L + w - S / 2, T + h - S / 2, S + 4, S + 4);
     });
   });
 }
@@ -1333,7 +1352,7 @@ function init() {
     toggle.setAttribute('aria-checked', String(advanced));
     $('board').hidden = !advanced;
     $('simplePanel').hidden = advanced;
-    if (advanced) setTimeout(buildZones, 60);
+    if (advanced) setTimeout(() => { buildZones(); layoutZones(); }, 60);
     SFX.click();
   });
 
@@ -1394,19 +1413,28 @@ function init() {
   renderPrevCards();
   renderBets();
 
-  /* scale the fixed 1080x700 frame to fit the window — no internal scrolling */
+  /* desktop: scale the fixed 1080x700 frame to fit the window — no internal
+     scrolling. Mobile (matches the style.css breakpoint): the layout is fluid
+     and scrolls, so the transform must be cleared. */
+  const mobileMQ = window.matchMedia('(max-width: 760px)');
   const fitFrame = () => {
+    const app = document.querySelector('.app');
+    if (mobileMQ.matches) {
+      app.style.transform = '';
+      return;
+    }
     const pad = window.innerWidth < 700 ? 6 : 28;
     const scale = Math.min(
       2,
       (window.innerWidth - pad * 2) / 1080,
       (window.innerHeight - pad * 2) / 700
     );
-    document.querySelector('.app').style.transform = 'scale(' + scale + ')';
+    app.style.transform = 'scale(' + scale + ')';
   };
   fitFrame();
   window.addEventListener('resize', () => {
     fitFrame();
+    layoutZones();
     if (state.phase === 'betting') renderIdleStrip();
   });
 
