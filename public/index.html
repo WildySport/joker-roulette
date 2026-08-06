@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<title>Game Demos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,600;0,700;0,800;1,700;1,800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  color-scheme: dark;
+  --bg: #050807;
+  --panel: #0a0f0b;
+  --panel-2: #0d130e;
+  --edge: #1b241c;
+  --edge-2: #27332a;
+  --green: #00e97c;
+  --green-hi: #3bff9f;
+  --glow: rgba(0, 233, 124, 0.35);
+  --glow-soft: rgba(0, 233, 124, 0.14);
+  --text: #f2f5f3;
+  --text-dim: #8fa096;
+  --text-faint: #5c6a60;
+  --btn-ink: #04140b;
+  --shadow: 0 18px 44px rgba(0, 0, 0, 0.6);
+}
+
+:root[data-brand='wildylabs'] {
+  --green: #c8ff00;
+  --green-hi: #ddff4d;
+  --glow: rgba(200, 255, 0, 0.35);
+  --glow-soft: rgba(200, 255, 0, 0.14);
+  --btn-ink: #131800;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: var(--text);
+  min-height: 100vh;
+  background:
+    url("data:image/svg+xml,%3Csvg width='28' height='49' viewBox='0 0 28 49' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z' fill='%2300e97c' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E") 0 0 / 42px 73.5px repeat,
+    radial-gradient(120% 90% at 50% 0%, #081209 0%, #050807 55%, #030504 100%);
+}
+
+.wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 56px 24px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.logo { display: flex; align-items: center; gap: 14px; }
+.logo img { height: 40px; width: auto; filter: drop-shadow(0 0 10px var(--glow-soft)); }
+.logo em {
+  font-family: 'Archivo', sans-serif;
+  font-style: italic;
+  font-weight: 800;
+  font-size: 1.9rem;
+  color: var(--text);
+}
+.logo em span { color: var(--green); }
+.sub {
+  color: var(--text-dim);
+  font-size: 0.74rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  margin-top: -18px;
+}
+
+.grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 26px 26px;
+  background-color: var(--panel);
+  background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0 1px, transparent 1px 7px);
+  border: 1px solid var(--edge);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  color: var(--text);
+  overflow: hidden;
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  left: 18%;
+  right: 18%;
+  bottom: -1px;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, var(--green), transparent);
+  box-shadow: 0 0 12px var(--glow);
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--green) 45%, transparent);
+  box-shadow: var(--shadow), 0 0 26px var(--glow-soft);
+}
+
+.card:hover::after { opacity: 0.9; }
+
+.card .icon {
+  flex: 0 0 auto;
+  width: 62px;
+  height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: var(--panel-2);
+  border: 1px solid var(--edge-2);
+}
+
+.card .icon svg { width: 34px; height: 34px; color: var(--green); filter: drop-shadow(0 0 8px var(--glow)); }
+
+.card h2 {
+  font-family: 'Archivo', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.card p { color: var(--text-dim); font-size: 0.78rem; font-weight: 500; margin-top: 4px; }
+
+.card .go {
+  margin-left: auto;
+  color: var(--text-faint);
+  font-size: 1.1rem;
+  transition: color 0.18s, transform 0.18s;
+}
+
+.card:hover .go { color: var(--green-hi); transform: translateX(3px); }
+
+.foot { color: var(--text-faint); font-size: 0.68rem; font-weight: 500; }
+
+.brand-toggle {
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  z-index: 60;
+  display: flex;
+  gap: 2px;
+  background: var(--panel-2);
+  border: 1px solid var(--edge-2);
+  border-radius: 999px;
+  padding: 3px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+}
+.brand-toggle button {
+  border: none;
+  background: transparent;
+  color: var(--text-dim);
+  font-family: 'Archivo', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.brand-toggle button.on { background: var(--green); color: var(--btn-ink); }
+
+@media (max-width: 700px) {
+  .grid { grid-template-columns: 1fr; }
+  .wrap { padding-top: 70px; }
+}
+</style>
+</head>
+<body>
+
+<div class="brand-toggle" id="brandToggle" role="group" aria-label="Theme">
+  <button data-brand="gamdom">Gamdom</button>
+  <button data-brand="wildylabs">WildyLabs</button>
+</div>
+
+<div class="wrap">
+  <div class="logo">
+    <img id="brandLogo" src="assets/gamdom-logo.png" alt="">
+    <em><span id="brandWord">Gamdom</span> Demos</em>
+  </div>
+  <div class="sub">provably fair game demos</div>
+
+  <div class="grid">
+    <a class="card" href="/dice/">
+      <span class="icon">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="4" stroke="currentColor" stroke-width="2"/><circle cx="8.5" cy="8.5" r="1.6" fill="currentColor"/><circle cx="15.5" cy="8.5" r="1.6" fill="currentColor"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/><circle cx="8.5" cy="15.5" r="1.6" fill="currentColor"/><circle cx="15.5" cy="15.5" r="1.6" fill="currentColor"/></svg>
+      </span>
+      <span>
+        <h2>Dice</h2>
+        <p>Draw your ranges on the 0–100 track, chase the jackpots</p>
+      </span>
+      <span class="go">→</span>
+    </a>
+
+    <a class="card" href="/mines/">
+      <span class="icon">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="13" r="6" fill="currentColor"/><path d="M12 3.5V7M12 19v2.5M3.5 13H7M17 13h3.5M6 7l2.4 2.4M15.6 16.6L18 19M18 7l-2.4 2.4M8.4 16.6L6 19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </span>
+      <span>
+        <h2>Mines</h2>
+        <p>Six boards at once, swipe to reveal, cash out anytime</p>
+      </span>
+      <span class="go">→</span>
+    </a>
+
+    <a class="card" href="/joker/">
+      <span class="icon">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4.5" width="11" height="15" rx="2.5" stroke="currentColor" stroke-width="2" transform="rotate(-8 8.5 12)"/><rect x="10" y="4.5" width="11" height="15" rx="2.5" stroke="currentColor" stroke-width="2" transform="rotate(8 15.5 12)"/></svg>
+      </span>
+      <span>
+        <h2>Joker Roulette</h2>
+        <p>54-card wheel, jokers pay 52× — provably fair by EOS block</p>
+      </span>
+      <span class="go">→</span>
+    </a>
+
+    <a class="card" href="/zombies/">
+      <span class="icon">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 3a7.5 7.5 0 0 0-7.5 7.5c0 3.1 1.6 5 3 6.2V20a1.5 1.5 0 0 0 1.5 1.5h6A1.5 1.5 0 0 0 16.5 20v-3.3c1.4-1.2 3-3.1 3-6.2A7.5 7.5 0 0 0 12 3Z" stroke="currentColor" stroke-width="2"/><circle cx="9.2" cy="11" r="1.7" fill="currentColor"/><circle cx="14.8" cy="11" r="1.7" fill="currentColor"/><path d="M10.5 17.5v2M13.5 17.5v2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </span>
+      <span>
+        <h2>Zombies</h2>
+        <p>First-person mines — blast walls, dodge the horde, escape</p>
+      </span>
+      <span class="go">→</span>
+    </a>
+  </div>
+
+  <div class="foot">Demo credits only — no real currency. Theme follows you across every game.</div>
+</div>
+
+<script>
+(function () {
+  var KEY = 'wl-brand';
+  function get() {
+    try { return localStorage.getItem(KEY) === 'wildylabs' ? 'wildylabs' : 'gamdom'; }
+    catch (e) { return 'gamdom'; }
+  }
+  function apply(b) {
+    document.documentElement.setAttribute('data-brand', b);
+    document.getElementById('brandLogo').src =
+      b === 'wildylabs' ? 'assets/wildylabs-dagger.png' : 'assets/gamdom-logo.png';
+    document.getElementById('brandWord').textContent =
+      b === 'wildylabs' ? 'WildyLabs' : 'Gamdom';
+    document.querySelectorAll('#brandToggle button').forEach(function (x) {
+      x.classList.toggle('on', x.getAttribute('data-brand') === b);
+    });
+  }
+  apply(get());
+  document.querySelectorAll('#brandToggle button').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      try { localStorage.setItem(KEY, btn.getAttribute('data-brand')); } catch (e) {}
+      apply(btn.getAttribute('data-brand'));
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
