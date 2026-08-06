@@ -878,12 +878,24 @@ function jokerPopOut(tileEl) {
   }, 3150);
 }
 
+
+/* brand-aware artwork: WildyLabs swaps the crown marks for the dagger */
+function brandIsWildy() {
+  try { return localStorage.getItem('wl-brand') === 'wildylabs'; } catch (e) { return false; }
+}
+function backLogoSrc() {
+  return brandIsWildy() ? 'assets/wildylabs-dagger.png' : 'assets/gamdom-logo.png';
+}
+function jokerImgSrc(j) {
+  return brandIsWildy() ? 'assets/wildylabs-dagger.png' : ('assets/joker-' + j + '.png');
+}
+
 /* ── Strip rendering ─────────────────────── */
 function tileHTML(card) {
-  if (!card) return '<div class="tile back"><img class="bk-logo" src="assets/gamdom-logo.png" alt=""></div>';
+  if (!card) return '<div class="tile back"><img class="bk-logo" src="' + backLogoSrc() + '" alt=""></div>';
   if (card.kind === 'joker') {
     return '<div class="tile joker-tile ' + card.joker + '" data-key="' + cardKey(card) + '">'
-      + '<span class="hexb"><span class="hex"><img src="assets/joker-' + card.joker + '.png" alt=""></span></span>'
+      + '<span class="hexb"><span class="hex"><img src="' + jokerImgSrc(card.joker) + '" alt=""></span></span>'
       + '<span class="jname">JOKER</span>'
       + '</div>';
   }
@@ -1138,7 +1150,7 @@ function renderPrevCards() {
     const el = document.createElement('div');
     if (card.kind === 'joker') {
       el.className = 'pcard joker ' + card.joker;
-      el.innerHTML = '<img class="pj" src="assets/joker-' + card.joker + '.png" alt="">';
+      el.innerHTML = '<img class="pj" src="' + jokerImgSrc(card.joker) + '" alt="">';
     } else {
       const suit = SUITS[card.suit];
       el.className = 'pcard ' + suit.color;
