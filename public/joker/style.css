@@ -1278,3 +1278,26 @@ input, select { font-family: inherit; }
 [data-brand='wildylabs'] .pcard.joker.purple .pj {
   filter: sepia(1) saturate(5) hue-rotate(215deg) brightness(1.15);
 }
+
+/* back-to-portal pill, left of the brand switch */
+.back-link {
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  z-index: 60;
+  background: var(--panel-2);
+  border: 1px solid var(--edge-2);
+  border-radius: 999px;
+  padding: 8px 14px;
+  color: var(--text-dim);
+  font-family: 'Archivo', 'Inter', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  transition: border-color 0.15s, color 0.15s;
+}
+.back-link:hover { border-color: var(--green); color: var(--green-hi); }
+.brand-toggle { left: 110px; }
