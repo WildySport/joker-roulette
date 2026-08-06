@@ -1396,7 +1396,7 @@ function init() {
 
   /* scale the fixed 1080x700 frame to fit the window — no internal scrolling */
   const fitFrame = () => {
-    const pad = 28;
+    const pad = window.innerWidth < 700 ? 6 : 28;
     const scale = Math.min(
       2,
       (window.innerWidth - pad * 2) / 1080,
