@@ -1127,6 +1127,9 @@ input, select { font-family: inherit; }
 }
 
 
+/* value-picker backdrop: only materialises on mobile (media rule) */
+.value-backdrop { display: none; }
+
 /* dev preview toggle, tucked against the frame's right edge */
 .dev-toggle {
   position: fixed;
@@ -1402,8 +1405,27 @@ input, select { font-family: inherit; }
   .any-opt .ac { font-size: 0.85rem; }
   .any-opt .at { font-size: 0.56rem; }
   .value-btn { min-width: 88px; padding: 8px 10px; font-size: 0.78rem; gap: 8px; }
-  .value-menu { width: 168px; padding: 6px; gap: 5px; }
-  .value-item { height: 34px; font-size: 0.74rem; }
+  /* the in-flow dropdown gets clipped by the frame and the panel's
+     scroll container — on phones it becomes a centred overlay above a
+     dim body-level backdrop (#valueBackdrop, toggled by game.js) */
+  .value-menu {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    width: min(320px, 88vw);
+    height: fit-content;
+    padding: 10px;
+    gap: 8px;
+    z-index: 999;
+  }
+  .value-backdrop:not([hidden]) {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 990;
+    background: rgba(0, 0, 0, 0.55);
+  }
+  .value-item { height: 44px; font-size: 0.85rem; }
   .opt-chips { width: 26px; height: 26px; margin: -13px 0 0 -13px; }
   .opt-chips .pchip { width: 26px; height: 26px; }
 

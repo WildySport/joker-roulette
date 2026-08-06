@@ -1352,6 +1352,7 @@ function autoRepeatPlace() {
 
 function closeValueMenu() {
   $('valueMenu').hidden = true;
+  $('valueBackdrop').hidden = true;
 }
 
 /* ── Init ────────────────────────────────── */
@@ -1385,6 +1386,10 @@ function init() {
     e.stopPropagation();
     if (state.phase !== 'betting') return;
     menu.hidden = !menu.hidden;
+    /* mobile shows a dim backdrop under the overlay menu; it blocks
+       stray taps on the buttons beneath, and its own clicks bubble to
+       the document listener below, which closes the menu */
+    $('valueBackdrop').hidden = menu.hidden;
     SFX.click();
   });
   document.addEventListener('click', closeValueMenu);
