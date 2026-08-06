@@ -38,6 +38,9 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
+/* rapid chip-placing taps must never trigger double-tap zoom;
+   `manipulation` keeps pinch-zoom and scrolling available */
+* { touch-action: manipulation; }
 html, body { height: 100%; }
 
 body {
