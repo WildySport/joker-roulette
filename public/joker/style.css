@@ -1332,7 +1332,7 @@ input, select { font-family: inherit; }
   }
 
   /* top bar */
-  .topbar { padding: 6px 10px; column-gap: 8px; }
+  .topbar { padding: 5px 10px; column-gap: 8px; }
   .logo { gap: 6px; flex-shrink: 0; }
   .logo-badge { width: 24px; height: 24px; border-radius: 6px; font-size: 0.9rem; }
   .logo em { font-size: 0.95rem; white-space: nowrap; }
@@ -1344,7 +1344,7 @@ input, select { font-family: inherit; }
   .spin-area { padding: 4px 0 2px; }
   .status-text { font-size: 0.78rem; }
   .marker { font-size: 0.6rem; }
-  .strip-window { padding: 7px 0 5px; }
+  .strip-window { padding: 6px 0 4px; }
   .strip { gap: 6px; }
   .strip-fade { width: 36px; }
   .tile { width: 56px; height: 72px; border-radius: 9px; }
@@ -1368,7 +1368,7 @@ input, select { font-family: inherit; }
   .pcard.joker .pj { width: 11px; }
 
   /* panel area */
-  .panel-wrap { padding: 4px 6px 6px; overflow-y: auto; }
+  .panel-wrap { padding: 3px 6px 4px; overflow-y: auto; }
   .mode-row { flex-wrap: wrap; row-gap: 4px; gap: 8px; padding: 1px 2px 4px; font-size: 0.64rem; }
   .repeat-ctl { margin-left: 0; gap: 6px; }
   .toggle { width: 34px; height: 19px; }
@@ -1417,20 +1417,28 @@ input, select { font-family: inherit; }
   .summary-empty { font-size: 0.62rem; }
   .chip { padding: 3px 9px; font-size: 0.58rem; }
 
-  /* advanced board: compact chips, grid keeps a usable minimum
-     width and pans horizontally inside the panel */
-  .board { gap: 6px; padding: 8px 8px 10px; border-radius: 14px; }
+  /* advanced board: transposed for portrait — suits across the top,
+     13 value rows down, everything fits the width with no panning
+     (game.js layoutBoard() re-seats the cells to match this template) */
+  .board { gap: 5px; padding: 7px 8px 8px; border-radius: 14px; }
   .chip-row { gap: 6px; }
   .chips { gap: 4px; }
-  .bchip { padding: 5px 8px; font-size: 0.6rem; }
+  .bchip { padding: 4px 7px; font-size: 0.6rem; }
   .board-total { gap: 6px; }
   #boardTotal { font-size: 0.8rem; }
   .board-grid {
-    overflow-x: auto;
-    grid-template-columns: 40px repeat(13, minmax(36px, 1fr)) 38px;
-    grid-template-rows: 26px repeat(4, 40px) 30px 30px;
-    padding-bottom: 4px;
+    grid-template-columns: 34px repeat(4, 1fr);
+    grid-template-rows: 26px repeat(13, 23px) 28px 27px 27px;
   }
+  .cell { font-size: 0.66rem; border-radius: 6px; }
+  .cell-head { font-size: 0.66rem; }
+  .cell-suit { font-size: 0.9rem; }
+  .cell-joker { font-size: 0.85rem; }
+  .cell-wide { font-size: 0.6rem; }
+  .cell-wide em { font-size: 0.5rem; margin-left: 3px; }
+  .zone .stake-stack .pchip { width: 18px; height: 18px; }
+  .pchip { width: 22px; height: 22px; }
+  .pchip b { font-size: 0.44rem; }
 
   /* iOS zooms into focused inputs under 16px */
   #betAmount, .bchip input, .repeat-input { font-size: 16px; }
@@ -1440,10 +1448,47 @@ input, select { font-family: inherit; }
   .back-link { top: auto; bottom: 5px; left: 8px; padding: 5px 9px; font-size: 0.55rem; }
   .brand-toggle { top: auto; bottom: 5px; left: auto; right: 8px; padding: 2px; }
   .brand-toggle button { padding: 4px 9px; font-size: 0.55rem; }
-  .dev-toggle { top: auto; transform: none; bottom: 40px; right: 6px; font-size: 0.44rem; padding: 4px 5px; }
+  .dev-toggle {
+    /* centred in the bottom pill strip so it never covers the board */
+    top: auto;
+    bottom: 4px;
+    right: 50%;
+    transform: translateX(50%);
+    font-size: 0.44rem;
+    padding: 3px 6px;
+    line-height: 1.2;
+  }
 }
 
 /* very narrow: the label is redundant next to the green number */
 @media (max-width: 480px) {
   .balance-label { display: none; }
+}
+
+/* short mobile screens: shave the spinner and board rows further so
+   advanced mode needs little-to-no internal scrolling */
+@media (max-width: 760px) and (max-height: 810px) {
+  .status-text { font-size: 0.7rem; }
+  .strip-window { padding: 5px 0 4px; }
+  .tile { width: 48px; height: 62px; border-radius: 8px; }
+  .tile .tv { font-size: 0.78rem; }
+  .tile .ts { font-size: 0.62rem; }
+  .tile.face .ix { top: 4px; left: 5px; }
+  .tile.face .ix b { font-size: 0.88rem; }
+  .tile.face .ix i { font-size: 0.52rem; }
+  .tile.face .pip { font-size: 1.3rem; }
+  .tile.joker-tile .hexb { width: 28px; height: 31px; }
+  .tile.joker-tile .hex img { width: 14px; }
+  .tile.joker-tile .jname { font-size: 0.36rem; }
+  .under-strip { padding: 2px 10px 3px; }
+  .panel-wrap { padding: 3px 6px 4px; }
+  .mode-row { padding: 0 2px 3px; }
+  .panel, .board { gap: 5px; padding: 6px 8px 8px; }
+  .board-grid { grid-template-rows: 22px repeat(13, 21px) 24px 25px 25px; }
+  /* chip tray on one line (scrolls sideways only if a device is
+     narrower still — the board itself never does) */
+  .chips { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+  .chips::-webkit-scrollbar { display: none; }
+  .bchip { padding: 3px 6px; font-size: 0.56rem; }
+  .bchip input { width: 40px; }
 }

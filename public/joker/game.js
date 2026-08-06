@@ -732,6 +732,8 @@ function renderStripHighlights() {
 }
 
 /* ── Advanced board construction ─────────── */
+let groupRowEl, outsideRowEl;
+
 function buildBoard() {
   const grid = $('boardGrid');
 
@@ -769,7 +771,7 @@ function buildBoard() {
     grid.appendChild(makeCell('suit:' + suit, 'cell-suit' + (red ? ' s-red' : ''), SUITS[suit].symbol, title('suit:' + suit), 15, 1, si + 2, 1));
   });
 
-  const groupRow = document.createElement('div');
+  const groupRow = groupRowEl = document.createElement('div');
   groupRow.className = 'row-span';
   groupRow.style.gridColumn = '2 / span 13';
   groupRow.style.gridRow = '6';
@@ -779,7 +781,7 @@ function buildBoard() {
   }
   grid.appendChild(groupRow);
 
-  const outsideRow = document.createElement('div');
+  const outsideRow = outsideRowEl = document.createElement('div');
   outsideRow.className = 'row-span';
   outsideRow.style.gridColumn = '2 / span 13';
   outsideRow.style.gridRow = '7';
@@ -794,6 +796,46 @@ function buildBoard() {
       name + '<em>' + multLabel(boardMeta(key).mult) + '</em>', title(key)));
   }
   grid.appendChild(outsideRow);
+  layoutBoard();
+}
+
+/* the board has two arrangements sharing one set of cells:
+   desktop = values across (15 cols x 7 rows), mobile portrait =
+   transposed (suits across, 5 cols x 17 rows) so nothing pans.
+   The CSS grid templates for each live behind the same 760px
+   breakpoint; this assigns every cell's position to match. */
+function layoutBoard() {
+  const cell = (k) => boardCells.get(k);
+  if (!cell('joker:both')) return;   /* board not built yet */
+  const setPos = (el, col, colSpan, row, rowSpan) => {
+    el.style.gridColumn = col + (colSpan > 1 ? ' / span ' + colSpan : '');
+    el.style.gridRow = row + (rowSpan > 1 ? ' / span ' + rowSpan : '');
+  };
+  if (window.matchMedia('(max-width: 760px)').matches) {
+    setPos(cell('joker:both'), 1, 1, 1, 1);
+    SUIT_ORDER.forEach((suit, si) => setPos(cell('suit:' + suit), si + 2, 1, 1, 1));
+    VALUES.forEach((v, vi) => {
+      setPos(cell('value:' + v), 1, 1, vi + 2, 1);
+      SUIT_ORDER.forEach((suit, si) =>
+        setPos(cell('card:' + v + ':' + suit), si + 2, 1, vi + 2, 1));
+    });
+    setPos(cell('joker:gold'), 2, 2, 15, 1);
+    setPos(cell('joker:purple'), 4, 2, 15, 1);
+    setPos(groupRowEl, 1, 5, 16, 1);
+    setPos(outsideRowEl, 1, 5, 17, 1);
+  } else {
+    setPos(cell('joker:both'), 1, 1, 1, 1);
+    VALUES.forEach((v, vi) => setPos(cell('value:' + v), vi + 2, 1, 1, 1));
+    setPos(cell('joker:gold'), 1, 1, 2, 2);
+    setPos(cell('joker:purple'), 1, 1, 4, 2);
+    SUIT_ORDER.forEach((suit, si) => {
+      setPos(cell('suit:' + suit), 15, 1, si + 2, 1);
+      VALUES.forEach((v, vi) =>
+        setPos(cell('card:' + v + ':' + suit), vi + 2, 1, si + 2, 1));
+    });
+    setPos(groupRowEl, 2, 13, 6, 1);
+    setPos(outsideRowEl, 2, 13, 7, 1);
+  }
 }
 
 /* card object for a board cell key, if the cell IS a single card */
@@ -853,6 +895,10 @@ function layoutZones() {
   const probe = boardCells.get('card:A:spades');
   if (!probe || probe.offsetWidth === 0) return;   /* board hidden — re-laid out on next show */
   const S = 18;
+  const R = (k) => {
+    const el = boardCells.get(k);
+    return { L: el.offsetLeft, T: el.offsetTop, w: el.offsetWidth, h: el.offsetHeight };
+  };
   const put = (key, x, y, w, h) => {
     const el = boardCells.get(key);
     if (!el) return;
@@ -861,13 +907,26 @@ function layoutZones() {
     el.style.width = w + 'px';
     el.style.height = h + 'px';
   };
+  /* split zone straddling the shared edge of two adjacent cells —
+     works whichever axis they neighbour on (the board transposes
+     on mobile, so "next value" can sit beside OR below) */
+  const between = (key, a, b) => {
+    if (Math.abs(b.L - a.L) > Math.abs(b.T - a.T))
+      put(key, a.L + a.w + 2 - S / 2, a.T + 4, S, a.h - 8);
+    else
+      put(key, a.L + 4, a.T + a.h + 2 - S / 2, a.w - 8, S);
+  };
   SUIT_ORDER.forEach((suit, si) => {
     VALUES.forEach((v, vi) => {
-      const cell = boardCells.get('card:' + v + ':' + suit);
-      const L = cell.offsetLeft, T = cell.offsetTop, w = cell.offsetWidth, h = cell.offsetHeight;
-      if (vi < 12) put('pairh:' + v + ':' + suit, L + w + 2 - S / 2, T + 4, S, h - 8);
-      if (si < 3) put('pairv:' + v + ':' + suit, L + 4, T + h + 2 - S / 2, w - 8, S);
-      if (vi < 12 && si < 3) put('quad:' + v + ':' + suit, L + w - S / 2, T + h - S / 2, S + 4, S + 4);
+      const a = R('card:' + v + ':' + suit);
+      if (vi < 12) between('pairh:' + v + ':' + suit, a, R('card:' + VALUES[vi + 1] + ':' + suit));
+      if (si < 3) between('pairv:' + v + ':' + suit, a, R('card:' + v + ':' + SUIT_ORDER[si + 1]));
+      if (vi < 12 && si < 3) {
+        /* corner zone centred on the meeting point with the diagonal cell */
+        const d = R('card:' + VALUES[vi + 1] + ':' + SUIT_ORDER[si + 1]);
+        const cx = (a.L + a.w + d.L) / 2, cy = (a.T + a.h + d.T) / 2;
+        put('quad:' + v + ':' + suit, cx - S / 2 - 2, cy - S / 2 - 2, S + 4, S + 4);
+      }
     });
   });
 }
@@ -1434,6 +1493,7 @@ function init() {
   fitFrame();
   window.addEventListener('resize', () => {
     fitFrame();
+    layoutBoard();
     layoutZones();
     if (state.phase === 'betting') renderIdleStrip();
   });
