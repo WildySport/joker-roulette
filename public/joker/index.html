@@ -21,7 +21,7 @@
         <button id="soundToggle" class="sound-btn" title="Sound on/off"></button>
         <span class="balance-label">Balance</span>
         <span class="balance-value" id="balance">$0.00</span>
-        <button id="resetBalance" class="reset-btn" hidden>Reset $100</button>
+        <button id="resetBalance" class="reset-btn" hidden>Reset $100,000</button>
       </div>
     </header>
 
@@ -170,6 +170,34 @@
 </div>
 
 <button id="forceJoker" class="dev-toggle" title="Demo: force the next spins to land on a joker">FORCE<br>JOKER</button>
+
+<div id="brandToggle" class="brand-toggle" role="group" aria-label="Theme">
+  <button data-brand="gamdom">Gamdom</button>
+  <button data-brand="wildylabs">WildyLabs</button>
+</div>
+<script>
+/* shared brand switch — same localStorage key across all demo games */
+(function () {
+  var KEY = 'wl-brand';
+  function get() {
+    try { return localStorage.getItem(KEY) === 'wildylabs' ? 'wildylabs' : 'gamdom'; }
+    catch (e) { return 'gamdom'; }
+  }
+  function apply(b) {
+    document.documentElement.setAttribute('data-brand', b);
+    document.querySelectorAll('#brandToggle button').forEach(function (x) {
+      x.classList.toggle('on', x.getAttribute('data-brand') === b);
+    });
+  }
+  apply(get());
+  document.querySelectorAll('#brandToggle button').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      try { localStorage.setItem(KEY, btn.getAttribute('data-brand')); } catch (e) {}
+      apply(btn.getAttribute('data-brand'));
+    });
+  });
+})();
+</script>
 
 <script src="game.js"></script>
 </body>

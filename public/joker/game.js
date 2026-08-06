@@ -18,7 +18,7 @@ const SUITS = {
   diamonds: { symbol: '♦', color: 'red' },
 };
 const JOKERS = ['gold', 'purple'];
-const START_BALANCE = 100;
+const START_BALANCE = 100000;
 
 /* board group definitions */
 const GROUPS = { 'A-5': ['A', '2', '3', '4', '5'], '6-10': ['6', '7', '8', '9', '10'], 'J-K': ['J', 'Q', 'K'] };
@@ -55,7 +55,7 @@ let lastRoundBets = null;     /* { board: Map, total } */
 /* ── Persistence ─────────────────────────── */
 function save() {
   localStorage.setItem('jokerRoulette', JSON.stringify({
-    v: 2,
+    v: 3,
     balance: state.balance,
     lastCard: state.lastCard,
     history: state.history.slice(0, 10),
@@ -68,14 +68,21 @@ function load() {
       state.balance = data.balance;
       state.lastCard = data.lastCard || null;
       state.history = Array.isArray(data.history) ? data.history : [];
+      const v = data.v || 0;
       /* migrate pre-redesign joker names (green/gold -> gold/purple) */
-      if (data.v !== 2) {
+      if (v < 2) {
         const mig = (c) => {
           if (c && c.kind === 'joker') c.joker = c.joker === 'green' ? 'gold' : 'purple';
           return c;
         };
         state.lastCard = mig(state.lastCard);
         state.history = state.history.map(mig);
+      }
+      /* v3 raised the starting bankroll — give existing saves the new one,
+         and persist right away so the reset happens exactly once */
+      if (v < 3) {
+        state.balance = START_BALANCE;
+        save();
       }
     }
   } catch { /* fresh start */ }
@@ -628,7 +635,7 @@ function renderBets(resultCard) {
       const meta = boardMeta(key);
       const chip = document.createElement('span');
       chip.className = 'chip';
-      let suffix = '';
+      let suffix = ' <i class="pot">→ ' + money(round2(bet.total * meta.mult)) + '</i>';
       if (resultCard) {
         const won = meta.wins(resultCard);
         chip.classList.add(won ? 'chip-win' : 'chip-lose');
@@ -652,7 +659,7 @@ function renderBets(resultCard) {
         const prefix = PREFIX[SECTION_OF(key)];
         const chip = document.createElement('span');
         chip.className = 'chip';
-        let suffix = '';
+        let suffix = ' <i class="pot">→ ' + money(round2(bet.total * meta.mult)) + '</i>';
         if (resultCard) {
           const won = meta.wins(resultCard);
           chip.classList.add(won ? 'chip-win' : 'chip-lose');

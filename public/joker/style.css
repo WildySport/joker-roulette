@@ -818,6 +818,7 @@ input, select { font-family: inherit; }
   white-space: nowrap;
 }
 .chip b { color: var(--text); }
+.chip .pot { font-style: normal; color: var(--green); }
 .chip.chip-win { border-color: var(--green); color: var(--green-hi); }
 .chip.chip-win b { color: var(--green-hi); }
 .chip.chip-lose { border-color: rgba(255, 115, 115, 0.4); color: #d99; opacity: 0.8; }
@@ -1171,10 +1172,11 @@ input, select { font-family: inherit; }
 /* ── chip stacks on the simple panel options ── */
 .opt-chips {
   position: absolute;
-  right: -13px;
-  bottom: -11px;
+  left: 50%;
+  top: 50%;
   width: 30px;
   height: 30px;
+  margin: -15px 0 0 -15px;
   z-index: 3;
   pointer-events: none;
 }
@@ -1195,5 +1197,70 @@ input, select { font-family: inherit; }
     inset 0 0 0 5px rgba(0, 0, 0, 0.16);
   animation: bump 0.5s ease;
 }
-/* the value grid tiles are tighter — pull the stack in a little */
-.value-item .opt-chips { right: -10px; bottom: -9px; }
+
+/* ── WildyLabs brand (volt-lime, dagger mark) ─────────── */
+.brand-toggle {
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  z-index: 60;
+  display: flex;
+  gap: 2px;
+  background: var(--panel-2);
+  border: 1px solid var(--edge-2);
+  border-radius: 999px;
+  padding: 3px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+}
+.brand-toggle button {
+  border: none;
+  background: transparent;
+  color: var(--text-dim);
+  font-family: 'Archivo', 'Inter', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.brand-toggle button.on { background: var(--green); color: #131800; }
+:root:not([data-brand='wildylabs']) .brand-toggle button.on { color: #04140b; }
+
+:root[data-brand='wildylabs'] {
+  --green: #c8ff00;
+  --green-hi: #ddff4d;
+  --green-dim: #8fb800;
+  --glow: rgba(200, 255, 0, 0.35);
+  --glow-soft: rgba(200, 255, 0, 0.14);
+  --suit-green: #d3ff2e;
+}
+
+[data-brand='wildylabs'] .logo-badge {
+  background: transparent;
+  box-shadow: none;
+  color: transparent;
+  background-image: url('assets/wildylabs-dagger.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+[data-brand='wildylabs'] .reset-btn,
+[data-brand='wildylabs'] .chip-c10k,
+[data-brand='wildylabs'] .colour-red {
+  background: linear-gradient(180deg, #d9ff2e, #a5d400);
+  color: #131800;
+}
+[data-brand='wildylabs'] .pchip-c10k {
+  background-color: #a5d400;
+  background-image: radial-gradient(circle at 50% 32%, #d9ff2e, #86ad00);
+}
+[data-brand='wildylabs'] .pchip-c10k b { color: #131800; }
+[data-brand='wildylabs'] .tile.face::after {
+  background-image: url('assets/wildylabs-dagger.png');
+}
+[data-brand='wildylabs'] .bk-logo {
+  content: url('assets/wildylabs-dagger.png');
+}
