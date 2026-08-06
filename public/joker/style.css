@@ -1264,3 +1264,17 @@ input, select { font-family: inherit; }
 [data-brand='wildylabs'] .bk-logo {
   content: url('assets/wildylabs-dagger.png');
 }
+
+/* joker cards + previous-round chips: dagger mark, tinted per joker tier */
+[data-brand='wildylabs'] .tile.joker-tile .hex img,
+[data-brand='wildylabs'] .pcard.joker .pj {
+  content: url('assets/wildylabs-dagger.png');
+}
+[data-brand='wildylabs'] .tile.joker-tile.gold .hex img,
+[data-brand='wildylabs'] .pcard.joker.gold .pj {
+  filter: sepia(1) saturate(5) hue-rotate(-18deg) brightness(1.05);
+}
+[data-brand='wildylabs'] .tile.joker-tile.purple .hex img,
+[data-brand='wildylabs'] .pcard.joker.purple .pj {
+  filter: sepia(1) saturate(5) hue-rotate(215deg) brightness(1.15);
+}
