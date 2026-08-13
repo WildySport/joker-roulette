@@ -1,0 +1,585 @@
+{
+ "version": 1,
+ "id": "proj_curtain",
+ "name": "Midnight Curtain",
+ "stage": {
+  "width": 1600,
+  "height": 900,
+  "originX": 800,
+  "originY": 880,
+  "groundY": 880
+ },
+ "textures": [
+  {
+   "id": "tex_curtain_curtain_l",
+   "name": "curtain_curtain_l",
+   "width": 245,
+   "height": 841,
+   "hidden": false,
+   "locked": false
+  },
+  {
+   "id": "tex_curtain_curtain_r",
+   "name": "curtain_curtain_r",
+   "width": 246,
+   "height": 784,
+   "hidden": false,
+   "locked": false
+  },
+  {
+   "id": "tex_curtain_sign",
+   "name": "curtain_sign",
+   "width": 770,
+   "height": 407,
+   "hidden": false,
+   "locked": false
+  },
+  {
+   "id": "tex_curtain_valance",
+   "name": "curtain_valance",
+   "width": 813,
+   "height": 234,
+   "hidden": false,
+   "locked": false
+  }
+ ],
+ "bones": [
+  {
+   "id": "bone_root",
+   "name": "root",
+   "parentId": null,
+   "x": 800,
+   "y": 880,
+   "rotation": 0,
+   "scaleX": 1,
+   "scaleY": 1,
+   "length": 40,
+   "inheritRotation": true,
+   "inheritScale": true,
+   "rotMin": null,
+   "rotMax": null,
+   "hidden": false,
+   "locked": false
+  },
+  {
+   "id": "bone_valance",
+   "name": "valance",
+   "parentId": "bone_root",
+   "x": 0,
+   "y": -850,
+   "rotation": 0,
+   "scaleX": 1,
+   "scaleY": 1,
+   "length": 200,
+   "inheritRotation": true,
+   "inheritScale": true,
+   "rotMin": null,
+   "rotMax": null,
+   "hidden": false,
+   "locked": false
+  },
+  {
+   "id": "bone_curtain_l",
+   "name": "curtain_l",
+   "parentId": "bone_root",
+   "x": -792,
+   "y": -860,
+   "rotation": 0,
+   "scaleX": 1,
+   "scaleY": 1,
+   "length": 400,
+   "inheritRotation": true,
+   "inheritScale": true,
+   "rotMin": null,
+   "rotMax": null,
+   "hidden": false,
+   "locked": false
+  },
+  {
+   "id": "bone_curtain_r",
+   "name": "curtain_r",
+   "parentId": "bone_root",
+   "x": 792,
+   "y": -860,
+   "rotation": 0,
+   "scaleX": 1,
+   "scaleY": 1,
+   "length": 400,
+   "inheritRotation": true,
+   "inheritScale": true,
+   "rotMin": null,
+   "rotMax": null,
+   "hidden": false,
+   "locked": false
+  },
+  {
+   "id": "bone_sign",
+   "name": "sign",
+   "parentId": "bone_root",
+   "x": 0,
+   "y": -790,
+   "rotation": 0,
+   "scaleX": 1,
+   "scaleY": 1,
+   "length": 200,
+   "inheritRotation": true,
+   "inheritScale": true,
+   "rotMin": null,
+   "rotMax": null,
+   "hidden": false,
+   "locked": false
+  }
+ ],
+ "slots": [
+  {
+   "id": "slot_curtain_curtain_l",
+   "name": "curtain_curtain_l",
+   "boneId": "bone_curtain_l",
+   "attachmentId": "att_curtain_curtain_l",
+   "order": 20,
+   "opacity": 1,
+   "tint": "#ffffff",
+   "visible": true
+  },
+  {
+   "id": "slot_curtain_curtain_r",
+   "name": "curtain_curtain_r",
+   "boneId": "bone_curtain_r",
+   "attachmentId": "att_curtain_curtain_r",
+   "order": 21,
+   "opacity": 1,
+   "tint": "#ffffff",
+   "visible": true
+  },
+  {
+   "id": "slot_curtain_sign",
+   "name": "curtain_sign",
+   "boneId": "bone_sign",
+   "attachmentId": "att_curtain_sign",
+   "order": 30,
+   "opacity": 1,
+   "tint": "#ffffff",
+   "visible": true
+  },
+  {
+   "id": "slot_curtain_valance",
+   "name": "curtain_valance",
+   "boneId": "bone_valance",
+   "attachmentId": "att_curtain_valance",
+   "order": 40,
+   "opacity": 1,
+   "tint": "#ffffff",
+   "visible": true
+  }
+ ],
+ "attachments": [
+  {
+   "id": "att_curtain_curtain_l",
+   "name": "curtain_curtain_l",
+   "textureId": "tex_curtain_curtain_l",
+   "x": 0,
+   "y": 0,
+   "rotation": 0,
+   "scaleX": 1.0463733650416172,
+   "scaleY": 1.0463733650416172,
+   "pivotX": 0.02,
+   "pivotY": 0.02
+  },
+  {
+   "id": "att_curtain_curtain_r",
+   "name": "curtain_curtain_r",
+   "textureId": "tex_curtain_curtain_r",
+   "x": 0,
+   "y": 0,
+   "rotation": 0,
+   "scaleX": 1.1224489795918366,
+   "scaleY": 1.1224489795918366,
+   "pivotX": 0.98,
+   "pivotY": 0.02
+  },
+  {
+   "id": "att_curtain_sign",
+   "name": "curtain_sign",
+   "textureId": "tex_curtain_sign",
+   "x": 0,
+   "y": 0,
+   "rotation": 0,
+   "scaleX": 0.7272727272727273,
+   "scaleY": 0.7272727272727273,
+   "pivotX": 0.5,
+   "pivotY": 0.04
+  },
+  {
+   "id": "att_curtain_valance",
+   "name": "curtain_valance",
+   "textureId": "tex_curtain_valance",
+   "x": 0,
+   "y": 0,
+   "rotation": 0,
+   "scaleX": 2.0172201722017222,
+   "scaleY": 2.0172201722017222,
+   "pivotX": 0.5,
+   "pivotY": 0.1
+  }
+ ],
+ "constraints": [],
+ "animations": [
+  {
+   "id": "anim_reveal",
+   "name": "reveal",
+   "duration": 1.6,
+   "fps": 30,
+   "loop": false,
+   "tracks": [
+    {
+     "id": "t0",
+     "targetKind": "bone",
+     "targetId": "bone_curtain_l",
+     "prop": "scaleX",
+     "keys": [
+      {
+       "id": "k1",
+       "time": 0,
+       "value": 3.2,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k2",
+       "time": 0.25,
+       "value": 3.2,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k3",
+       "time": 0.95,
+       "value": 1,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k4",
+       "time": 1.6,
+       "value": 1,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t5",
+     "targetKind": "bone",
+     "targetId": "bone_curtain_r",
+     "prop": "scaleX",
+     "keys": [
+      {
+       "id": "k6",
+       "time": 0,
+       "value": 3.2,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k7",
+       "time": 0.25,
+       "value": 3.2,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k8",
+       "time": 0.95,
+       "value": 1,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k9",
+       "time": 1.6,
+       "value": 1,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t10",
+     "targetKind": "bone",
+     "targetId": "bone_sign",
+     "prop": "y",
+     "keys": [
+      {
+       "id": "k11",
+       "time": 0,
+       "value": -1150,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k12",
+       "time": 0.35,
+       "value": -1150,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k13",
+       "time": 0.75,
+       "value": -790,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "k14",
+       "time": 0.95,
+       "value": -770,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k15",
+       "time": 1.15,
+       "value": -790,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t16",
+     "targetKind": "bone",
+     "targetId": "bone_sign",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k17",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k18",
+       "time": 0.75,
+       "value": -7,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "k19",
+       "time": 1,
+       "value": 5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k20",
+       "time": 1.25,
+       "value": -3,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k21",
+       "time": 1.5,
+       "value": 1,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k22",
+       "time": 1.6,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t23",
+     "targetKind": "bone",
+     "targetId": "bone_valance",
+     "prop": "y",
+     "keys": [
+      {
+       "id": "k24",
+       "time": 0,
+       "value": -1150,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k25",
+       "time": 0.2,
+       "value": -850,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "k26",
+       "time": 0.35,
+       "value": -866,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k27",
+       "time": 0.5,
+       "value": -850,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    }
+   ],
+   "events": []
+  },
+  {
+   "id": "anim_idle",
+   "name": "idle",
+   "duration": 3,
+   "fps": 30,
+   "loop": true,
+   "tracks": [
+    {
+     "id": "t28",
+     "targetKind": "bone",
+     "targetId": "bone_sign",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k29",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k30",
+       "time": 0.75,
+       "value": 1.4,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k31",
+       "time": 1.5,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k32",
+       "time": 2.25,
+       "value": -1.4,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k33",
+       "time": 3,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t34",
+     "targetKind": "bone",
+     "targetId": "bone_curtain_l",
+     "prop": "scaleX",
+     "keys": [
+      {
+       "id": "k35",
+       "time": 0,
+       "value": 1,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k36",
+       "time": 1.5,
+       "value": 1.06,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k37",
+       "time": 3,
+       "value": 1,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t38",
+     "targetKind": "bone",
+     "targetId": "bone_curtain_r",
+     "prop": "scaleX",
+     "keys": [
+      {
+       "id": "k39",
+       "time": 0,
+       "value": 1,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k40",
+       "time": 1.5,
+       "value": 1.06,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k41",
+       "time": 3,
+       "value": 1,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    }
+   ],
+   "events": []
+  }
+ ],
+ "referenceLayers": []
+}
