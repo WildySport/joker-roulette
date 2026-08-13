@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark" />
+    <title>ScrapRig Runtime Demo</title>
+    <style>
+      :root { color-scheme: dark; }
+      * { margin: 0; box-sizing: border-box; }
+      body {
+        font-family: Inter, system-ui, sans-serif;
+        background: #121016;
+        color: #ece9f2;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      header {
+        padding: 10px 14px;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        background: #1a1720;
+        border-bottom: 1px solid #2c2836;
+        flex-wrap: wrap;
+      }
+      header b { color: #7ceaf5; font-style: italic; }
+      button {
+        font: inherit; color: inherit;
+        background: #211d2a; border: 1px solid #2c2836;
+        border-radius: 7px; padding: 5px 12px; cursor: pointer;
+      }
+      button:hover { border-color: #2ba8b8; color: #7ceaf5; }
+      #stage { flex: 1; }
+      #log {
+        position: fixed; bottom: 8px; left: 8px;
+        font: 11px ui-monospace, monospace; color: #9d97ac;
+        max-height: 140px; overflow: hidden;
+        display: flex; flex-direction: column-reverse;
+        pointer-events: none;
+      }
+      .hint { color: #5f5a6e; font-size: 12px; }
+    </style>
+    <script type="module" crossorigin src="/scraprig/assets/demo-BtRx1XBk.js"></script>
+    <link rel="modulepreload" crossorigin href="/scraprig/assets/sampler-BvZsfJ81.js">
+  </head>
+  <body>
+    <header>
+      <b>⚙ ScrapRig demo</b>
+      <button id="loadBtn">Load runtime ZIP…</button>
+      <span class="hint" id="state">No character loaded — export a runtime ZIP from the editor, then load it here.</span>
+      <span style="flex:1"></span>
+      <button data-ev="spin:start">spin:start</button>
+      <button data-ev="spin:anticipation">spin:anticipation</button>
+      <button data-ev="win:small">win:small</button>
+      <button data-ev="win:big">win:big</button>
+      <button data-ev="loss">loss</button>
+      <button data-ev="bonus">bonus</button>
+    </header>
+    <div id="stage"></div>
+    <div id="log"></div>
+  </body>
+</html>
