@@ -1,0 +1,1 @@
+import{i as e}from"./SurferRig-D3e1Copy.js";export{e as CanvasRenderer};
