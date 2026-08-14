@@ -1,0 +1,1 @@
+import"./rolldown-runtime-hePW80VL.js";import{a as e,n as t,r as n}from"./index-CSqmbKqS.js";import{t as r}from"./CharacterOverlay-BrdT4s_G.js";e();var i=t();function a(){return(0,i.jsx)(r,{folder:`moth`,className:n.mothHost,entry:{clip:`bonus_trigger`,then:`idle`},bindings:[]})}export{a as default};
