@@ -1,1 +1,0 @@
-import{r as e}from"./SurferRig-ZvmUR57B.js";export{e as WebGLRenderer};
