@@ -157,6 +157,31 @@ body {
 
 .card:last-child:nth-child(odd) { grid-column: 1 / -1; }
 
+.card.hero {
+  grid-column: 1 / -1;
+  padding: 36px 32px;
+  border-color: color-mix(in srgb, var(--green) 35%, transparent);
+  box-shadow: var(--shadow), 0 0 30px var(--glow-soft);
+}
+.card.hero::after { opacity: 0.7; }
+.card.hero .icon { width: 92px; height: 92px; border-radius: 20px; }
+.card.hero .icon svg { width: 54px; height: 54px; }
+.card.hero h2 { font-size: 1.6rem; display: flex; align-items: center; gap: 12px; }
+.card.hero p { font-size: 0.92rem; margin-top: 6px; }
+.card.hero .go { font-size: 1.5rem; }
+.card.hero .tag {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: var(--btn-ink);
+  background: var(--green);
+  border-radius: 999px;
+  padding: 4px 10px;
+  box-shadow: 0 0 12px var(--glow);
+}
+
 .foot { color: var(--text-faint); font-size: 0.68rem; font-weight: 500; }
 
 .brand-toggle {
@@ -217,13 +242,13 @@ body {
   <div class="sub">provably fair game demos</div>
 
   <div class="grid">
-    <a class="card" href="/zombies/">
+    <a class="card hero" href="/zombies/">
       <span class="icon">
         <svg viewBox="0 0 24 24" fill="none"><path d="M12 3a7.5 7.5 0 0 0-7.5 7.5c0 3.1 1.6 5 3 6.2V20a1.5 1.5 0 0 0 1.5 1.5h6A1.5 1.5 0 0 0 16.5 20v-3.3c1.4-1.2 3-3.1 3-6.2A7.5 7.5 0 0 0 12 3Z" stroke="currentColor" stroke-width="2"/><circle cx="9.2" cy="11" r="1.7" fill="currentColor"/><circle cx="14.8" cy="11" r="1.7" fill="currentColor"/><path d="M10.5 17.5v2M13.5 17.5v2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
       </span>
       <span>
-        <h2>Zombies</h2>
-        <p>First-person mines — blast walls, dodge the horde, escape</p>
+        <h2>Zombies <em class="tag">FEATURED</em></h2>
+        <p>First-person mines — blast through the walls, dodge the horde, escape with the multiplier</p>
       </span>
       <span class="go">→</span>
     </a>
