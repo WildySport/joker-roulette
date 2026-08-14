@@ -1,0 +1,1 @@
+import"./rolldown-runtime-hePW80VL.js";import{a as e,n as t,r as n}from"./index-CfFSzIDo.js";import{t as r}from"./CharacterOverlay-B_x7iKd3.js";e();var i=t();function a(){return(0,i.jsx)(r,{folder:`curtain`,className:n.curtainHost,entry:{clip:`reveal`,then:`idle`},bindings:[]})}export{a as default};
