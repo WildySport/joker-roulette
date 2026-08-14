@@ -21,8 +21,8 @@
   {
    "id": "tex_leg_upper_b",
    "name": "leg_upper_b",
-   "width": 333,
-   "height": 700,
+   "width": 288,
+   "height": 707,
    "hidden": false,
    "locked": false
   },
@@ -61,8 +61,8 @@
   {
    "id": "tex_leg_upper_f",
    "name": "leg_upper_f",
-   "width": 333,
-   "height": 700,
+   "width": 288,
+   "height": 707,
    "hidden": false,
    "locked": false
   },
@@ -204,9 +204,9 @@
    "id": "bone_head",
    "name": "head",
    "parentId": "bone_torso",
-   "x": -16.402678917567627,
-   "y": -290.44096151253734,
-   "rotation": -27,
+   "x": -14.283001860634798,
+   "y": -287.0487691279116,
+   "rotation": -24,
    "scaleX": 1,
    "scaleY": 1,
    "length": 130,
@@ -221,8 +221,8 @@
    "id": "bone_hair",
    "name": "hair",
    "parentId": "bone_head",
-   "x": -63.94206138355011,
-   "y": -99.80687744851208,
+   "x": -69.6346117854335,
+   "y": -100.28469894002757,
    "rotation": 6,
    "scaleX": 1,
    "scaleY": 1,
@@ -238,12 +238,12 @@
    "id": "bone_arm_upper_f",
    "name": "arm_upper_f",
    "parentId": "bone_torso",
-   "x": -39.72621747916055,
-   "y": -252.28322902008057,
-   "rotation": 29,
+   "x": -43.54376346223921,
+   "y": -235.74762069540503,
+   "rotation": 21.7,
    "scaleX": 1,
    "scaleY": 1,
-   "length": 245,
+   "length": 220,
    "inheritRotation": true,
    "inheritScale": true,
    "rotMin": null,
@@ -255,9 +255,9 @@
    "id": "bone_arm_lower_f",
    "name": "arm_lower_f",
    "parentId": "bone_arm_upper_f",
-   "x": 11.890541676390654,
-   "y": 246.6953891312969,
-   "rotation": -14,
+   "x": -0.08037466395809645,
+   "y": 233.21233573701323,
+   "rotation": -17.7,
    "scaleX": 1,
    "scaleY": 1,
    "length": 300,
@@ -272,8 +272,8 @@
    "id": "bone_arm_upper_b",
    "name": "arm_upper_b",
    "parentId": "bone_torso",
-   "x": 20.70053324792164,
-   "y": -325.41740568576176,
+   "x": 22.394856706401498,
+   "y": -307.60928203339336,
    "rotation": -134.5,
    "scaleX": 1,
    "scaleY": 1,
@@ -289,8 +289,8 @@
    "id": "bone_arm_lower_b",
    "name": "arm_lower_b",
    "parentId": "bone_arm_upper_b",
-   "x": 9.855669847138167,
-   "y": 186.55526197849315,
+   "x": 23.744889049552278,
+   "y": 197.82866385846228,
    "rotation": -2.5,
    "scaleX": 1,
    "scaleY": 1,
@@ -308,7 +308,7 @@
    "parentId": "bone_pelvis",
    "x": 40,
    "y": 7,
-   "rotation": -98.5,
+   "rotation": -100,
    "scaleX": 1,
    "scaleY": 1,
    "length": 205,
@@ -323,9 +323,9 @@
    "id": "bone_leg_lower_f",
    "name": "leg_lower_f",
    "parentId": "bone_leg_upper_f",
-   "x": 19.888910942173755,
-   "y": 205.1936432288639,
-   "rotation": 115,
+   "x": -0.896471336938319,
+   "y": 218.15864947130115,
+   "rotation": 119.3,
    "scaleX": 1,
    "scaleY": 1,
    "length": 175,
@@ -340,9 +340,9 @@
    "id": "bone_foot_f",
    "name": "foot_f",
    "parentId": "bone_leg_lower_f",
-   "x": 5.135720530598164,
-   "y": 175.78004543926934,
-   "rotation": -21.7,
+   "x": -0.018292681101613084,
+   "y": 166.35504099779428,
+   "rotation": -24.3,
    "scaleX": 1,
    "scaleY": 1,
    "length": 90,
@@ -359,7 +359,7 @@
    "parentId": "bone_pelvis",
    "x": -30,
    "y": 7,
-   "rotation": 105.4,
+   "rotation": 96.6,
    "scaleX": 1,
    "scaleY": 1,
    "length": 150,
@@ -374,9 +374,9 @@
    "id": "bone_leg_lower_b",
    "name": "leg_lower_b",
    "parentId": "bone_leg_upper_b",
-   "x": -16.447801005756986,
-   "y": 154.93053231069408,
-   "rotation": -107.2,
+   "x": 0.04123808006669627,
+   "y": 130.8625167854445,
+   "rotation": -91.3,
    "scaleX": 1,
    "scaleY": 1,
    "length": 175,
@@ -391,9 +391,9 @@
    "id": "bone_foot_b",
    "name": "foot_b",
    "parentId": "bone_leg_lower_b",
-   "x": -0.4051177596094,
-   "y": 172.0721821782965,
-   "rotation": -3.2,
+   "x": 0.059479989838013836,
+   "y": 130.55265781335441,
+   "rotation": -10.3,
    "scaleX": 1,
    "scaleY": 1,
    "length": 90,
@@ -541,7 +541,7 @@
    "name": "arm_upper_f2",
    "boneId": "bone_arm_upper_f",
    "attachmentId": "att_arm_upper_f2",
-   "order": 45,
+   "order": 28,
    "opacity": 1,
    "tint": "#ffffff",
    "visible": true
@@ -577,10 +577,10 @@
    "x": 0,
    "y": 0,
    "rotation": 0,
-   "scaleX": 0.37857142857142856,
-   "scaleY": 0.37857142857142856,
+   "scaleX": 0.36775106082036774,
+   "scaleY": 0.36775106082036774,
    "pivotX": 0.5,
-   "pivotY": 0.07
+   "pivotY": 0.16
   },
   {
    "id": "att_leg_lower_b",
@@ -613,8 +613,8 @@
    "x": 0,
    "y": 0,
    "rotation": 0,
-   "scaleX": 0.4296160877513711,
-   "scaleY": 0.4296160877513711,
+   "scaleX": 0.3930530164533821,
+   "scaleY": 0.3930530164533821,
    "pivotX": 0.5,
    "pivotY": 0.08
   },
@@ -637,10 +637,10 @@
    "x": 0,
    "y": 0,
    "rotation": 0,
-   "scaleX": 0.37857142857142856,
-   "scaleY": 0.37857142857142856,
+   "scaleX": 0.4243281471004243,
+   "scaleY": 0.4243281471004243,
    "pivotX": 0.5,
-   "pivotY": 0.07
+   "pivotY": 0.1
   },
   {
    "id": "att_leg_lower_f",
@@ -672,9 +672,9 @@
    "textureId": "tex_pelvis",
    "x": 0,
    "y": 0,
-   "rotation": 0,
-   "scaleX": 0.6174698795180723,
-   "scaleY": 0.6174698795180723,
+   "rotation": 14,
+   "scaleX": 0.572289156626506,
+   "scaleY": 0.572289156626506,
    "pivotX": 0.5,
    "pivotY": 0.2
   },
@@ -709,8 +709,8 @@
    "x": 0,
    "y": 0,
    "rotation": 0,
-   "scaleX": 0.7157894736842105,
-   "scaleY": 0.7157894736842105,
+   "scaleX": 0.6778947368421052,
+   "scaleY": 0.6778947368421052,
    "pivotX": 0.5,
    "pivotY": 0.86
   },
@@ -721,8 +721,8 @@
    "x": 0,
    "y": 0,
    "rotation": 0,
-   "scaleX": 0.44789762340036565,
-   "scaleY": 0.44789762340036565,
+   "scaleX": 0.40219378427787933,
+   "scaleY": 0.40219378427787933,
    "pivotX": 0.5,
    "pivotY": 0.08
   },
@@ -733,8 +733,8 @@
    "x": 0,
    "y": 0,
    "rotation": 0,
-   "scaleX": 0.44786096256684493,
-   "scaleY": 0.44786096256684493,
+   "scaleX": 0.4946524064171123,
+   "scaleY": 0.4946524064171123,
    "pivotX": 0.5,
    "pivotY": 0.08
   }
@@ -869,7 +869,7 @@
       {
        "id": "k15",
        "time": 0,
-       "value": -27,
+       "value": -24,
        "easing": {
         "kind": "easeInOut"
        }
@@ -877,7 +877,7 @@
       {
        "id": "k16",
        "time": 1.3,
-       "value": -29,
+       "value": -26,
        "easing": {
         "kind": "easeInOut"
        }
@@ -885,7 +885,7 @@
       {
        "id": "k17",
        "time": 2.6,
-       "value": -27,
+       "value": -24,
        "easing": {
         "kind": "easeInOut"
        }
@@ -901,7 +901,7 @@
       {
        "id": "k19",
        "time": 0,
-       "value": 29,
+       "value": 21.7,
        "easing": {
         "kind": "easeInOut"
        }
@@ -909,7 +909,7 @@
       {
        "id": "k20",
        "time": 1.3,
-       "value": 35,
+       "value": 27.7,
        "easing": {
         "kind": "easeInOut"
        }
@@ -917,7 +917,7 @@
       {
        "id": "k21",
        "time": 2.6,
-       "value": 29,
+       "value": 21.7,
        "easing": {
         "kind": "easeInOut"
        }
@@ -965,7 +965,7 @@
       {
        "id": "k27",
        "time": 0,
-       "value": -14,
+       "value": -17.7,
        "easing": {
         "kind": "easeInOut"
        }
@@ -973,7 +973,7 @@
       {
        "id": "k28",
        "time": 1.3,
-       "value": -10,
+       "value": -13.7,
        "easing": {
         "kind": "easeInOut"
        }
@@ -981,7 +981,7 @@
       {
        "id": "k29",
        "time": 2.6,
-       "value": -14,
+       "value": -17.7,
        "easing": {
         "kind": "easeInOut"
        }
@@ -1183,7 +1183,7 @@
       {
        "id": "k53",
        "time": 0,
-       "value": -27,
+       "value": -24,
        "easing": {
         "kind": "easeInOut"
        }
@@ -1191,7 +1191,7 @@
       {
        "id": "k54",
        "time": 0.8,
-       "value": -24.5,
+       "value": -21.5,
        "easing": {
         "kind": "easeInOut"
        }
@@ -1199,7 +1199,7 @@
       {
        "id": "k55",
        "time": 2.4,
-       "value": -29.5,
+       "value": -26.5,
        "easing": {
         "kind": "easeInOut"
        }
@@ -1207,7 +1207,7 @@
       {
        "id": "k56",
        "time": 3.2,
-       "value": -27,
+       "value": -24,
        "easing": {
         "kind": "easeInOut"
        }
@@ -1223,7 +1223,7 @@
       {
        "id": "k58",
        "time": 0,
-       "value": 29,
+       "value": 21.7,
        "easing": {
         "kind": "easeInOut"
        }
@@ -1231,7 +1231,7 @@
       {
        "id": "k59",
        "time": 1.6,
-       "value": 32,
+       "value": 24.7,
        "easing": {
         "kind": "easeInOut"
        }
@@ -1239,7 +1239,7 @@
       {
        "id": "k60",
        "time": 3.2,
-       "value": 29,
+       "value": 21.7,
        "easing": {
         "kind": "easeInOut"
        }
@@ -1377,7 +1377,7 @@
       {
        "id": "k76",
        "time": 0,
-       "value": 29,
+       "value": 21.7,
        "easing": {
         "kind": "easeInOut"
        }
@@ -1385,7 +1385,7 @@
       {
        "id": "k77",
        "time": 0.45,
-       "value": 43,
+       "value": 35.7,
        "easing": {
         "kind": "easeOut"
        }
@@ -1393,7 +1393,7 @@
       {
        "id": "k78",
        "time": 0.9,
-       "value": 29,
+       "value": 21.7,
        "easing": {
         "kind": "easeInOut"
        }
@@ -1683,7 +1683,7 @@
       {
        "id": "k113",
        "time": 0,
-       "value": -27,
+       "value": -24,
        "easing": {
         "kind": "easeInOut"
        }
@@ -1691,7 +1691,7 @@
       {
        "id": "k114",
        "time": 0.4,
-       "value": -19,
+       "value": -16,
        "easing": {
         "kind": "easeInOut"
        }
@@ -1699,7 +1699,7 @@
       {
        "id": "k115",
        "time": 0.9,
-       "value": -29,
+       "value": -26,
        "easing": {
         "kind": "easeInOut"
        }
@@ -1707,7 +1707,7 @@
       {
        "id": "k116",
        "time": 1.3,
-       "value": -27,
+       "value": -24,
        "easing": {
         "kind": "easeInOut"
        }
@@ -1795,7 +1795,7 @@
       {
        "id": "k127",
        "time": 0,
-       "value": 29,
+       "value": 21.7,
        "easing": {
         "kind": "easeInOut"
        }
@@ -1803,7 +1803,7 @@
       {
        "id": "k128",
        "time": 0.4,
-       "value": 47,
+       "value": 39.7,
        "easing": {
         "kind": "easeInOut"
        }
@@ -1811,7 +1811,7 @@
       {
        "id": "k129",
        "time": 0.9,
-       "value": 25,
+       "value": 17.7,
        "easing": {
         "kind": "easeInOut"
        }
@@ -1819,7 +1819,7 @@
       {
        "id": "k130",
        "time": 1.3,
-       "value": 29,
+       "value": 21.7,
        "easing": {
         "kind": "easeInOut"
        }
@@ -1835,7 +1835,7 @@
       {
        "id": "k132",
        "time": 0,
-       "value": -98.5,
+       "value": -100,
        "easing": {
         "kind": "easeInOut"
        }
@@ -1843,7 +1843,7 @@
       {
        "id": "k133",
        "time": 0.45,
-       "value": -104.5,
+       "value": -106,
        "easing": {
         "kind": "easeInOut"
        }
@@ -1851,7 +1851,7 @@
       {
        "id": "k134",
        "time": 1.3,
-       "value": -98.5,
+       "value": -100,
        "easing": {
         "kind": "easeInOut"
        }
@@ -1867,7 +1867,7 @@
       {
        "id": "k136",
        "time": 0,
-       "value": 105.4,
+       "value": 96.6,
        "easing": {
         "kind": "easeInOut"
        }
@@ -1875,7 +1875,7 @@
       {
        "id": "k137",
        "time": 0.45,
-       "value": 111.4,
+       "value": 102.6,
        "easing": {
         "kind": "easeInOut"
        }
@@ -1883,7 +1883,7 @@
       {
        "id": "k138",
        "time": 1.3,
-       "value": 105.4,
+       "value": 96.6,
        "easing": {
         "kind": "easeInOut"
        }
@@ -1989,7 +1989,7 @@
       {
        "id": "k150",
        "time": 0,
-       "value": 29,
+       "value": 21.7,
        "easing": {
         "kind": "easeInOut"
        }
@@ -1997,7 +1997,7 @@
       {
        "id": "k151",
        "time": 0.2,
-       "value": 11,
+       "value": 3.6999999999999993,
        "easing": {
         "kind": "easeOut"
        }
@@ -2005,7 +2005,7 @@
       {
        "id": "k152",
        "time": 0.6,
-       "value": 15,
+       "value": 7.699999999999999,
        "easing": {
         "kind": "easeInOut"
        }
@@ -2013,7 +2013,7 @@
       {
        "id": "k153",
        "time": 0.8,
-       "value": 29,
+       "value": 21.7,
        "easing": {
         "kind": "easeInOut"
        }
@@ -2109,7 +2109,7 @@
       {
        "id": "k165",
        "time": 0,
-       "value": -27,
+       "value": -24,
        "easing": {
         "kind": "easeInOut"
        }
@@ -2117,7 +2117,7 @@
       {
        "id": "k166",
        "time": 0.22,
-       "value": -22,
+       "value": -19,
        "easing": {
         "kind": "easeInOut"
        }
@@ -2125,7 +2125,7 @@
       {
        "id": "k167",
        "time": 0.38,
-       "value": -25,
+       "value": -22,
        "easing": {
         "kind": "easeInOut"
        }
@@ -2133,7 +2133,7 @@
       {
        "id": "k168",
        "time": 0.5,
-       "value": -22,
+       "value": -19,
        "easing": {
         "kind": "easeInOut"
        }
@@ -2141,7 +2141,7 @@
       {
        "id": "k169",
        "time": 0.8,
-       "value": -27,
+       "value": -24,
        "easing": {
         "kind": "easeInOut"
        }
@@ -2207,7 +2207,7 @@
       {
        "id": "k176",
        "time": 0,
-       "value": -27,
+       "value": -24,
        "easing": {
         "kind": "easeInOut"
        }
@@ -2215,7 +2215,7 @@
       {
        "id": "k177",
        "time": 0.3,
-       "value": -32,
+       "value": -29,
        "easing": {
         "kind": "easeInOut"
        }
@@ -2223,7 +2223,7 @@
       {
        "id": "k178",
        "time": 1,
-       "value": -31,
+       "value": -28,
        "easing": {
         "kind": "easeInOut"
        }
@@ -2231,7 +2231,7 @@
       {
        "id": "k179",
        "time": 1.3,
-       "value": -27,
+       "value": -24,
        "easing": {
         "kind": "easeInOut"
        }
@@ -2247,7 +2247,7 @@
       {
        "id": "k181",
        "time": 0,
-       "value": 29,
+       "value": 21.7,
        "easing": {
         "kind": "easeInOut"
        }
@@ -2255,7 +2255,7 @@
       {
        "id": "k182",
        "time": 0.28,
-       "value": 159,
+       "value": 151.7,
        "easing": {
         "kind": "easeOut"
        }
@@ -2263,7 +2263,7 @@
       {
        "id": "k183",
        "time": 1,
-       "value": 151,
+       "value": 143.7,
        "easing": {
         "kind": "easeInOut"
        }
@@ -2271,7 +2271,7 @@
       {
        "id": "k184",
        "time": 1.3,
-       "value": 29,
+       "value": 21.7,
        "easing": {
         "kind": "easeInOut"
        }
@@ -2287,7 +2287,7 @@
       {
        "id": "k186",
        "time": 0,
-       "value": -14,
+       "value": -17.7,
        "easing": {
         "kind": "easeInOut"
        }
@@ -2295,7 +2295,7 @@
       {
        "id": "k187",
        "time": 0.32,
-       "value": 10,
+       "value": 6.300000000000001,
        "easing": {
         "kind": "easeInOut"
        }
@@ -2303,7 +2303,7 @@
       {
        "id": "k188",
        "time": 1,
-       "value": 6,
+       "value": 2.3000000000000007,
        "easing": {
         "kind": "easeInOut"
        }
@@ -2311,7 +2311,7 @@
       {
        "id": "k189",
        "time": 1.3,
-       "value": -14,
+       "value": -17.7,
        "easing": {
         "kind": "easeInOut"
        }
@@ -2537,7 +2537,7 @@
       {
        "id": "k216",
        "time": 0,
-       "value": 69,
+       "value": 61.7,
        "easing": {
         "kind": "easeInOut"
        }
@@ -2545,7 +2545,7 @@
       {
        "id": "k217",
        "time": 0.25,
-       "value": -21,
+       "value": -28.3,
        "easing": {
         "kind": "easeInOut"
        }
@@ -2553,7 +2553,7 @@
       {
        "id": "k218",
        "time": 0.5,
-       "value": 69,
+       "value": 61.7,
        "easing": {
         "kind": "easeInOut"
        }
@@ -2601,7 +2601,7 @@
       {
        "id": "k224",
        "time": 0,
-       "value": 6,
+       "value": 2.3000000000000007,
        "easing": {
         "kind": "easeInOut"
        }
@@ -2609,7 +2609,7 @@
       {
        "id": "k225",
        "time": 0.25,
-       "value": -34,
+       "value": -37.7,
        "easing": {
         "kind": "easeInOut"
        }
@@ -2617,7 +2617,7 @@
       {
        "id": "k226",
        "time": 0.5,
-       "value": 6,
+       "value": 2.3000000000000007,
        "easing": {
         "kind": "easeInOut"
        }
@@ -2665,7 +2665,7 @@
       {
        "id": "k232",
        "time": 0,
-       "value": -80.5,
+       "value": -82,
        "easing": {
         "kind": "easeInOut"
        }
@@ -2673,7 +2673,7 @@
       {
        "id": "k233",
        "time": 0.25,
-       "value": -120.5,
+       "value": -122,
        "easing": {
         "kind": "easeInOut"
        }
@@ -2681,7 +2681,7 @@
       {
        "id": "k234",
        "time": 0.5,
-       "value": -80.5,
+       "value": -82,
        "easing": {
         "kind": "easeInOut"
        }
@@ -2697,7 +2697,7 @@
       {
        "id": "k236",
        "time": 0,
-       "value": 83.4,
+       "value": 74.6,
        "easing": {
         "kind": "easeInOut"
        }
@@ -2705,7 +2705,7 @@
       {
        "id": "k237",
        "time": 0.25,
-       "value": 123.4,
+       "value": 114.6,
        "easing": {
         "kind": "easeInOut"
        }
@@ -2713,7 +2713,7 @@
       {
        "id": "k238",
        "time": 0.5,
-       "value": 83.4,
+       "value": 74.6,
        "easing": {
         "kind": "easeInOut"
        }
@@ -2729,7 +2729,7 @@
       {
        "id": "k240",
        "time": 0,
-       "value": -21,
+       "value": -18,
        "easing": {
         "kind": "easeInOut"
        }
@@ -2737,7 +2737,7 @@
       {
        "id": "k241",
        "time": 0.25,
-       "value": -33,
+       "value": -30,
        "easing": {
         "kind": "easeInOut"
        }
@@ -2745,7 +2745,7 @@
       {
        "id": "k242",
        "time": 0.5,
-       "value": -21,
+       "value": -18,
        "easing": {
         "kind": "easeInOut"
        }
