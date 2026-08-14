@@ -158,16 +158,15 @@ body {
 .card:last-child:nth-child(odd) { grid-column: 1 / -1; }
 
 .card.hero {
-  grid-column: 1 / -1;
-  padding: 36px 32px;
+  padding: 32px 28px;
   border-color: color-mix(in srgb, var(--green) 35%, transparent);
   box-shadow: var(--shadow), 0 0 30px var(--glow-soft);
 }
 .card.hero::after { opacity: 0.7; }
-.card.hero .icon { width: 92px; height: 92px; border-radius: 20px; }
-.card.hero .icon svg { width: 54px; height: 54px; }
-.card.hero h2 { font-size: 1.6rem; display: flex; align-items: center; gap: 12px; }
-.card.hero p { font-size: 0.92rem; margin-top: 6px; }
+.card.hero .icon { width: 80px; height: 80px; border-radius: 18px; }
+.card.hero .icon svg { width: 46px; height: 46px; }
+.card.hero h2 { font-size: 1.35rem; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.card.hero p { font-size: 0.85rem; margin-top: 6px; }
 .card.hero .go { font-size: 1.5rem; }
 .card.hero .tag {
   font-family: 'Inter', sans-serif;
@@ -249,6 +248,17 @@ body {
       <span>
         <h2>Zombies <em class="tag">FEATURED</em></h2>
         <p>First-person mines — blast through the walls, dodge the horde, escape with the multiplier</p>
+      </span>
+      <span class="go">→</span>
+    </a>
+
+    <a class="card hero" href="/surf/">
+      <span class="icon">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M3.5 15.5C6 9.5 10.5 6 15.5 6c2.9 0 5 1.4 6 3.4-2-.8-3.9-.6-5.4.5 2.1.5 3.3 1.7 3.8 3.5-4.4-1.6-7.8.3-9.7 3.4" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M2.5 19.5c5.5-2.2 13.5-2.2 19 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </span>
+      <span>
+        <h2>Surfing <em class="tag">FEATURED</em></h2>
+        <p>Ride the wave, bank before the megalodon strikes — kick out anytime up to ×500</p>
       </span>
       <span class="go">→</span>
     </a>
@@ -339,17 +349,6 @@ body {
       <span>
         <h2>Freakshow</h2>
         <p>Dark carnival, 3,125 ways — THE MIDNIGHT SHOW builds reel multipliers to ×10,000</p>
-      </span>
-      <span class="go">→</span>
-    </a>
-
-    <a class="card" href="/surf/">
-      <span class="icon">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M3.5 15.5C6 9.5 10.5 6 15.5 6c2.9 0 5 1.4 6 3.4-2-.8-3.9-.6-5.4.5 2.1.5 3.3 1.7 3.8 3.5-4.4-1.6-7.8.3-9.7 3.4" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M2.5 19.5c5.5-2.2 13.5-2.2 19 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-      </span>
-      <span>
-        <h2>Surfing</h2>
-        <p>Ride the wave, bank before the megalodon strikes — kick out anytime up to ×500</p>
       </span>
       <span class="go">→</span>
     </a>
