@@ -4,3 +4,4 @@ EXAMPLES/
 *.zip
 figma-card-strip*
 1.png
+.wrangler/
