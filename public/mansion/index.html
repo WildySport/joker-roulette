@@ -8,10 +8,146 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <script type="module" crossorigin src="/mansion/assets/index-B4J0xf8O.js"></script>
-    <link rel="stylesheet" crossorigin href="/mansion/assets/index-CUjgRo9a.css">
+    <!--
+      START THE HEAVIEST DRAWINGS BEFORE THE BUNDLE EXISTS.
+
+      Nothing in public/scene is requested until React has mounted, three has
+      initialised and a component has called useLoader — which is a 324KB
+      download and a parse away. These five are the biggest things in the first
+      frame (the panorama alone is 282KB), and the browser can be fetching them
+      during that entire wait instead of after it.
+
+      Deliberately only the top five. Preloading everything would put a hundred
+      requests in front of the bundle and delay the very thing that draws them.
+
+      crossorigin IS REQUIRED and is not decoration. three's ImageLoader sets
+      crossOrigin="anonymous" on every image it creates, and a preload without
+      the attribute is a DIFFERENT cache key — so the first attempt at this
+      downloaded the panorama twice, 282KB each, and made the load measurably
+      worse instead of better. The probe caught it because the same filename
+      appeared twice in its list of the heaviest things on the wire.
+    -->
+    <link rel="preload" as="image" type="image/webp" crossorigin href="./scene/casino_pano_soft.webp" />
+    <link rel="preload" as="image" type="image/webp" crossorigin href="./scene/fg_palm.webp" />
+    <link rel="preload" as="image" type="image/webp" crossorigin href="./scene/casino_sign.webp" />
+    <link rel="preload" as="image" type="image/webp" crossorigin href="./scene/money_gun.webp" />
+    <link rel="preload" as="image" type="image/webp" crossorigin href="./scene/pepino_keeper_al.webp" />
+    <script type="module" crossorigin src="/mansion/assets/index-DgC0WJII.js"></script>
+    <link rel="stylesheet" crossorigin href="/mansion/assets/index-Bq8A2sjj.css">
   </head>
   <body>
-    <div id="root"></div>
+    <!--
+      THE FIRST SECOND.
+
+      A refresh used to show a flat near-black rectangle for as long as it took
+      to fetch a 324KB bundle and two and a half megabytes of painted scenery —
+      measured at 680ms on a fast connection and considerably worse on a real
+      one. Nothing was wrong; it simply looked like nothing was happening,
+      which is the same thing to whoever is looking at it.
+
+      This is deliberately written INLINE, in the document, with no stylesheet,
+      no web font and no image. Anything in the bundle cannot help: it is the
+      bundle we are waiting for. Anything with a URL costs another round trip
+      before the first pixel. So it is markup and a style block the parser has
+      already read by the time it paints, which puts the game's name on screen
+      in the first frame the browser draws.
+
+      It is removed by the game itself once every texture is in — see
+      __bootDone below and <BootGate> in GameScene.
+    -->
+    <style>
+      #boot {
+        position: fixed;
+        inset: 0;
+        z-index: 50;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 22px;
+        background: radial-gradient(120% 90% at 50% 38%, #2a1108 0%, #160b07 55%, #0d0605 100%);
+        font-family: Archivo, "Arial Black", system-ui, sans-serif;
+        transition: opacity 420ms ease;
+      }
+      #boot[data-done] { opacity: 0; pointer-events: none; }
+      #bootName {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+        font-size: clamp(20px, 4.2vw, 38px);
+        font-weight: 900;
+        letter-spacing: 0.02em;
+        text-shadow: 0 2px 0 #3a1f08, 0 0 34px rgba(232, 180, 92, 0.25);
+      }
+      #bootName i { font-style: normal; color: #e8b45c; }
+      #bootName s { text-decoration: none; color: #f6efe2; opacity: 0.85; }
+      #bootBar {
+        position: relative;
+        width: clamp(150px, 26vw, 240px);
+        height: 4px;
+        overflow: hidden;
+        border-radius: 3px;
+        background: rgba(232, 180, 92, 0.16);
+        box-shadow: inset 0 0 0 1px rgba(232, 180, 92, 0.22);
+      }
+      /* Two states, and the difference matters. Until three.js is running
+         there is no progress to report, so the bar SWEEPS — honestly saying
+         "something is happening" without inventing a number. The moment real
+         texture counts arrive it becomes a real fill. */
+      #bootFill {
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: 34%;
+        border-radius: 3px;
+        background: linear-gradient(90deg, #b9822f, #e8b45c 55%, #ffd88a);
+        animation: bootSweep 1150ms ease-in-out infinite;
+      }
+      #bootFill[data-real] { animation: none; transition: width 220ms ease; }
+      @keyframes bootSweep {
+        0% { transform: translateX(-105%); }
+        100% { transform: translateX(305%); }
+      }
+      @media (prefers-reduced-motion: reduce) { #bootFill { animation: none; width: 100%; opacity: 0.5; } }
+    </style>
+    <div id="boot">
+      <div id="bootName"><i>PEPINO&rsquo;S</i><s>PALACE</s></div>
+      <div id="bootBar"><div id="bootFill"></div></div>
+    </div>
+    <script>
+      /* The two hooks the app uses. Defined here rather than in the bundle so
+         they exist before it loads and nothing has to guard against them being
+         missing. */
+      var bootLast = Date.now();
+      window.__bootProgress = function (frac) {
+        bootLast = Date.now();
+        var f = document.getElementById('bootFill');
+        if (!f) return;
+        f.dataset.real = '';
+        f.style.width = Math.max(6, Math.min(100, frac * 100)).toFixed(1) + '%';
+      };
+      window.__bootDone = function () {
+        var b = document.getElementById('boot');
+        if (!b || b.dataset.done !== undefined) return;
+        window.__bootProgress(1);
+        b.dataset.done = '';
+        setTimeout(function () { b.remove(); }, 460);
+      };
+      /* THE WAY OUT IF SOMETHING BREAKS. If a texture 404s the scene's
+         Suspense boundary never resolves, __bootDone is never called, and a
+         splash that never leaves is worse than the blank screen it replaced —
+         the game is running underneath it and cannot be reached.
+         It watches for a STALL rather than counting to a fixed number. A flat
+         deadline has to be either long enough for a slow connection or short
+         enough to be a useful failsafe and cannot be both: measured on a
+         1.5Mbit link this scene takes fourteen seconds to arrive, so the first
+         version of this fired its 15s timer on a load that was working
+         perfectly. Nine seconds with nothing new arriving is broken; nine
+         seconds of textures still landing is just a slow phone. */
+      var bootWatch = setInterval(function () {
+        if (!document.getElementById('boot')) { clearInterval(bootWatch); return; }
+        if (Date.now() - bootLast > 9000) window.__bootDone();
+      }, 1500);
+    </script>
+    <div id="root"></div>
   </body>
 </html>
