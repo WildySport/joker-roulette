@@ -1,0 +1,209 @@
+<!doctype html>
+<!-- RIG STUDIO — the authoring bench for src/warpRig.js clips.
+
+     Dev-only: open http://localhost:5201/rig-studio.html while the vite dev
+     server runs (it serves /src/warpRig.js as a module; the built site does
+     not ship this page's imports, and that is fine — rigs are authored here
+     and PASTED into components as plain objects).
+
+     Workflow: pick a drawing, sculpt bones and channels with the sliders
+     (everything edits the live rig object — the preview follows every
+     keystroke), then Copy JSON and paste the rig where it is used. -->
+<html>
+<head>
+<meta charset="utf-8">
+<title>Rig Studio</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #17100d; color: #e8d9c0; font: 13px/1.5 'Segoe UI', sans-serif; display: flex; height: 100vh; }
+  #panel { width: 380px; padding: 14px; overflow-y: auto; background: #201612; border-right: 1px solid #3a2a20; }
+  #stage { flex: 1; display: flex; align-items: flex-end; justify-content: space-around; padding: 20px; background:
+    radial-gradient(120% 100% at 50% 30%, #2a1c14, #17100d); }
+  .figure { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .figure span { opacity: 0.6; font-size: 11px; }
+  canvas { image-rendering: auto; }
+  h1 { font-size: 15px; margin: 0 0 10px; color: #ffd98f; }
+  h2 { font-size: 12px; margin: 14px 0 6px; color: #ffbf6f; text-transform: uppercase; letter-spacing: 0.06em; }
+  fieldset { border: 1px solid #3a2a20; border-radius: 8px; margin: 0 0 10px; padding: 8px 10px; }
+  legend { color: #ffd98f; font-size: 12px; padding: 0 5px; }
+  label { display: grid; grid-template-columns: 74px 1fr 44px; gap: 6px; align-items: center; margin: 2px 0; }
+  label b { font-weight: 500; font-size: 11px; color: #cbb694; }
+  input[type=range] { width: 100%; accent-color: #e8a33d; }
+  select, input[type=text], textarea, button {
+    background: #17100d; color: #e8d9c0; border: 1px solid #4a3526; border-radius: 6px; padding: 4px 6px; font: inherit;
+  }
+  button { cursor: pointer; } button:hover { border-color: #e8a33d; }
+  .row { display: flex; gap: 6px; margin: 6px 0; flex-wrap: wrap; }
+  textarea { width: 100%; height: 130px; font: 11px/1.4 Consolas, monospace; }
+  .val { text-align: right; font-variant-numeric: tabular-nums; color: #ffd98f; }
+  .del { float: right; font-size: 11px; padding: 1px 7px; }
+</style>
+</head>
+<body>
+<div id="panel">
+  <h1>Rig Studio</h1>
+  <div class="row">
+    <select id="imgSel"></select>
+    <button id="play">⏸</button>
+  </div>
+  <label><b>period ms</b><input id="period" type="range" min="200" max="3000" step="10"><span class="val" id="periodV"></span></label>
+  <label><b>staticCols</b><input id="staticCols" type="range" min="0" max="0.5" step="0.01"><span class="val" id="staticColsV"></span></label>
+  <h2>Bones <button id="addBone" class="del">+ bone</button></h2>
+  <div id="bones"></div>
+  <h2>Channels <button id="addCh" class="del">+ channel</button></h2>
+  <div id="channels"></div>
+  <h2>JSON</h2>
+  <textarea id="json" spellcheck="false"></textarea>
+  <div class="row">
+    <button id="apply">Apply JSON</button>
+    <button id="copy">Copy JSON</button>
+  </div>
+</div>
+<div id="stage">
+  <div class="figure"><canvas id="c1" style="height:300px"></canvas><span>game size</span></div>
+  <div class="figure"><canvas id="c2" style="height:640px"></canvas><span>zoomed</span></div>
+</div>
+
+<script type="module">
+import { mountWarpRig } from '/src/warpRig.js';
+
+/* the cast — anything in public/ works; free entry via the JSON box's imgUrl */
+const IMAGES = {
+  'dancer (girl_twerk_a)': '/scene/girl_twerk_a.webp',
+  'Pepino (step_a)': '/mascot/step_a.webp',
+  'Pepino (lineup)': '/mascot/lineup.webp',
+  'blonde (bikini_woman)': '/scene/bikini_woman.webp',
+  'smoker terrace (girl_lounge)': '/scene/girl_lounge.webp',
+};
+
+/* the live rig — every control mutates THIS object; the engine reads it
+   per frame, so there is nothing to rebuild and nothing to get stale */
+const rig = {
+  periodMs: 660,
+  staticCols: 0.24,
+  bones: {
+    hips: { top: 0.45, bottom: 0.62, feather: 0.08 },
+    torso: { top: 0.28, bottom: 0.46, feather: 0.07 },
+    legs: { top: 0.60, bottom: 0.95, feather: 0.06 },
+  },
+  channels: [
+    { bone: 'hips', prop: 'dy', wave: 'pop', amp: 0.055, phase: 0, lag: 0, periodMul: 1 },
+    { bone: 'legs', prop: 'dy', wave: 'pop', amp: 0.03, phase: 0, lag: 0.07, periodMul: 1 },
+  ],
+};
+
+let unmounts = [];
+const remount = (url) => {
+  unmounts.forEach((u) => u());
+  unmounts = [mountWarpRig(document.getElementById('c1'), url, rig),
+              mountWarpRig(document.getElementById('c2'), url, rig)];
+};
+
+const imgSel = document.getElementById('imgSel');
+for (const [k, v] of Object.entries(IMAGES)) imgSel.add(new Option(k, v));
+imgSel.onchange = () => remount(imgSel.value);
+
+/* generic slider factory: binds an object property, live */
+const bind = (parent, obj, key, min, max, step) => {
+  const l = document.createElement('label');
+  l.innerHTML = `<b>${key}</b><input type="range" min="${min}" max="${max}" step="${step}"><span class="val"></span>`;
+  const inp = l.querySelector('input');
+  const val = l.querySelector('.val');
+  inp.value = obj[key] ?? 0;
+  val.textContent = (+inp.value).toFixed(3).replace(/0+$/, '').replace(/\.$/, '');
+  inp.oninput = () => { obj[key] = +inp.value; val.textContent = (+inp.value).toFixed(3); syncJson(); };
+  parent.appendChild(l);
+};
+
+const bonesDiv = document.getElementById('bones');
+const chDiv = document.getElementById('channels');
+
+function rebuildControls() {
+  bonesDiv.innerHTML = '';
+  for (const [name, bone] of Object.entries(rig.bones)) {
+    const fs = document.createElement('fieldset');
+    fs.innerHTML = `<legend>${name} <button class="del">×</button></legend>`;
+    fs.querySelector('.del').onclick = () => {
+      if (rig.channels.some((c) => c.bone === name)) { alert('channels still use this bone'); return; }
+      delete rig.bones[name]; rebuildControls(); syncJson();
+    };
+    bind(fs, bone, 'top', 0, 1, 0.01);
+    bind(fs, bone, 'bottom', 0, 1, 0.01);
+    bind(fs, bone, 'feather', 0, 0.3, 0.01);
+    bonesDiv.appendChild(fs);
+  }
+  chDiv.innerHTML = '';
+  rig.channels.forEach((ch, i) => {
+    const fs = document.createElement('fieldset');
+    fs.innerHTML = `<legend>#${i} <button class="del">×</button></legend>`;
+    fs.querySelector('.del').onclick = () => { rig.channels.splice(i, 1); rebuildControls(); syncJson(); };
+    const row = document.createElement('div'); row.className = 'row';
+    const boneSel = document.createElement('select');
+    for (const b of Object.keys(rig.bones)) boneSel.add(new Option(b, b, false, b === ch.bone));
+    boneSel.onchange = () => { ch.bone = boneSel.value; syncJson(); };
+    const propSel = document.createElement('select');
+    for (const p of ['dy', 'dx']) propSel.add(new Option(p, p, false, p === ch.prop));
+    propSel.onchange = () => { ch.prop = propSel.value; syncJson(); };
+    const waveSel = document.createElement('select');
+    for (const w of ['sine', 'pop']) waveSel.add(new Option(w, w, false, w === ch.wave));
+    waveSel.onchange = () => { ch.wave = waveSel.value; syncJson(); };
+    row.append(boneSel, propSel, waveSel);
+    fs.appendChild(row);
+    bind(fs, ch, 'amp', -0.12, 0.12, 0.001);
+    bind(fs, ch, 'phase', -0.5, 0.5, 0.01);
+    bind(fs, ch, 'lag', 0, 0.4, 0.01);
+    bind(fs, ch, 'periodMul', 0.25, 4, 0.25);
+    chDiv.appendChild(fs);
+  });
+}
+
+document.getElementById('addBone').onclick = () => {
+  const name = prompt('bone name?'); if (!name || rig.bones[name]) return;
+  rig.bones[name] = { top: 0.4, bottom: 0.6, feather: 0.06 };
+  rebuildControls(); syncJson();
+};
+document.getElementById('addCh').onclick = () => {
+  rig.channels.push({ bone: Object.keys(rig.bones)[0], prop: 'dy', wave: 'sine', amp: 0.02, phase: 0, lag: 0, periodMul: 1 });
+  rebuildControls(); syncJson();
+};
+
+bind(document.createElement('div'), {}, 'noop', 0, 1, 1); // warm the factory (noop)
+const periodInp = document.getElementById('period');
+periodInp.value = rig.periodMs;
+document.getElementById('periodV').textContent = rig.periodMs;
+periodInp.oninput = () => { rig.periodMs = +periodInp.value; document.getElementById('periodV').textContent = periodInp.value; syncJson(); };
+const scInp = document.getElementById('staticCols');
+scInp.value = rig.staticCols;
+document.getElementById('staticColsV').textContent = rig.staticCols;
+scInp.oninput = () => { rig.staticCols = +scInp.value; document.getElementById('staticColsV').textContent = scInp.value; syncJson(); };
+
+const jsonTa = document.getElementById('json');
+const syncJson = () => { jsonTa.value = JSON.stringify(rig, null, 2); };
+document.getElementById('apply').onclick = () => {
+  try {
+    const next = JSON.parse(jsonTa.value);
+    rig.periodMs = next.periodMs; rig.staticCols = next.staticCols;
+    rig.bones = next.bones; rig.channels = next.channels;
+    periodInp.value = rig.periodMs; scInp.value = rig.staticCols;
+    rebuildControls();
+  } catch (e) { alert(e.message); }
+};
+document.getElementById('copy').onclick = () => navigator.clipboard.writeText(jsonTa.value);
+
+/* pause = freeze time by monkey-hiding rAF... simpler: CSS trick is not
+   possible for canvas, so pause just detaches and re-mounts on resume with
+   the same rig — a studio, not a spacecraft */
+let playing = true;
+document.getElementById('play').onclick = () => {
+  playing = !playing;
+  document.getElementById('play').textContent = playing ? '⏸' : '▶';
+  if (playing) remount(imgSel.value);
+  else unmounts.forEach((u) => u());
+};
+
+rebuildControls();
+syncJson();
+remount(imgSel.value);
+</script>
+</body>
+</html>
