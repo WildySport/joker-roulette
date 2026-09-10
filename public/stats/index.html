@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Who's playing</title>
+<style>
+  :root { --bg: #0b1220; --panel: #0f1c2e; --well: #0a1522; --line: rgba(255,255,255,0.08); --cream: #f2eadb; --dim: rgba(214,198,170,0.62); --cap: rgba(214,198,170,0.5); --gold: #ffd978; --green: #2ee98c; --red: #ff8f7a; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--cream); font-family: Archivo, system-ui, sans-serif; }
+  body { padding: 20px; max-width: 1180px; margin: 0 auto; }
+  h1 { font-size: 20px; letter-spacing: 0.04em; margin: 0 0 4px; }
+  h1 b { color: var(--green); }
+  .sub { color: var(--dim); font-size: 12px; margin-bottom: 18px; }
+  .sub select, .sub button { background: var(--well); color: var(--cream); border: 1px solid var(--line); border-radius: 8px; padding: 4px 8px; font: inherit; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 18px; }
+  .card { background: var(--panel); border-radius: 12px; padding: 12px 14px; box-shadow: 0 0 0 1px var(--line); }
+  .card small { display: block; font-size: 9px; letter-spacing: 0.2em; color: var(--cap); font-weight: 800; }
+  .card b { display: block; font-size: 26px; font-weight: 900; margin-top: 4px; font-variant-numeric: tabular-nums; }
+  .card i { display: block; font-style: normal; font-size: 11px; color: var(--dim); margin-top: 2px; }
+  .grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 10px; margin-bottom: 18px; }
+  @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
+  .box { background: var(--panel); border-radius: 12px; padding: 12px 14px; box-shadow: 0 0 0 1px var(--line); min-width: 0; }
+  .box h3 { margin: 0 0 10px; font-size: 10px; letter-spacing: 0.2em; color: var(--cap); font-weight: 800; }
+  .bars { display: flex; align-items: flex-end; gap: 4px; height: 120px; }
+  .bar { flex: 1; display: grid; align-content: end; justify-items: center; gap: 3px; min-width: 0; }
+  .bar i { display: block; width: 100%; background: linear-gradient(180deg, #3cf29b, #1fbf70); border-radius: 4px 4px 0 0; min-height: 2px; }
+  .bar i.gold { background: linear-gradient(180deg, #ffe08a, #d9a83c); }
+  .bar small { font-size: 8px; color: var(--cap); white-space: nowrap; overflow: hidden; max-width: 100%; }
+  .bar b { font-size: 10px; font-weight: 800; }
+  .rows { display: grid; gap: 5px; font-size: 12px; }
+  .row { display: grid; grid-template-columns: 1fr auto; gap: 8px; padding: 4px 0; border-top: 1px solid var(--line); }
+  .row:first-child { border-top: 0; }
+  .row span:last-child { color: var(--dim); font-variant-numeric: tabular-nums; }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th { text-align: left; font-size: 9px; letter-spacing: 0.16em; color: var(--cap); font-weight: 800; padding: 6px 8px; border-bottom: 1px solid var(--line); }
+  td { padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  td.dev { color: var(--dim); max-width: 220px; overflow: hidden; text-overflow: ellipsis; }
+  td .live { color: var(--green); font-weight: 800; }
+  td .bonus { color: var(--gold); font-weight: 800; }
+  .wrap { overflow-x: auto; }
+  .err { color: var(--red); padding: 20px; background: var(--panel); border-radius: 12px; }
+</style>
+</head>
+<body>
+  <h1><b>GAMDOM</b> · who's playing</h1>
+  <div class="sub">
+    Game <select id="game"><option value="bowling">Bowling</option></select>
+    · last <select id="days"><option value="1">24 hours</option><option value="7" selected>7 days</option><option value="30">30 days</option><option value="90">90 days</option></select>
+    · <button id="refresh">refresh</button>
+    <span id="stamp"></span>
+  </div>
+  <div id="out"></div>
+<script>
+  const params = new URLSearchParams(location.search);
+  const key = params.get('k') || '';
+  const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const num = (v) => Number(v || 0).toLocaleString();
+  const ago = (iso) => { const s = (Date.now() - new Date(iso).getTime()) / 1000; if (s < 90) return 'just now'; if (s < 3600) return Math.round(s / 60) + ' min ago'; if (s < 86400) return Math.round(s / 3600) + ' h ago'; return Math.round(s / 86400) + ' d ago'; };
+  const device = (ua, w) => { const m = /iPhone|Android.*Mobile/i.test(ua) ? 'phone' : /iPad|Android/i.test(ua) ? 'tablet' : 'desktop'; const b = /Edg\//.test(ua) ? 'Edge' : /Chrome\//.test(ua) ? 'Chrome' : /Safari\//.test(ua) ? 'Safari' : /Firefox\//.test(ua) ? 'Firefox' : ''; return `${m}${w ? ' ' + w + 'px' : ''}${b ? ' · ' + b : ''}`; };
+  const stepName = (m) => (m || '').replace(/^x/, '').replace('_', '.') + '×';
+  async function load() {
+    const game = document.getElementById('game').value, days = document.getElementById('days').value;
+    const out = document.getElementById('out');
+    if (!key) { out.innerHTML = '<div class="err">Add the key to the address: /stats/?k=YOUR-KEY</div>'; return; }
+    let d;
+    try { const r = await fetch(`/api/stats?k=${encodeURIComponent(key)}&game=${game}&days=${days}`); if (!r.ok) throw new Error(r.status === 403 ? 'wrong key' : 'stats ' + r.status); d = await r.json(); }
+    catch (e) { out.innerHTML = `<div class="err">${esc(e.message)}</div>`; return; }
+    document.getElementById('stamp').textContent = ' · ' + new Date(d.now).toLocaleTimeString();
+    const t = d.totals || {}, td = d.today || {}, all = d.all || {};
+    const strikeRate = t.throws ? Math.round((100 * (t.strikes || 0)) / t.throws) : 0;
+    const perSession = t.sessions ? ((t.throws || 0) / t.sessions).toFixed(1) : '0';
+    const maxThrows = Math.max(1, ...d.perDay.map((r) => r.throws || 0));
+    const maxStep = Math.max(1, ...d.steps.map((r) => r.c || 0));
+    out.innerHTML = `
+      <div class="cards">
+        <div class="card"><small>PLAYERS · ${days} DAYS</small><b>${num(t.sessions)}</b><i>${num(td.sessions)} today · ${num(all.sessions)} ever</i></div>
+        <div class="card"><small>THROWS</small><b>${num(t.throws)}</b><i>${num(td.throws)} today · ${perSession} per player</i></div>
+        <div class="card"><small>STRIKES</small><b>${num(t.strikes)}</b><i>${strikeRate}% of throws</i></div>
+        <div class="card"><small>BONUS BOWLS</small><b>${num(t.bonuses)}</b><i>${num(td.bonuses)} today</i></div>
+        <div class="card"><small>BIGGEST BONUS</small><b>${t.bigwin ? num(t.bigwin) + '×' : '—'}</b><i>of the stake</i></div>
+      </div>
+      <div class="grid">
+        <div class="box"><h3>THROWS PER DAY <span style="color:var(--gold)">· players in gold</span></h3>
+          <div class="bars">${d.perDay.length ? d.perDay.map((r) => `<div class="bar"><b>${num(r.throws)}</b><i style="height:${Math.round((100 * (r.throws || 0)) / maxThrows)}px"></i><i class="gold" style="height:${Math.min(30, (r.sessions || 0) * 4)}px"></i><small>${r.d.slice(5)}</small></div>`).join('') : '<small style="color:var(--dim)">nothing yet</small>'}</div>
+        </div>
+        <div class="box"><h3>STRIKE PAYS · WHAT THEY PICK</h3>
+          <div class="rows">${d.steps.length ? d.steps.slice(0, 10).map((r) => `<div class="row"><span>${esc(stepName(r.mode))} <i style="display:inline-block;height:6px;border-radius:3px;background:var(--green);width:${Math.round((100 * r.c) / maxStep)}px;vertical-align:middle;margin-left:6px"></i></span><span>${num(r.c)}</span></div>`).join('') : '<small style="color:var(--dim)">nothing yet</small>'}</div>
+        </div>
+        <div class="box"><h3>WHERE FROM</h3>
+          <div class="rows">${d.countries.length ? d.countries.map((r) => `<div class="row"><span>${esc(r.country || '?')}</span><span>${num(r.sessions)} players · ${num(r.throws)} throws</span></div>`).join('') : '<small style="color:var(--dim)">nothing yet</small>'}</div>
+        </div>
+      </div>
+      <div class="box"><h3>PLAYERS · NEWEST FIRST</h3>
+        <div class="wrap"><table>
+          <tr><th>STARTED</th><th>LAST SEEN</th><th>FROM</th><th>DEVICE</th><th>THROWS</th><th>STRIKES</th><th>BONUS</th><th>BIGGEST BONUS</th><th>CAME FROM</th></tr>
+          ${d.sessions.map((s) => `<tr>
+            <td>${new Date(s.started).toLocaleString()}</td>
+            <td>${(Date.now() - new Date(s.last).getTime()) < 120000 ? '<span class="live">playing now</span>' : esc(ago(s.last))}</td>
+            <td>${esc(s.city ? s.city + ', ' : '')}${esc(s.country || '?')}</td>
+            <td class="dev" title="${esc(s.ua)}">${esc(device(s.ua || '', s.w))}</td>
+            <td>${num(s.throws)}</td><td>${num(s.strikes)}</td>
+            <td>${s.bonuses ? '<span class="bonus">' + num(s.bonuses) + '</span>' : '—'}</td>
+            <td>${s.bigwin ? num(s.bigwin) + '×' : '—'}</td>
+            <td class="dev">${esc(s.ref || 'direct')}</td>
+          </tr>`).join('') || '<tr><td colspan="9" style="color:var(--dim)">no one yet — send the link</td></tr>'}
+        </table></div>
+      </div>`;
+  }
+  document.getElementById('refresh').onclick = load;
+  document.getElementById('game').onchange = load;
+  document.getElementById('days').onchange = load;
+  load();
+  setInterval(load, 30000);
+</script>
+</body>
+</html>

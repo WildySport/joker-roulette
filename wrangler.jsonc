@@ -10,5 +10,8 @@
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "none"
   },
+  "d1_databases": [
+    { "binding": "DB", "database_name": "bowling-stats", "database_id": "dc6a9f50-7085-408a-adf2-2edf29112921" }
+  ],
   "observability": { "enabled": true }
 }
