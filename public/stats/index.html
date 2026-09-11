@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <title>Who's playing</title>
+<!-- every game reports: a view on open, a ping every 30s while visible (2 pings ≈ 1 minute), taps; Bowling adds its throws and bonuses -->
 <style>
   :root { --bg: #0b1220; --panel: #0f1c2e; --well: #0a1522; --line: rgba(255,255,255,0.08); --cream: #f2eadb; --dim: rgba(214,198,170,0.62); --cap: rgba(214,198,170,0.5); --gold: #ffd978; --green: #2ee98c; --red: #ff8f7a; }
   * { box-sizing: border-box; }
@@ -19,7 +20,7 @@
   .card small { display: block; font-size: 9px; letter-spacing: 0.2em; color: var(--cap); font-weight: 800; }
   .card b { display: block; font-size: 26px; font-weight: 900; margin-top: 4px; font-variant-numeric: tabular-nums; }
   .card i { display: block; font-style: normal; font-size: 11px; color: var(--dim); margin-top: 2px; }
-  .grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 10px; margin-bottom: 18px; }
+  .grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 10px; margin-bottom: 18px; }
   @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
   .box { background: var(--panel); border-radius: 12px; padding: 12px 14px; box-shadow: 0 0 0 1px var(--line); min-width: 0; }
   .box h3 { margin: 0 0 10px; font-size: 10px; letter-spacing: 0.2em; color: var(--cap); font-weight: 800; }
@@ -46,7 +47,7 @@
 <body>
   <h1><b>GAMDOM</b> · who's playing</h1>
   <div class="sub">
-    Game <select id="game"><option value="bowling">Bowling</option></select>
+    Game <select id="game"><option value="all">All games</option><option value="bowling">Bowling</option></select>
     · last <select id="days"><option value="1">24 hours</option><option value="7" selected>7 days</option><option value="30">30 days</option><option value="90">90 days</option></select>
     · <button id="refresh">refresh</button>
     <span id="stamp"></span>
@@ -68,6 +69,8 @@
     try { const r = await fetch(`/api/stats?k=${encodeURIComponent(key)}&game=${game}&days=${days}`); if (!r.ok) throw new Error(r.status === 403 ? 'wrong key' : 'stats ' + r.status); d = await r.json(); }
     catch (e) { out.innerHTML = `<div class="err">${esc(e.message)}</div>`; return; }
     document.getElementById('stamp').textContent = ' · ' + new Date(d.now).toLocaleTimeString();
+    const sel = document.getElementById('game'); const have = new Set([...sel.options].map((o) => o.value));
+    for (const g of (d.games || [])) if (g.game && !have.has(g.game)) { const o = document.createElement('option'); o.value = g.game; o.textContent = g.game; sel.appendChild(o); }
     const t = d.totals || {}, td = d.today || {}, all = d.all || {};
     const strikeRate = t.throws ? Math.round((100 * (t.strikes || 0)) / t.throws) : 0;
     const perSession = t.sessions ? ((t.throws || 0) / t.sessions).toFixed(1) : '0';
@@ -80,6 +83,7 @@
         <div class="card"><small>STRIKES</small><b>${num(t.strikes)}</b><i>${strikeRate}% of throws</i></div>
         <div class="card"><small>BONUS BOWLS</small><b>${num(t.bonuses)}</b><i>${num(td.bonuses)} today</i></div>
         <div class="card"><small>BIGGEST BONUS</small><b>${t.bigwin ? num(t.bigwin) + '×' : '—'}</b><i>of the stake</i></div>
+        <div class="card"><small>MINUTES PLAYED</small><b>${num(Math.round((t.pings || 0) / 2))}</b><i>${num(Math.round((td.pings || 0) / 2))} today · ${num(t.taps)} taps</i></div>
       </div>
       <div class="grid">
         <div class="box"><h3>THROWS PER DAY <span style="color:var(--gold)">· players in gold</span></h3>
@@ -88,23 +92,28 @@
         <div class="box"><h3>STRIKE PAYS · WHAT THEY PICK</h3>
           <div class="rows">${d.steps.length ? d.steps.slice(0, 10).map((r) => `<div class="row"><span>${esc(stepName(r.mode))} <i style="display:inline-block;height:6px;border-radius:3px;background:var(--green);width:${Math.round((100 * r.c) / maxStep)}px;vertical-align:middle;margin-left:6px"></i></span><span>${num(r.c)}</span></div>`).join('') : '<small style="color:var(--dim)">nothing yet</small>'}</div>
         </div>
+        <div class="box"><h3>BY GAME · ${days} DAYS</h3>
+          <div class="rows">${(d.games || []).length ? d.games.map((r) => `<div class="row"><span>${esc(r.game)}</span><span>${num(r.sessions)} players · ${num(Math.round((r.pings || 0) / 2))} min</span></div>`).join('') : '<small style="color:var(--dim)">nothing yet</small>'}</div>
+        </div>
         <div class="box"><h3>WHERE FROM</h3>
           <div class="rows">${d.countries.length ? d.countries.map((r) => `<div class="row"><span>${esc(r.country || '?')}</span><span>${num(r.sessions)} players · ${num(r.throws)} throws</span></div>`).join('') : '<small style="color:var(--dim)">nothing yet</small>'}</div>
         </div>
       </div>
       <div class="box"><h3>PLAYERS · NEWEST FIRST</h3>
         <div class="wrap"><table>
-          <tr><th>STARTED</th><th>LAST SEEN</th><th>FROM</th><th>DEVICE</th><th>THROWS</th><th>STRIKES</th><th>BONUS</th><th>BIGGEST BONUS</th><th>CAME FROM</th></tr>
+          <tr><th>STARTED</th><th>LAST SEEN</th><th>GAME</th><th>FROM</th><th>DEVICE</th><th>MINUTES</th><th>TAPS</th><th>THROWS</th><th>STRIKES</th><th>BONUS</th><th>BIGGEST BONUS</th><th>CAME FROM</th></tr>
           ${d.sessions.map((s) => `<tr>
             <td>${new Date(s.started).toLocaleString()}</td>
             <td>${(Date.now() - new Date(s.last).getTime()) < 120000 ? '<span class="live">playing now</span>' : esc(ago(s.last))}</td>
+            <td>${esc(s.game || '?')}</td>
             <td>${esc(s.city ? s.city + ', ' : '')}${esc(s.country || '?')}</td>
             <td class="dev" title="${esc(s.ua)}">${esc(device(s.ua || '', s.w))}</td>
+            <td>${num(Math.round((s.pings || 0) / 2))}</td><td>${num(s.taps)}</td>
             <td>${num(s.throws)}</td><td>${num(s.strikes)}</td>
             <td>${s.bonuses ? '<span class="bonus">' + num(s.bonuses) + '</span>' : '—'}</td>
             <td>${s.bigwin ? num(s.bigwin) + '×' : '—'}</td>
             <td class="dev">${esc(s.ref || 'direct')}</td>
-          </tr>`).join('') || '<tr><td colspan="9" style="color:var(--dim)">no one yet — send the link</td></tr>'}
+          </tr>`).join('') || '<tr><td colspan="12" style="color:var(--dim)">no one yet — send the link</td></tr>'}
         </table></div>
       </div>`;
   }

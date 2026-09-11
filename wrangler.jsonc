@@ -6,7 +6,7 @@
   "assets": {
     "directory": "./public",
     "binding": "ASSETS",
-    "run_worker_first": ["/api/*"],
+    "run_worker_first": ["/api/*", "/wl-track.js", "/arena/", "/battles/", "/blast/", "/bowling/", "/carnival/", "/dice/", "/flowers/", "/hilo/", "/joker/", "/kahuna/", "/mansion/", "/mines/", "/pairs/", "/palace/", "/poker/", "/scraprig/", "/surf/", "/zombies/", "/arena/index.html", "/battles/index.html", "/blast/index.html", "/bowling/index.html", "/carnival/index.html", "/dice/index.html", "/flowers/index.html", "/hilo/index.html", "/joker/index.html", "/kahuna/index.html", "/mansion/index.html", "/mines/index.html", "/pairs/index.html", "/palace/index.html", "/poker/index.html", "/scraprig/index.html", "/surf/index.html", "/zombies/index.html"],
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "none"
   },
