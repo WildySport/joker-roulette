@@ -42,6 +42,8 @@
   td .bonus { color: var(--gold); font-weight: 800; }
   .wrap { overflow-x: auto; }
   .err { color: var(--red); padding: 20px; background: var(--panel); border-radius: 12px; }
+.ptag { display: inline-flex; align-items: center; gap: 6px; font-weight: 800; letter-spacing: 0.04em; white-space: nowrap; }
+.ptag i { width: 10px; height: 10px; border-radius: 50%; display: inline-block; box-shadow: 0 0 0 1px rgba(0,0,0,.4); }
 </style>
 </head>
 <body>
@@ -61,6 +63,9 @@
   const ago = (iso) => { const s = (Date.now() - new Date(iso).getTime()) / 1000; if (s < 90) return 'just now'; if (s < 3600) return Math.round(s / 60) + ' min ago'; if (s < 86400) return Math.round(s / 3600) + ' h ago'; return Math.round(s / 86400) + ' d ago'; };
   const device = (ua, w) => { const m = /iPhone|Android.*Mobile/i.test(ua) ? 'phone' : /iPad|Android/i.test(ua) ? 'tablet' : 'desktop'; const b = /Edg\//.test(ua) ? 'Edge' : /Chrome\//.test(ua) ? 'Chrome' : /Safari\//.test(ua) ? 'Safari' : /Firefox\//.test(ua) ? 'Firefox' : ''; return `${m}${w ? ' ' + w + 'px' : ''}${b ? ' · ' + b : ''}`; };
   const stepName = (m) => (m || '').replace(/^x/, '').replace('_', '.') + '×';
+  /* a player's tag: a colour and four letters from their id (a ~ marks a fingerprint guess from before ids) */
+  const hash = (s) => { let h = 2166136261; for (const c of String(s)) { h ^= c.charCodeAt(0); h = Math.imul(h, 16777619) >>> 0; } return h; };
+  const tag = (p) => { const guess = !p.vid; const h = hash(p.who); const hue = h % 360; const id = guess ? '~' + h.toString(36).slice(0, 4) : '#' + p.vid.slice(0, 4); return `<span class="ptag" title="${guess ? 'grouped by device (before visitor ids)' : 'visitor ' + esc(p.vid)}"><i style="background:hsl(${hue} 70% 55%)"></i>${esc(id)}</span>`; };
   async function load() {
     const game = document.getElementById('game').value, days = document.getElementById('days').value;
     const out = document.getElementById('out');
@@ -99,13 +104,15 @@
           <div class="rows">${d.countries.length ? d.countries.map((r) => `<div class="row"><span>${esc(r.country || '?')}</span><span>${num(r.sessions)} players · ${num(r.throws)} throws</span></div>`).join('') : '<small style="color:var(--dim)">nothing yet</small>'}</div>
         </div>
       </div>
-      <div class="box"><h3>PLAYERS · NEWEST FIRST</h3>
+      <div class="box"><h3>PLAYERS · ONE ROW EACH · MOST RECENT FIRST</h3>
         <div class="wrap"><table>
-          <tr><th>STARTED</th><th>LAST SEEN</th><th>GAME</th><th>FROM</th><th>DEVICE</th><th>MINUTES</th><th>TAPS</th><th>THROWS</th><th>STRIKES</th><th>BONUS</th><th>BIGGEST BONUS</th><th>CAME FROM</th></tr>
+          <tr><th>PLAYER</th><th>FIRST SEEN</th><th>LAST SEEN</th><th>VISITS</th><th>GAMES</th><th>FROM</th><th>DEVICE</th><th>MINUTES</th><th>TAPS</th><th>THROWS</th><th>STRIKES</th><th>BONUS</th><th>BIGGEST BONUS</th><th>CAME FROM</th></tr>
           ${d.sessions.map((s) => `<tr>
+            <td>${tag(s)}</td>
             <td>${new Date(s.started).toLocaleString()}</td>
             <td>${(Date.now() - new Date(s.last).getTime()) < 120000 ? '<span class="live">playing now</span>' : esc(ago(s.last))}</td>
-            <td>${esc(s.game || '?')}</td>
+            <td>${num(s.visits)}</td>
+            <td>${esc((s.games || '?').split(',').join(' · '))}</td>
             <td>${esc(s.city ? s.city + ', ' : '')}${esc(s.country || '?')}</td>
             <td class="dev" title="${esc(s.ua)}">${esc(device(s.ua || '', s.w))}</td>
             <td>${num(Math.round((s.pings || 0) / 2))}</td><td>${num(s.taps)}</td>
@@ -113,7 +120,7 @@
             <td>${s.bonuses ? '<span class="bonus">' + num(s.bonuses) + '</span>' : '—'}</td>
             <td>${s.bigwin ? num(s.bigwin) + '×' : '—'}</td>
             <td class="dev">${esc(s.ref || 'direct')}</td>
-          </tr>`).join('') || '<tr><td colspan="12" style="color:var(--dim)">no one yet — send the link</td></tr>'}
+          </tr>`).join('') || '<tr><td colspan="14" style="color:var(--dim)">no one yet — send the link</td></tr>'}
         </table></div>
       </div>`;
   }
