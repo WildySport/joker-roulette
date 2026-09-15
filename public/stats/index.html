@@ -44,6 +44,20 @@
   .err { color: var(--red); padding: 20px; background: var(--panel); border-radius: 12px; }
 .ptag { display: inline-flex; align-items: center; gap: 6px; font-weight: 800; letter-spacing: 0.04em; white-space: nowrap; }
 .ptag i { width: 10px; height: 10px; border-radius: 50%; display: inline-block; box-shadow: 0 0 0 1px rgba(0,0,0,.4); }
+  tr.prow { cursor: pointer; }
+  tr.prow:hover td { background: rgba(255,255,255,0.03); }
+  tr.prow.open td { background: rgba(46,233,140,0.07); }
+  .ptag small { color: var(--dim); font-weight: 600; letter-spacing: 0; }
+  .detail { margin-top: 10px; background: var(--well); border-radius: 12px; padding: 12px 14px; box-shadow: inset 0 0 0 1px var(--line); }
+  .detail h3 { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .detail h3 .x { margin-left: auto; cursor: pointer; color: var(--dim); font-size: 14px; letter-spacing: 0; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 12px; }
+  .chip { background: var(--panel); border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; font-size: 11px; font-weight: 800; color: var(--dim); cursor: pointer; }
+  .chip.on { color: #06110b; background: var(--green); border-color: var(--green); }
+  .detail .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 800px) { .detail .grid2 { grid-template-columns: 1fr; } }
+  .ev { display: grid; grid-template-columns: auto auto 1fr; gap: 4px 10px; font-size: 11px; max-height: 260px; overflow: auto; }
+  .ev span:first-child { color: var(--dim); font-variant-numeric: tabular-nums; white-space: nowrap; }
 </style>
 </head>
 <body>
@@ -65,7 +79,34 @@
   const stepName = (m) => (m || '').replace(/^x/, '').replace('_', '.') + '×';
   /* a player's tag: a colour and four letters from their id (a ~ marks a fingerprint guess from before ids) */
   const hash = (s) => { let h = 2166136261; for (const c of String(s)) { h ^= c.charCodeAt(0); h = Math.imul(h, 16777619) >>> 0; } return h; };
-  const tag = (p) => { const guess = !p.vid; const h = hash(p.who); const hue = h % 360; const id = guess ? '~' + h.toString(36).slice(0, 4) : '#' + p.vid.slice(0, 4); return `<span class="ptag" title="${guess ? 'grouped by device (before visitor ids)' : 'visitor ' + esc(p.vid)}"><i style="background:hsl(${hue} 70% 55%)"></i>${esc(id)}</span>`; };
+  /* a PERSON's tag: colour + four letters from their place-and-browser key; the ids they picked up are counted after it */
+  const tag = (p) => { const h = hash(p.who); const hue = h % 360; const ids = (p.vids || '').split(',').filter(Boolean); return `<span class="ptag" title="${esc(p.who)}"><i style="background:hsl(${hue} 70% 55%)"></i>${'~' + h.toString(36).slice(0, 4)}${ids.length ? `<small>${ids.length} id${ids.length === 1 ? '' : 's'}</small>` : ''}</span>`; };
+  let openWho = null, openGame = 'all';
+  const mins = (p) => num(Math.round((p || 0) / 2));
+  async function loadPlayer() {
+    const host = document.getElementById('detail'); if (!host || !openWho) return;
+    host.innerHTML = '<div class="detail"><small style="color:var(--dim)">loading…</small></div>';
+    let d; try { const r = await fetch(`/api/player?k=${encodeURIComponent(key)}&who=${encodeURIComponent(openWho)}&game=${encodeURIComponent(openGame)}`); d = await r.json(); } catch (e) { host.innerHTML = `<div class="err">${esc(e.message)}</div>`; return; }
+    const allGames = d.games || [];
+    const chips = [{ game: 'all', label: 'All games' }, ...allGames.map((g) => ({ game: g.game, label: g.game }))].map((c) => `<span class="chip${openGame === c.game ? ' on' : ''}" data-g="${esc(c.game)}">${esc(c.label)}</span>`).join('');
+    const shown = openGame === 'all' ? allGames : allGames.filter((g) => g.game === openGame);
+    host.innerHTML = `<div class="detail">
+      <h3>PLAYER ${tag({ who: openWho })} <span class="x" id="closeDetail">✕ close</span></h3>
+      <div class="chips">${chips}</div>
+      <div class="grid2">
+        <div><h3>BY GAME</h3><div class="wrap"><table>
+          <tr><th>GAME</th><th>VISITS</th><th>MINUTES</th><th>TAPS</th><th>THROWS</th><th>STRIKES</th><th>BONUS</th><th>BIGGEST</th><th>FIRST</th><th>LAST</th></tr>
+          ${shown.map((g) => `<tr><td><b>${esc(g.game)}</b></td><td>${num(g.visits)}</td><td>${mins(g.pings)}</td><td>${num(g.taps)}</td><td>${num(g.throws)}</td><td>${num(g.strikes)}</td><td>${g.bonuses ? '<span class="bonus">' + num(g.bonuses) + '</span>' : '—'}</td><td>${g.bigwin ? num(g.bigwin) + '×' : '—'}</td><td>${esc(ago(g.first))}</td><td>${esc(ago(g.last))}</td></tr>`).join('') || '<tr><td colspan="10" style="color:var(--dim)">nothing</td></tr>'}
+        </table></div>
+        <h3 style="margin-top:12px">VISITS · NEWEST FIRST</h3><div class="wrap"><table>
+          <tr><th>WHEN</th><th>GAME</th><th>STAYED</th><th>MINUTES</th><th>TAPS</th><th>THROWS</th><th>ID</th><th>SCREEN</th><th>CAME FROM</th></tr>
+          ${(d.visits || []).map((v) => { const stay = Math.max(0, (new Date(v.last) - new Date(v.start)) / 60000); return `<tr><td>${new Date(v.start).toLocaleString()}</td><td>${esc(v.game)}</td><td>${stay < 1 ? '< 1 min' : Math.round(stay) + ' min'}</td><td>${mins(v.pings)}</td><td>${num(v.taps)}</td><td>${num(v.throws)}${v.strikes ? ' · ' + num(v.strikes) + ' strikes' : ''}${v.bonuses ? ' · <span class="bonus">' + num(v.bonuses) + ' bonus</span>' : ''}</td><td class="dev">${esc(v.vid ? '#' + v.vid.slice(0, 4) : '—')}</td><td>${v.w ? num(v.w) + 'px' : '—'}</td><td class="dev">${esc(v.ref || 'direct')}</td></tr>`; }).join('') || '<tr><td colspan="9" style="color:var(--dim)">nothing</td></tr>'}
+        </table></div></div>
+        <div><h3>LAST EVENTS</h3><div class="ev">${(d.events || []).map((e) => `<span>${new Date(e.t).toLocaleString()}</span><span>${esc(e.game)}</span><span>${esc(e.event)}${e.event === 'throw' ? ' · ' + num(e.n) + ' pins' + (e.mode ? ' · ' + esc(stepName(e.mode)) : '') : e.event === 'ping' ? ' · ' + num(e.n) + ' taps' : e.n ? ' · ' + num(e.n) : ''}</span>`).join('') || '<small style="color:var(--dim)">nothing</small>'}</div></div>
+      </div></div>`;
+    host.querySelectorAll('.chip').forEach((c) => { c.onclick = () => { openGame = c.dataset.g; loadPlayer(); }; });
+    document.getElementById('closeDetail').onclick = () => { openWho = null; host.innerHTML = ''; document.querySelectorAll('tr.prow.open').forEach((r) => r.classList.remove('open')); };
+  }
   async function load() {
     const game = document.getElementById('game').value, days = document.getElementById('days').value;
     const out = document.getElementById('out');
@@ -104,10 +145,10 @@
           <div class="rows">${d.countries.length ? d.countries.map((r) => `<div class="row"><span>${esc(r.country || '?')}</span><span>${num(r.sessions)} players · ${num(r.throws)} throws</span></div>`).join('') : '<small style="color:var(--dim)">nothing yet</small>'}</div>
         </div>
       </div>
-      <div class="box"><h3>PLAYERS · ONE ROW EACH · MOST RECENT FIRST</h3>
+      <div class="box"><h3>PLAYERS · ONE ROW PER PERSON (same place + browser) · MOST RECENT FIRST · CLICK A ROW</h3>
         <div class="wrap"><table>
           <tr><th>PLAYER</th><th>FIRST SEEN</th><th>LAST SEEN</th><th>VISITS</th><th>GAMES</th><th>FROM</th><th>DEVICE</th><th>MINUTES</th><th>TAPS</th><th>THROWS</th><th>STRIKES</th><th>BONUS</th><th>BIGGEST BONUS</th><th>CAME FROM</th></tr>
-          ${d.sessions.map((s) => `<tr>
+          ${d.sessions.map((s) => `<tr class="prow${openWho === s.who ? ' open' : ''}" data-who="${esc(s.who)}" title="click for the detail">
             <td>${tag(s)}</td>
             <td>${new Date(s.started).toLocaleString()}</td>
             <td>${(Date.now() - new Date(s.last).getTime()) < 120000 ? '<span class="live">playing now</span>' : esc(ago(s.last))}</td>
@@ -122,7 +163,10 @@
             <td class="dev">${esc(s.ref || 'direct')}</td>
           </tr>`).join('') || '<tr><td colspan="14" style="color:var(--dim)">no one yet — send the link</td></tr>'}
         </table></div>
+        <div id="detail"></div>
       </div>`;
+    out.querySelectorAll('tr.prow').forEach((r) => { r.onclick = () => { openWho = r.dataset.who; openGame = 'all'; out.querySelectorAll('tr.prow.open').forEach((x) => x.classList.remove('open')); r.classList.add('open'); loadPlayer(); }; });
+    if (openWho) loadPlayer();
   }
   document.getElementById('refresh').onclick = load;
   document.getElementById('game').onchange = load;

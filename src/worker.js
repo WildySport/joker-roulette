@@ -58,7 +58,8 @@ export default {
         country: str(cf.country, 4), city: str(cf.city, 40), ua: str(request.headers.get('user-agent'), 90), ref: str(body.ref, 80),
       };
       console.log('HIT ' + JSON.stringify(hit));
-      if (env.DB && hit.game && hit.event) {
+      /* my own headless test browsers are not players (2026-09-16) */
+      if (env.DB && hit.game && hit.event && !/Headless/i.test(hit.ua)) {
         try {
           await env.DB.prepare('INSERT INTO events (t, game, event, sid, vid, n, mode, w, country, city, ua, ref) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)')
             .bind(hit.t, hit.game, hit.event, hit.sid, hit.vid, hit.n, hit.mode, hit.w, hit.country, hit.city, hit.ua, hit.ref).run();
@@ -77,21 +78,44 @@ export default {
       const G = game === 'all' ? '' : ' AND game=?';
       const gb = (...args) => (game === 'all' ? args : [...args, game]);
       const q = (sql, ...args) => env.DB.prepare(sql).bind(...args).all().then((r) => r.results);
-      /* WHO: the visitor id, or for older rows a device fingerprint */
-      const WHO = "COALESCE(NULLIF(vid,''), country||'|'||COALESCE(city,'')||'|'||COALESCE(ua,'')||'|'||w)";
+      /* WHO is a PERSON (user 2026-09-16: "Denpasar, ID is the same user, they
+         should be grouped"): the same country, city and browser is one row,
+         however many visitor ids (cleared storage, incognito, another window
+         size) they picked up along the way — the ids are listed on the row. */
+      const WHO = "country||'|'||COALESCE(city,'')||'|'||COALESCE(ua,'')";
+      const NOBOT = " AND COALESCE(ua,'') NOT LIKE '%Headless%'";
       const SESS = `COUNT(DISTINCT CASE WHEN event IN ('open','view') THEN ${WHO} END)`;
       const [totals, todayTotals, perDay, steps, countries, sessions, all, games] = await Promise.all([
-        q(`SELECT ${SESS} sessions, SUM(event='throw') throws, SUM(event='throw' AND n=10) strikes, SUM(event='bonus') bonuses, MAX(CASE WHEN event='bonuswin' THEN n END) bigwin, SUM(event='ping') pings, SUM(CASE WHEN event='ping' THEN n ELSE 0 END) taps FROM events WHERE t>=?${G}`, ...gb(since)),
-        q(`SELECT ${SESS} sessions, SUM(event='throw') throws, SUM(event='bonus') bonuses, SUM(event='ping') pings FROM events WHERE t>=?${G}`, ...gb(today)),
-        q(`SELECT substr(t,1,10) d, ${SESS} sessions, SUM(event='throw') throws, SUM(event='bonus') bonuses, SUM(event='ping') pings FROM events WHERE t>=?${G} GROUP BY d ORDER BY d`, ...gb(since)),
-        q(`SELECT mode, COUNT(*) c FROM events WHERE event='throw' AND t>=?${G} GROUP BY mode ORDER BY c DESC`, ...gb(since)),
-        q(`SELECT country, COUNT(DISTINCT ${WHO}) sessions, SUM(event='throw') throws, SUM(event='ping') pings FROM events WHERE t>=?${G} GROUP BY country ORDER BY sessions DESC LIMIT 12`, ...gb(since)),
+        q(`SELECT ${SESS} sessions, SUM(event='throw') throws, SUM(event='throw' AND n=10) strikes, SUM(event='bonus') bonuses, MAX(CASE WHEN event='bonuswin' THEN n END) bigwin, SUM(event='ping') pings, SUM(CASE WHEN event='ping' THEN n ELSE 0 END) taps FROM events WHERE t>=?${G}${NOBOT}`, ...gb(since)),
+        q(`SELECT ${SESS} sessions, SUM(event='throw') throws, SUM(event='bonus') bonuses, SUM(event='ping') pings FROM events WHERE t>=?${G}${NOBOT}`, ...gb(today)),
+        q(`SELECT substr(t,1,10) d, ${SESS} sessions, SUM(event='throw') throws, SUM(event='bonus') bonuses, SUM(event='ping') pings FROM events WHERE t>=?${G}${NOBOT} GROUP BY d ORDER BY d`, ...gb(since)),
+        q(`SELECT mode, COUNT(*) c FROM events WHERE event='throw' AND t>=?${G}${NOBOT} GROUP BY mode ORDER BY c DESC`, ...gb(since)),
+        q(`SELECT country, COUNT(DISTINCT ${WHO}) sessions, SUM(event='throw') throws, SUM(event='ping') pings FROM events WHERE t>=?${G}${NOBOT} GROUP BY country ORDER BY sessions DESC LIMIT 12`, ...gb(since)),
         /* ONE ROW PER PLAYER: their visits (tabs) counted, every game they touched listed, most recently seen first */
-        q(`SELECT ${WHO} who, MAX(vid) vid, COUNT(DISTINCT sid) visits, GROUP_CONCAT(DISTINCT game) games, MIN(t) started, MAX(t) last, MAX(country) country, MAX(city) city, MAX(ua) ua, MAX(w) w, SUM(event='throw') throws, SUM(event='throw' AND n=10) strikes, SUM(event='bonus') bonuses, MAX(CASE WHEN event='bonuswin' THEN n END) bigwin, SUM(event='ping') pings, SUM(CASE WHEN event='ping' THEN n ELSE 0 END) taps, MAX(ref) ref FROM events WHERE 1=1${G} GROUP BY who ORDER BY last DESC LIMIT 80`, ...gb()),
-        q(`SELECT ${SESS} sessions, SUM(event='throw') throws, SUM(event='bonus') bonuses, SUM(event='ping') pings, MIN(t) first FROM events WHERE 1=1${G}`, ...gb()),
-        q(`SELECT game, ${SESS} sessions, SUM(event='ping') pings FROM events WHERE t>=? GROUP BY game ORDER BY sessions DESC`, since),
+        q(`SELECT ${WHO} who, MAX(vid) vid, GROUP_CONCAT(DISTINCT NULLIF(vid,'')) vids, COUNT(DISTINCT sid) visits, GROUP_CONCAT(DISTINCT game) games, MIN(t) started, MAX(t) last, MAX(country) country, MAX(city) city, MAX(ua) ua, MAX(w) w, SUM(event='throw') throws, SUM(event='throw' AND n=10) strikes, SUM(event='bonus') bonuses, MAX(CASE WHEN event='bonuswin' THEN n END) bigwin, SUM(event='ping') pings, SUM(CASE WHEN event='ping' THEN n ELSE 0 END) taps, MAX(ref) ref FROM events WHERE 1=1${G}${NOBOT} GROUP BY who ORDER BY last DESC LIMIT 80`, ...gb()),
+        q(`SELECT ${SESS} sessions, SUM(event='throw') throws, SUM(event='bonus') bonuses, SUM(event='ping') pings, MIN(t) first FROM events WHERE 1=1${G}${NOBOT}`, ...gb()),
+        q(`SELECT game, ${SESS} sessions, SUM(event='ping') pings FROM events WHERE t>=?${NOBOT} GROUP BY game ORDER BY sessions DESC`, since),
       ]);
       return json({ game, days, since, now: new Date().toISOString(), totals: totals[0], today: todayTotals[0], perDay, steps, countries, sessions, all: all[0], games });
+    }
+    /* ONE PLAYER, IN DETAIL (user 2026-09-16: "when I click on them, I should
+       be able to filter by game and see whats up"): per game what they did,
+       their visits as a timeline, and their last events */
+    if (url.pathname === '/api/player') {
+      if (!env.STATS_KEY || url.searchParams.get('k') !== env.STATS_KEY) return json({ error: 'no' }, 403);
+      if (!env.DB) return json({ error: 'no database bound' }, 500);
+      const who = str(url.searchParams.get('who') || '', 200);
+      const game = str(url.searchParams.get('game') || 'all', 24);
+      const WHO = "country||'|'||COALESCE(city,'')||'|'||COALESCE(ua,'')";
+      const G = game === 'all' ? '' : ' AND game=?';
+      const gb = (...args) => (game === 'all' ? args : [...args, game]);
+      const q = (sql, ...args) => env.DB.prepare(sql).bind(...args).all().then((r) => r.results);
+      const [games, visits, events] = await Promise.all([
+        q(`SELECT game, COUNT(DISTINCT sid) visits, MIN(t) first, MAX(t) last, SUM(event='ping') pings, SUM(CASE WHEN event='ping' THEN n ELSE 0 END) taps, SUM(event='throw') throws, SUM(event='throw' AND n=10) strikes, SUM(event='bonus') bonuses, MAX(CASE WHEN event='bonuswin' THEN n END) bigwin, COUNT(*) events FROM events WHERE ${WHO}=? GROUP BY game ORDER BY last DESC`, who),
+        q(`SELECT sid, game, MIN(t) start, MAX(t) last, SUM(event='ping') pings, SUM(CASE WHEN event='ping' THEN n ELSE 0 END) taps, SUM(event='throw') throws, SUM(event='throw' AND n=10) strikes, SUM(event='bonus') bonuses, MAX(CASE WHEN event='bonuswin' THEN n END) bigwin, MAX(vid) vid, MAX(w) w, MAX(ref) ref FROM events WHERE ${WHO}=?${G} GROUP BY sid, game ORDER BY start DESC LIMIT 60`, ...gb(who)),
+        q(`SELECT t, game, event, n, mode, sid FROM events WHERE ${WHO}=?${G} ORDER BY t DESC LIMIT 80`, ...gb(who)),
+      ]);
+      return json({ who, game, games, visits, events });
     }
     /* a game's page: the asset, with the tracker injected */
     const m = url.pathname.match(GAME_RE);
