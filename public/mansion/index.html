@@ -32,7 +32,7 @@
     <link rel="preload" as="image" type="image/webp" crossorigin href="./scene/casino_sign.webp" />
     <link rel="preload" as="image" type="image/webp" crossorigin href="./scene/money_gun.webp" />
     <link rel="preload" as="image" type="image/webp" crossorigin href="./scene/pepino_keeper_al.webp" />
-    <script type="module" crossorigin src="/mansion/assets/index-k23wXt_h.js"></script>
+    <script type="module" crossorigin src="/mansion/assets/index-D2SAK1lN.js"></script>
     <link rel="stylesheet" crossorigin href="/mansion/assets/index-BHAV34hc.css">
   </head>
   <body>
@@ -70,6 +70,14 @@
         transition: opacity 420ms ease;
       }
       #boot[data-done] { opacity: 0; pointer-events: none; }
+      /* IN THE FRAME (user 2026-09-15: "the loading screen should only load
+         in the frame, so the panel should still be on display even when
+         loading"): the first frame is still full-screen — nothing else exists
+         yet — but the moment the app mounts it moves #boot INTO .stage, and
+         from then on it covers only the picture, inside the gilt, while the
+         header and the panel stand ready around it. */
+      #boot[data-in-frame] { position: absolute; inset: 7px; border-radius: 9px; z-index: 5; }
+      #boot[data-in-frame] #bootName { font-size: clamp(16px, 3cqw, 34px); }
       #bootName {
         display: flex;
         align-items: baseline;
