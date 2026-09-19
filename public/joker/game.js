@@ -44,7 +44,6 @@ const state = {
   phase: 'idle',              /* betting | resolving | spinning | result */
   boardBets: new Map(),       /* bet key → { total, stack: [chip colours] } */
   mode: 'simple',             /* simple | advanced */
-  lateLocked: false,          /* no more late bets once the wheel slows */
   draw: false,                /* draw mode: drag chips across the board */
   repeat: { on: false, rounds: 5, left: 0 },
   forceJoker: false,
@@ -506,18 +505,8 @@ function denyBalance() {
   el.classList.add('deny');
 }
 
-/* LATE BETS (user 2026-09-20: "If the user doesnt have a bet placed, allow them
-   to place bet during the spin part"): a player with nothing on the table may
-   still bet while the wheel resolves and spins — until the wheel slows into
-   its final moments (the same point the board lights start), after which
-   nobody can. The first late bet locks the controls like the close did. */
-function canBet() {
-  if (state.phase === 'betting') return true;
-  return (state.phase === 'resolving' || state.phase === 'spinning') && !state.lateLocked && state.boardBets.size === 0;
-}
-
 function placeBetOn(key, amount, color) {
-  if (!canBet() || amount <= 0) return;
+  if (state.phase !== 'betting' || amount <= 0) return;
   if (amount > state.balance) { denyBalance(); return; }
   state.balance = round2(state.balance - amount);
   const bet = state.boardBets.get(key) || { total: 0, stack: [] };
@@ -525,7 +514,6 @@ function placeBetOn(key, amount, color) {
   bet.stack.push(color);
   if (bet.stack.length > 8) bet.stack.shift();
   state.boardBets.set(key, bet);
-  if (state.phase !== 'betting') setTimeout(() => setControlsDisabled(true), 0);   /* one late bet, then locked */
   save();
   renderBalance(false);
   renderBets();
@@ -554,7 +542,7 @@ function placeSimple(key) {
 }
 
 function clearBets() {
-  if (state.phase !== 'betting' || state.boardBets.size === 0) return;   /* late bets cannot be cleared */
+  if (state.phase !== 'betting' || state.boardBets.size === 0) return;
   let refund = 0;
   for (const bet of state.boardBets.values()) refund = round2(refund + bet.total);
   state.boardBets.clear();
@@ -1205,10 +1193,7 @@ async function spinStrip(card) {
     const idx = Math.round((-x + $('stripWindow').clientWidth / 2 - strip.children[0].offsetWidth / 2) / pitch);
     if (lastTickIdx !== null && idx !== lastTickIdx) {
       SFX.tick();
-      if (performance.now() - spinT0 > 3600) {
-        light(idx);
-        if (!state.lateLocked) { state.lateLocked = true; setControlsDisabled(true); document.body.classList.remove('late-open'); }
-      }
+      if (performance.now() - spinT0 > 3600) light(idx);
     }
     lastTickIdx = idx;
     requestAnimationFrame(tickWatch);
@@ -1312,11 +1297,9 @@ async function runRound() {
   setProgress(0, 'Bets closed');
 
   state.phase = 'resolving';
-  state.lateLocked = false;
   document.body.classList.remove('bets-open');
   closeValueMenu();
-  setControlsDisabled(state.boardBets.size > 0);
-  document.body.classList.toggle('late-open', state.boardBets.size === 0);
+  setControlsDisabled(true);
   status.textContent = 'WAITING ON EOS…';
 
   await prep;
@@ -1333,8 +1316,6 @@ async function runRound() {
 
   /* settle */
   state.phase = 'result';
-  state.lateLocked = true;
-  document.body.classList.remove('late-open');
   let staked = 0;
   let winnings = 0;
   for (const [key, bet] of state.boardBets) {
@@ -1458,7 +1439,7 @@ function init() {
 
   $('valueBtn').addEventListener('click', (e) => {
     e.stopPropagation();
-    if (!canBet()) return;
+    if (state.phase !== 'betting') return;
     menu.hidden = !menu.hidden;
     /* mobile shows a dim backdrop under the overlay menu; it blocks
        stray taps on the buttons beneath, and its own clicks bubble to
@@ -1527,7 +1508,7 @@ function init() {
       SFX.click();
     });
     grid.addEventListener('pointerdown', (e) => {
-      if (!state.draw || !canBet()) return;
+      if (!state.draw || state.phase !== 'betting') return;
       const cell = e.target.closest('.cell');
       if (!cell) return;
       e.preventDefault();

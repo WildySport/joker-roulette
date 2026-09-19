@@ -249,9 +249,6 @@ img { display: block; }
 /* the board cell of the card under the marker, in the final moments: lights up as the marker crosses it, fades as it leaves */
 .cell { transition: transform 0.1s, filter 0.34s ease-out, box-shadow 0.34s ease-out; }
 .cell.under { filter: brightness(1.7); box-shadow: 0 0 0 2px #fff, 0 0 22px rgba(255, 255, 255, 0.55); transition: filter 0.04s, box-shadow 0.04s; z-index: 3; }
-/* late bets: with nothing on the table the board stays live through the spin, with a quieter amber ring */
-.late-open .board, .late-open .panel .bet-cell { box-shadow: 0 0 0 1px rgba(255, 196, 0, 0.35), 0 0 22px rgba(255, 196, 0, 0.1); }
-.late-open .progress-pill::after { content: ' \00b7 late bets open'; color: var(--gold); }
 /* the board glows while bets are open */
 .bets-open .board, .bets-open .panel .bet-cell { box-shadow: 0 0 0 1px rgba(0, 231, 1, 0.35), 0 0 28px rgba(0, 231, 1, 0.14); animation: boardGlow 2.6s ease-in-out infinite; }
 @keyframes boardGlow { 50% { box-shadow: 0 0 0 1px rgba(0, 231, 1, 0.6), 0 0 44px rgba(0, 231, 1, 0.26); } }
