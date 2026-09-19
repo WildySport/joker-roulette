@@ -1363,7 +1363,8 @@ function autoRepeatPlace() {
 }
 
 function closeValueMenu() {
-  $('valueMenu').hidden = true;
+  /* the new interface lays the values out inline — nothing to close (user 2026-09-20: "Display the values where it says No Bets") */
+  if (document.body.dataset.ui !== 'gamdom') $('valueMenu').hidden = true;
   $('valueBackdrop').hidden = true;
 }
 

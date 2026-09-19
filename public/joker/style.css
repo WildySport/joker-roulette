@@ -385,11 +385,15 @@ img { display: block; }
 .value-btn { display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 44px; background: var(--well); border-radius: 8px; color: var(--text); font-weight: 600; font-size: 0.9rem; padding: 0 14px; min-width: 150px; transition: background 0.15s; }
 .value-btn:hover:not(:disabled) { background: var(--well-2); }
 .value-btn .caret { color: var(--text-dim); font-size: 0.75rem; }
-.value-menu { position: absolute; top: calc(100% + 8px); left: 0; z-index: 50; width: 212px; background: var(--panel-2); border: 1px solid var(--edge-2); border-radius: 10px; box-shadow: var(--shadow); padding: 8px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
-.value-menu[hidden] { display: none; }
-.value-item { position: relative; height: 38px; background: var(--well); border-radius: 7px; color: var(--text); font-weight: 600; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; transition: background 0.12s, color 0.12s; }
+/* the thirteen values sit inline, like every other card's options; the chips land on them */
+.cell-values .opt-tray { flex: 1 1 auto; min-width: 0; }
+.value-menu { display: flex; flex-wrap: wrap; gap: 6px; width: 100%; }
+.value-item { position: relative; width: 44px; height: 44px; background: var(--well); border-radius: 8px; color: var(--text); font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; transition: background 0.12s, color 0.12s; }
 .value-item:hover { background: var(--well-2); }
-.value-item.has-bet { background: var(--green); color: var(--green-ink); }
+.value-item.has-bet { box-shadow: 0 0 0 2px var(--green); }
+.value-item .opt-chips { left: auto; right: -10px; top: -10px; margin: 0; }
+/* no per-card text summaries on this interface: the chips on the options and the "Your bets" strip say it (user: "cleaner if we are using chips") */
+.cell-summary { display: none; }
 
 /* stake badges + chip stacks on the options */
 .opt-stake { position: absolute; right: -8px; top: -8px; z-index: 2; min-width: 20px; height: 17px; padding: 0 5px; border-radius: 999px; background: var(--green); color: var(--green-ink); font-size: 0.58rem; font-weight: 700; display: flex; align-items: center; justify-content: center; pointer-events: none; font-variant-numeric: tabular-nums; }
@@ -588,10 +592,8 @@ img { display: block; }
   .joker-opt, .suit-opt { width: 40px; }
   .suit-opt { font-size: 1.1rem; }
   .colour-opt { min-width: 70px; padding: 0 12px; font-size: 0.82rem; }
-  .value-btn { min-width: 120px; height: 40px; font-size: 0.82rem; padding: 0 10px; }
-  .value-menu { position: fixed; inset: 0; margin: auto; width: min(320px, 88vw); height: fit-content; padding: 10px; gap: 8px; z-index: 999; }
-  .value-backdrop:not([hidden]) { display: block; position: fixed; inset: 0; z-index: 990; background: rgba(0, 0, 0, 0.55); }
-  .value-item { height: 44px; font-size: 0.85rem; }
+  .value-menu { gap: 5px; }
+  .value-item { width: 40px; height: 40px; font-size: 0.85rem; }
   .opt-chips { width: 26px; height: 26px; margin: -13px 0 0 -13px; }
   .opt-chips .pchip { width: 26px; height: 26px; }
   .bet-summary { padding: 10px 12px; }
