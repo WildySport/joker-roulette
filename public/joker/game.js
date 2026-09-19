@@ -1173,14 +1173,18 @@ async function spinStrip(card) {
   let lastTickIdx = null, ticking = true;
   const spinT0 = performance.now();
   let lit = null;
-  /* in the final moments (once the wheel has slowed) each tile lights up as
-     the marker passes over it and fades as it leaves (user 2026-09-20) */
+  /* in the final moments (once the wheel has slowed) the BOARD CELL of the card
+     under the marker lights up as the marker crosses it and fades as it leaves
+     (user 2026-09-20: "I meant the tiles on the board lighting up") */
   const light = (idx) => {
-    const el = strip.children[idx];
-    if (!el) return;
-    if (lit && lit !== el) lit.classList.remove('under');
-    el.classList.add('under');
-    lit = el;
+    const tile = strip.children[idx];
+    const k = tile && tile.dataset.key;
+    if (!k) return;
+    const cell = boardCells.get(k.startsWith('j:') ? 'joker:' + k.slice(2) : 'card:' + k);
+    if (!cell) return;
+    if (lit && lit !== cell) lit.classList.remove('under');
+    cell.classList.add('under');
+    lit = cell;
   };
   const tickWatch = () => {
     if (!ticking) { if (lit) lit.classList.remove('under'); return; }
