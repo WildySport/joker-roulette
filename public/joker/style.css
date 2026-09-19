@@ -55,10 +55,10 @@ img { display: block; }
 [hidden] { display: none !important; }
 
 /* ── the game header (no site chrome — user 2026-09-20: "do not copy gamdom stuff at the top") ── */
-/* the title sits top right (user 2026-09-20: "call it gamdom roulette at the top right"); balance and sound top left */
+/* the title top left with the mark; balance and sound top right */
 .gbar { display: flex; align-items: center; gap: 14px; }
-.gbar-left { display: flex; align-items: center; gap: 8px; }
-.gtitle { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+.gbar-right { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+.gtitle { display: flex; align-items: center; gap: 10px; }
 .gtitle b { font-weight: 600; font-size: 1.15rem; }
 .gtitle small { color: var(--text-dim); font-size: 0.72rem; font-weight: 500; }
 .gtitle .mark { width: 28px; height: auto; }

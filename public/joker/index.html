@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script>try { if (localStorage.getItem('joker-ui') === 'classic') location.replace('classic'); } catch (e) {}</script>
-<link rel="stylesheet" href="style.css?v=16">
+<link rel="stylesheet" href="style.css?v=17">
 </head>
 <body data-ui="gamdom">
 
@@ -19,12 +19,12 @@
   <section class="app game-card">
 
     <header class="gbar">
-      <div class="gbar-left">
+      <div class="gtitle"><img class="mark" src="assets/gamdom-logo.png" alt=""><b>Gamdom Roulette</b><small>54 cards · provably fair</small></div>
+      <div class="gbar-right">
         <div class="wallet-pill"><i class="coin">$</i><span class="balance-value" id="balance">$0.00</span></div>
         <button class="wallet-btn" id="resetBalance" hidden>Reset</button>
         <button id="soundToggle" class="icon-btn sound-btn" title="Sound on/off"></button>
       </div>
-      <div class="gtitle"><small>54 cards · provably fair</small><b>Gamdom Roulette</b><img class="mark" src="assets/gamdom-logo.png" alt=""></div>
     </header>
 
     <!-- the wheel: a strip of cards under a centre line -->
