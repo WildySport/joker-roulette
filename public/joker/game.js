@@ -1420,18 +1420,26 @@ function init() {
   $('clearBoard').addEventListener('click', clearBets);
   $('clearSimple').addEventListener('click', clearBets);
 
-  // mode toggle — off (left) = simple betting (default), on = advanced board
-  $('modeToggle').addEventListener('click', () => {
-    const advanced = state.mode !== 'advanced';
-    state.mode = advanced ? 'advanced' : 'simple';
+  // mode toggle. Classic: off = simple betting (default), on = advanced board.
+  // The new interface (body[data-ui=gamdom]) is the other way round — the board
+  // is the default and the switch reads "Simple panel" (user 2026-09-20).
+  const boardFirst = document.body.dataset.ui === 'gamdom';
+  const showMode = () => {
+    const advanced = state.mode === 'advanced';
     const toggle = $('modeToggle');
-    toggle.classList.toggle('on', advanced);
-    toggle.setAttribute('aria-checked', String(advanced));
+    const on = boardFirst ? !advanced : advanced;
+    toggle.classList.toggle('on', on);
+    toggle.setAttribute('aria-checked', String(on));
     $('board').hidden = !advanced;
     $('simplePanel').hidden = advanced;
     if (advanced) setTimeout(() => { buildZones(); layoutZones(); }, 60);
+  };
+  $('modeToggle').addEventListener('click', () => {
+    state.mode = state.mode === 'advanced' ? 'simple' : 'advanced';
+    showMode();
     SFX.click();
   });
+  if (boardFirst) { state.mode = 'advanced'; showMode(); }
 
   document.querySelectorAll('.x2-btn').forEach(btn =>
     btn.addEventListener('click', () => {

@@ -334,6 +334,9 @@ img { display: block; }
 .qbtn:disabled { opacity: 0.45; cursor: default; }
 .clear-btn { color: var(--text-dim); }
 
+/* the simple bet row only serves the simple panel; the board has its chip tray */
+.game-card:has(#board:not([hidden])) .bet-row { display: none; }
+
 /* ── mode row ───────────────────────────────────────── */
 .mode-row { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; font-size: 0.82rem; font-weight: 500; color: var(--text-dim); }
 .mode-switch { display: flex; align-items: center; gap: 10px; cursor: pointer; }
