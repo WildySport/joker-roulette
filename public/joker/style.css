@@ -406,8 +406,6 @@ img { display: block; }
 .opt-chips.win .pchip:last-child { box-shadow: 0 0 12px var(--glow), 0 3px 0 rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.35), inset 0 0 0 5px rgba(0, 0, 0, 0.16); animation: bump 0.5s ease; }
 
 /* per-card summaries */
-.cell-summary { flex: 1 1 auto; min-width: 0; display: flex; align-items: center; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; gap: 6px; padding-left: 14px; border-left: 1px solid var(--edge-2); align-self: stretch; }
-.cell-summary::-webkit-scrollbar { display: none; }
 .summary-empty { color: var(--text-faint); font-size: 0.8rem; font-weight: 500; }
 .chip { flex-shrink: 0; background: var(--well); border-radius: 6px; padding: 5px 10px; font-size: 0.74rem; font-weight: 500; color: var(--text-dim); white-space: nowrap; }
 .chip b { color: var(--text); font-weight: 600; }
