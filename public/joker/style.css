@@ -249,9 +249,34 @@ img { display: block; }
 /* the board cell of the card under the marker, in the final moments: lights up as the marker crosses it, fades as it leaves */
 .cell { transition: transform 0.1s, filter 0.34s ease-out, box-shadow 0.34s ease-out; }
 .cell.under { filter: brightness(1.7); box-shadow: 0 0 0 2px #fff, 0 0 22px rgba(255, 255, 255, 0.55); transition: filter 0.04s, box-shadow 0.04s; z-index: 3; }
-/* the board glows while bets are open */
-.bets-open .board, .bets-open .panel .bet-cell { box-shadow: 0 0 0 1px rgba(0, 231, 1, 0.35), 0 0 28px rgba(0, 231, 1, 0.14); animation: boardGlow 2.6s ease-in-out infinite; }
-@keyframes boardGlow { 50% { box-shadow: 0 0 0 1px rgba(0, 231, 1, 0.6), 0 0 44px rgba(0, 231, 1, 0.26); } }
+/* bets open: a thin beam of light travels slowly round the board's edge over a
+   faint ambient glow (user 2026-09-20: "cool yet subtle") — a conic gradient
+   masked to a 1.5px ring, its angle animated */
+@property --sweep { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+.board, .panel .bet-cell { position: relative; }
+.bets-open .board::before, .bets-open .panel .bet-cell::before {
+  content: '';
+  position: absolute;
+  inset: -1.5px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(from var(--sweep), transparent 0deg, transparent 246deg, rgba(0, 231, 1, 0.25) 296deg, rgba(0, 231, 1, 0.95) 330deg, rgba(255, 255, 255, 0.9) 338deg, rgba(0, 231, 1, 0.5) 348deg, transparent 360deg);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 4;
+  animation: sweep 5.2s linear infinite;
+}
+.bets-open .panel .bet-cell::before { animation-duration: 3.6s; inset: 0; }   /* the cards clip overflow: the ring sits just inside their edge */
+.bets-open .panel .bet-cell:nth-child(2)::before { animation-delay: -0.9s; }
+.bets-open .panel .bet-cell:nth-child(3)::before { animation-delay: -1.8s; }
+.bets-open .panel .bet-cell:nth-child(4)::before { animation-delay: -2.7s; }
+@keyframes sweep { to { --sweep: 360deg; } }
+.bets-open .board, .bets-open .panel .bet-cell { box-shadow: 0 0 0 1px rgba(0, 231, 1, 0.12), 0 0 26px rgba(0, 231, 1, 0.07); }
+/* the board's own rounded corners must clip the beam's padding box */
+.board { border-radius: var(--radius); }
 /* the win pop */
 /* beside the centre line, so the winning card under the marker stays in view */
 .win-pop { position: absolute; left: calc(50% + 64px); top: 50%; transform: translate(0, -50%); z-index: 20; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 14px 30px 16px; border-radius: 14px; background: rgba(11, 15, 22, 0.94); box-shadow: 0 0 0 2px var(--green), 0 0 40px rgba(0, 231, 1, 0.35), 0 20px 50px rgba(0, 0, 0, 0.6); animation: winIn 420ms cubic-bezier(0.2, 0.9, 0.3, 1.35) both; pointer-events: none; }
