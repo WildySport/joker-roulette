@@ -977,13 +977,14 @@ function jokerImgSrc(j) {
 function tileHTML(card) {
   if (!card) return '<div class="tile back"><img class="bk-logo" src="' + backLogoSrc() + '" alt=""></div>';
   if (card.kind === 'joker') {
-    return '<div class="tile joker-tile ' + card.joker + '" data-key="' + cardKey(card) + '">'
+    return '<div class="tile joker-tile ' + card.joker + (state.phase !== 'result' && cardHasBet(card) ? ' mine' : '') + '" data-key="' + cardKey(card) + '">'
       + '<span class="hexb"><span class="hex"><img src="' + jokerImgSrc(card.joker) + '" alt=""></span></span>'
       + '<span class="jname">JOKER</span>'
       + '</div>';
   }
   const suit = SUITS[card.suit];
-  return '<div class="tile face ' + suit.color + '" data-key="' + cardKey(card) + '">'
+  const mine = state.phase !== 'result' && cardHasBet(card) ? ' mine' : '';
+  return '<div class="tile face ' + suit.color + mine + '" data-key="' + cardKey(card) + '">'
     + '<span class="ix"><b>' + card.value + '</b><i>' + suit.symbol + '</i></span>'
     + '<span class="pip">' + suit.symbol + '</span>'
     + '</div>';
@@ -1315,12 +1316,26 @@ async function runRound() {
   markBoardResults(card);
 
   if (staked > 0) { if (winnings > 0) SFX.win(); else SFX.lose(); }
+  if (winnings > 0) showWinPop(winnings, staked, card);
   status.textContent = cardLabel(card) + '  —  '
     + (staked === 0 ? 'NO BET' : winnings > 0 ? 'WON ' + money(winnings) : 'NO WIN');
   status.className = 'status-text ' + (staked > 0 && winnings > 0 ? 'win' : staked > 0 ? 'lose' : '');
   setProgress(0, cardLabel(card));
 
   await sleep(RESULT_MS);
+}
+
+/* the win pop: a card over the wheel with the amount and the multiplier (user 2026-09-20: "make it so wins pop up") */
+function showWinPop(winnings, staked, card) {
+  const area = document.querySelector('.spin-area');
+  if (!area) return;
+  area.querySelectorAll('.win-pop').forEach(el => el.remove());
+  const el = document.createElement('div');
+  el.className = 'win-pop' + (card.kind === 'joker' ? ' joker' : '');
+  el.innerHTML = '<small>YOU WON</small><b>' + money(winnings) + '</b><span>' + cardLabel(card) + ' \u00b7 \u00d7' + (winnings / staked).toFixed(2) + '</span>';
+  area.appendChild(el);
+  setTimeout(() => el.classList.add('out'), 2100);
+  setTimeout(() => el.remove(), 2500);
 }
 
 /* the site's progress bar under the wheel: green while bets are open, red once closed */
