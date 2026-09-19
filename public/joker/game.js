@@ -1332,7 +1332,7 @@ function showWinPop(winnings, staked, card) {
   area.querySelectorAll('.win-pop').forEach(el => el.remove());
   const el = document.createElement('div');
   el.className = 'win-pop' + (card.kind === 'joker' ? ' joker' : '');
-  el.innerHTML = '<small>YOU WON</small><b>' + money(winnings) + '</b><span>' + cardLabel(card) + ' \u00b7 \u00d7' + (winnings / staked).toFixed(2) + '</span>';
+  el.innerHTML = '<small>YOU WON</small><b>' + money(winnings) + '</b><span>' + cardLabel(card) + ' \u00b7 returns \u00d7' + (winnings / staked).toFixed(2) + '</span>';
   area.appendChild(el);
   setTimeout(() => el.classList.add('out'), 2100);
   setTimeout(() => el.remove(), 2500);
