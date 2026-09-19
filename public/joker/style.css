@@ -243,8 +243,10 @@ img { display: block; }
 .tile.joker-tile.purple .hexb { background: rgba(255, 255, 255, 0.5); }
 
 /* a card your bets cover: a quiet green ring and a dot, on the idle strip and through the spin */
-/* a covered card carries only the dot: the cards on the reel do not glow (user 2026-09-20) */
-.tile.joker-tile.gold.land, .tile.joker-tile.purple.land { box-shadow: 0 0 0 2px var(--green), inset 0 -6px 0 rgba(0, 0, 0, 0.22); }
+/* a card your bets cover glows softly in the mint, with the dot (user 2026-09-20: "make the winning cards on the reel glow again") */
+.tile.mine { box-shadow: inset 0 0 0 2px rgba(4, 240, 132, 0.5), inset 0 -6px 0 rgba(0, 0, 0, 0.22), 0 0 16px rgba(4, 240, 132, 0.22), 0 6px 14px rgba(0, 0, 0, 0.35); }
+.tile.joker-tile.gold.mine, .tile.joker-tile.purple.mine { box-shadow: 0 0 0 2px rgba(4, 240, 132, 0.5), 0 0 16px rgba(4, 240, 132, 0.22), inset 0 -6px 0 rgba(0, 0, 0, 0.22); }
+.tile.joker-tile.gold.land, .tile.joker-tile.purple.land { box-shadow: 0 0 0 2px var(--green), 0 0 22px rgba(4, 240, 132, 0.4), inset 0 -6px 0 rgba(0, 0, 0, 0.22); }
 .tile.mine::before { content: ''; position: absolute; top: 8px; right: 8px; width: 8px; height: 8px; border-radius: 50%; background: var(--green); z-index: 2; }
 .tile.pop.mine::before { display: none; }
 /* the board cell of the card under the marker, in the final moments: lights up as the marker crosses it, fades as it leaves */
@@ -290,7 +292,7 @@ img { display: block; }
 @keyframes winIn { from { opacity: 0; transform: translate(-12px, -50%) scale(0.6); } to { opacity: 1; transform: translate(0, -50%) scale(1); } }
 @keyframes winOut { to { opacity: 0; transform: translate(0, -60%) scale(0.92); } }
 @media (max-width: 760px) { .win-pop { left: 50%; transform: translate(-50%, -50%); padding: 10px 20px 12px; } .win-pop b { font-size: 1.6rem; } }
-.tile.land { box-shadow: 0 0 0 2px var(--green), inset 0 -6px 0 rgba(0, 0, 0, 0.22), 0 6px 14px rgba(0, 0, 0, 0.35); }
+.tile.land { box-shadow: 0 0 0 2px var(--green), 0 0 22px rgba(4, 240, 132, 0.4), inset 0 -6px 0 rgba(0, 0, 0, 0.22); }
 @keyframes land-pop {
   0% { transform: scale(1) translateY(0); }
   16% { transform: scale(1.12) translateY(-2px); }
