@@ -143,9 +143,10 @@ img { display: block; }
   flex-direction: column;
   gap: 8px;
   border-radius: var(--radius);
+  /* the castle behind the cards (GPT-painted, art/castle_bg_raw.png), kept very, very subtle under a dark wash */
   background:
-    linear-gradient(rgba(11, 15, 22, 0.86), rgba(11, 15, 22, 0.9)),
-    url('assets/spin-bg.jpg') center / cover no-repeat;
+    linear-gradient(rgba(11, 15, 22, 0.42), rgba(11, 15, 22, 0.58)),
+    url('assets/castle_bg.webp') center 55% / cover no-repeat;
   border: 1px solid var(--edge);
   padding: 12px 14px 12px;
   overflow: hidden;
@@ -198,8 +199,8 @@ img { display: block; }
 .strip-window { position: relative; width: 100%; overflow: hidden; padding: 12px 0 10px; }
 .strip { display: flex; gap: 10px; width: max-content; will-change: transform; }
 .strip-fade { position: absolute; top: 0; bottom: 0; width: 120px; pointer-events: none; z-index: 3; }
-.strip-fade-left { left: 0; background: linear-gradient(90deg, rgba(11, 15, 22, 0.95), transparent); }
-.strip-fade-right { right: 0; background: linear-gradient(-90deg, rgba(11, 15, 22, 0.95), transparent); }
+.strip-fade-left { left: 0; background: linear-gradient(90deg, rgba(11, 15, 22, 0.85), transparent); }
+.strip-fade-right { right: 0; background: linear-gradient(-90deg, rgba(11, 15, 22, 0.85), transparent); }
 /* the site's centre line */
 .marker-line { position: absolute; left: 50%; top: 4px; bottom: 2px; width: 2px; background: #fff; border-radius: 2px; box-shadow: 0 0 10px rgba(255, 255, 255, 0.6); z-index: 4; pointer-events: none; }
 
