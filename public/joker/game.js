@@ -44,6 +44,7 @@ const state = {
   phase: 'idle',              /* betting | resolving | spinning | result */
   boardBets: new Map(),       /* bet key → { total, stack: [chip colours] } */
   mode: 'simple',             /* simple | advanced */
+  draw: false,                /* draw mode: drag chips across the board */
   repeat: { on: false, rounds: 5, left: 0 },
   forceJoker: false,
   eos: { target: null, id: null, source: null },
@@ -744,6 +745,7 @@ function buildBoard() {
     el.title = title;
     if (colStart) el.style.gridColumn = colStart + (colSpan > 1 ? ' / span ' + colSpan : '');
     if (rowStart) el.style.gridRow = rowStart + (rowSpan > 1 ? ' / span ' + rowSpan : '');
+    el.dataset.key = key;
     el.addEventListener('click', () => placeChip(key));
     el.addEventListener('mouseenter', () => highlightCoverage(key, true));
     el.addEventListener('mouseleave', () => highlightCoverage(key, false));
@@ -1407,6 +1409,46 @@ function init() {
   });
   document.addEventListener('click', closeValueMenu);
   menu.addEventListener('click', (e) => e.stopPropagation());
+
+  // DRAW MODE (user 2026-09-20: "add an option to draw on the board like
+  // mines, so they can place bets rapidly"): with Draw on, press and drag
+  // across the board and the selected chip lands on every cell the pointer
+  // crosses, once per stroke. Split/corner zones are skipped while dragging;
+  // a plain tap still places on the cell pressed. Pointer capture keeps the
+  // stroke alive off the cells and stops the cell's own click doubling up.
+  const drawBtn = $('drawToggle');
+  if (drawBtn) {
+    const grid = $('boardGrid');
+    let stroke = null;
+    const paint = (cell) => {
+      if (!cell || stroke.has(cell)) return;
+      stroke.add(cell);
+      if (cell.dataset.key) placeChip(cell.dataset.key);
+    };
+    drawBtn.addEventListener('click', () => {
+      state.draw = !state.draw;
+      drawBtn.classList.toggle('on', state.draw);
+      $('board').classList.toggle('draw', state.draw);
+      SFX.click();
+    });
+    grid.addEventListener('pointerdown', (e) => {
+      if (!state.draw || state.phase !== 'betting') return;
+      const cell = e.target.closest('.cell');
+      if (!cell) return;
+      e.preventDefault();
+      stroke = new Set();
+      try { grid.setPointerCapture(e.pointerId); } catch { /* fine */ }
+      paint(cell);
+    });
+    grid.addEventListener('pointermove', (e) => {
+      if (!stroke) return;
+      const el = document.elementFromPoint(e.clientX, e.clientY);
+      paint(el && el.closest('.cell'));
+    });
+    const endStroke = () => { stroke = null; };
+    grid.addEventListener('pointerup', endStroke);
+    grid.addEventListener('pointercancel', endStroke);
+  }
 
   // advanced chip tray
   document.querySelectorAll('.bchip[data-chip]').forEach(chip =>

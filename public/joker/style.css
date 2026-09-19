@@ -449,6 +449,17 @@ img { display: block; }
 .chip-c1k  { background: linear-gradient(180deg, #c9a63a, #8a7524); }
 .bchip .c-dollar { font-weight: 700; }
 .bchip input { width: 44px; background: transparent; border: none; outline: none; color: inherit; font-weight: 600; font-size: 0.74rem; font-variant-numeric: tabular-nums; }
+/* draw mode */
+.draw-btn { display: inline-flex; align-items: center; gap: 7px; height: 34px; padding: 0 14px; border-radius: 8px; background: var(--well); color: var(--text-dim); font-weight: 600; font-size: 0.82rem; transition: background 0.15s, color 0.15s; }
+.draw-btn i { width: 18px; height: 18px; border-radius: 4px; background: var(--well-2); position: relative; }
+.draw-btn i::after { content: ''; position: absolute; inset: 4px; border-radius: 2px; background: var(--text-dim); transform: rotate(45deg) scale(0.55); }
+.draw-btn:hover { color: var(--text); }
+.draw-btn.on { background: var(--green); color: var(--green-ink); }
+.draw-btn.on i { background: rgba(0, 0, 0, 0.18); }
+.draw-btn.on i::after { background: var(--green-ink); }
+.board.draw .board-grid { touch-action: none; }
+.board.draw .cell { cursor: crosshair; }
+.board.draw .zone { pointer-events: none; }
 .board-total { display: flex; align-items: center; gap: 10px; font-variant-numeric: tabular-nums; }
 #boardTotal { font-weight: 700; font-size: 1rem; color: var(--green); }
 .board-total .clear-btn { height: 36px; padding: 0 14px; }

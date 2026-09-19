@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script>try { if (localStorage.getItem('joker-ui') === 'classic') location.replace('classic'); } catch (e) {}</script>
-<link rel="stylesheet" href="style.css?v=18">
+<link rel="stylesheet" href="style.css?v=19">
 </head>
 <body data-ui="gamdom">
 
@@ -152,6 +152,7 @@
           <button class="bchip chip-c500" data-chip="500" data-color="c500">$500</button>
           <button class="bchip chip-c1k" data-chip="1000" data-color="c1k">$1000</button>
         </div>
+        <button id="drawToggle" class="draw-btn" title="Draw: press and drag across the board to place the selected chip on every cell you cross"><i></i>Draw</button>
         <div class="board-total">
           <span class="bt-label">Total</span>
           <span id="boardTotal">$0.00</span>
@@ -216,6 +217,6 @@
   });
 })();
 </script>
-<script src="game.js?v=18"></script>
+<script src="game.js?v=19"></script>
 </body>
 </html>
