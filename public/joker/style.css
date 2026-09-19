@@ -54,24 +54,13 @@ input, select { font-family: inherit; }
 img { display: block; }
 [hidden] { display: none !important; }
 
-/* ── the site's top bar ─────────────────────────────── */
-.gnav {
-  position: sticky;
-  top: 0;
-  z-index: 40;
-  display: flex;
-  align-items: center;
-  gap: 28px;
-  height: 64px;
-  padding: 0 clamp(14px, 2.5vw, 36px);
-  background: var(--nav);
-  border-bottom: 1px solid var(--edge);
-}
-.gnav-logo { display: flex; align-items: center; gap: 9px; text-decoration: none; color: var(--text); font-weight: 600; font-size: 1.28rem; letter-spacing: -0.01em; }
-.gnav-logo img { width: 26px; height: auto; }
-.gnav-links { display: flex; gap: 26px; color: var(--text-dim); font-weight: 500; font-size: 0.95rem; }
-.gnav-links .on { color: var(--text); }
-.gnav-right { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+/* ── the game header (no site chrome — user 2026-09-20: "do not copy gamdom stuff at the top") ── */
+.gbar { display: flex; align-items: center; gap: 14px; }
+.gtitle { display: flex; align-items: center; gap: 10px; }
+.gtitle .crown { width: 36px; height: 36px; border-radius: 8px; background: linear-gradient(160deg, #6a4d00, #4b1a80); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+.gtitle b { font-weight: 600; font-size: 1.15rem; }
+.gtitle small { display: block; color: var(--text-dim); font-size: 0.72rem; font-weight: 500; }
+.gbar-right { margin-left: auto; display: flex; align-items: center; gap: 8px; }
 .wallet-pill {
   display: flex;
   align-items: center;
@@ -131,7 +120,7 @@ img { display: block; }
 .sound-btn.muted { opacity: 0.5; }
 
 /* ── the page ───────────────────────────────────────── */
-.page { max-width: 1400px; margin: 0 auto; padding: 18px clamp(12px, 2.5vw, 36px) 72px; display: flex; flex-direction: column; gap: 18px; }
+.page { max-width: 1400px; margin: 0 auto; padding: 16px clamp(12px, 2.5vw, 36px) 72px; display: flex; flex-direction: column; gap: 18px; }
 
 .game-card {
   position: relative;
@@ -538,6 +527,9 @@ img { display: block; }
 .brand-toggle { position: fixed; bottom: 12px; right: 12px; z-index: 60; display: flex; gap: 2px; background: var(--well); border-radius: 999px; padding: 3px; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4); }
 .brand-toggle button { color: var(--text-dim); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 5px 12px; border-radius: 999px; transition: background 0.15s, color 0.15s; }
 .brand-toggle button.on { background: var(--green); color: var(--green-ink); }
+.ui-toggle { position: fixed; bottom: 12px; right: 176px; z-index: 60; display: flex; gap: 2px; background: var(--well); border-radius: 999px; padding: 3px; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4); }
+.ui-toggle button { color: var(--text-dim); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 5px 12px; border-radius: 999px; transition: background 0.15s, color 0.15s; }
+.ui-toggle button.on { background: var(--text); color: var(--bg); }
 
 /* ── WildyLabs brand (volt-lime, dagger mark) ───────── */
 :root[data-brand='wildylabs'] { --green: #c8ff00; --green-hi: #ddff4d; --green-dim: #8fb800; --green-ink: #131800; --glow: rgba(200, 255, 0, 0.35); --glow-soft: rgba(200, 255, 0, 0.14); --suit-green: #d3ff2e; }
@@ -551,10 +543,9 @@ img { display: block; }
 
 /* ══════════════════ MOBILE ══════════════════ */
 @media (max-width: 760px) {
-  .gnav { height: 56px; gap: 14px; }
-  .gnav-links { display: none; }
+  .gbar { flex-wrap: wrap; gap: 8px; }
+  .gtitle small { display: none; }
   .wallet-pill { height: 38px; }
-  .wallet-btn.static { display: none; }
   .icon-btn { width: 38px; height: 38px; }
   .page { padding: 10px 8px 70px; gap: 12px; }
   .game-card { padding: 10px 10px 14px; gap: 12px; border-radius: 12px; }
@@ -629,5 +620,7 @@ img { display: block; }
   .gfoot-cols { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .back-link { bottom: 10px; left: 8px; padding: 6px 10px; font-size: 0.58rem; }
   .brand-toggle { bottom: 10px; right: 8px; }
-  .dev-toggle { bottom: 52px; right: 8px; font-size: 0.44rem; padding: 4px 6px; }
+  .ui-toggle { bottom: 44px; right: 8px; padding: 2px; }
+  .ui-toggle button { padding: 4px 9px; font-size: 0.55rem; }
+  .dev-toggle { bottom: 80px; right: 8px; font-size: 0.44rem; padding: 4px 6px; }
 }

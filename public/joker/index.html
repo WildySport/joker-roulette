@@ -8,26 +8,24 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>try { if (localStorage.getItem('joker-ui') === 'classic') location.replace('classic.html'); } catch (e) {}</script>
 <link rel="stylesheet" href="style.css?v=13">
 </head>
-<body>
-
-<!-- ══════════ GAMDOM CHROME: the site's top bar ══════════ -->
-<nav class="gnav">
-  <a class="gnav-logo" href="/"><img src="assets/gamdom-logo.png" alt=""><span>Gamdom</span></a>
-  <div class="gnav-links"><span class="on">Originals</span><span>Casino</span><span>Sports</span><span>Rewards</span><span>Affiliates</span></div>
-  <div class="gnav-right">
-    <div class="wallet-pill"><i class="coin">$</i><span class="balance-value" id="balance">$0.00</span><b class="caret">▾</b></div>
-    <button class="wallet-btn" id="resetBalance" hidden>Reset</button>
-    <span class="wallet-btn static">Wallet</span>
-    <button id="soundToggle" class="icon-btn sound-btn" title="Sound on/off"></button>
-  </div>
-</nav>
+<body data-ui="gamdom">
 
 <main class="page">
 
   <!-- ══════════ THE GAME ══════════ -->
   <section class="app game-card">
+
+    <header class="gbar">
+      <div class="gtitle"><span class="crown">♛</span><b>Joker Roulette</b><small>54 cards · provably fair</small></div>
+      <div class="gbar-right">
+        <div class="wallet-pill"><i class="coin">$</i><span class="balance-value" id="balance">$0.00</span></div>
+        <button class="wallet-btn" id="resetBalance" hidden>Reset</button>
+        <button id="soundToggle" class="icon-btn sound-btn" title="Sound on/off"></button>
+      </div>
+    </header>
 
     <!-- the wheel: a strip of cards under a centre line -->
     <section class="spin-area">
@@ -165,34 +163,6 @@
 
   </section>
 
-  <!-- ══════════ THE INFO CARD, as under every Gamdom original ══════════ -->
-  <section class="info-card">
-    <div class="info-thumb"><span>♛</span><small>JOKER</small></div>
-    <div class="info-text">
-      <b>Joker Roulette</b>
-      <span>Gamdom Originals</span>
-      <div class="info-tags"><em>Provably fair</em><em>GAMDOM ORIGINALS</em></div>
-    </div>
-    <div class="info-icons">
-      <span class="icon-btn" title="How it works">?</span>
-      <span class="icon-btn" title="Provably fair">✓</span>
-      <span class="icon-btn" title="Payouts">%</span>
-    </div>
-    <span class="info-plus">+</span>
-  </section>
-
-  <p class="info-blurb">A 54-card wheel: the 52 cards plus a gold and a purple joker. Bet on a joker, a value, a suit or a colour — or open the advanced board for straight cards, splits, corners and groups. Every bet pays 52 divided by the outcomes it covers; the round's card is the EOS block hash modulo 54, so anyone can verify it.</p>
-
-  <footer class="gfoot">
-    <div class="gfoot-brand"><img src="assets/gamdom-logo.png" alt=""><span>Gamdom</span></div>
-    <div class="gfoot-cols">
-      <div><b>Info</b><span>About Us</span><span>Careers</span><span>Provably Fair</span></div>
-      <div><b>Originals</b><span>Blackjack</span><span>Crash</span><span>Roulette</span><span>Joker Roulette</span></div>
-      <div><b>Casino</b><span>Lobby</span><span>Slots</span><span>Live Games</span></div>
-      <div><b>Support</b><span>Help Center</span><span>Responsible Gambling</span></div>
-    </div>
-  </footer>
-
 </main>
 
 <div id="valueBackdrop" class="value-backdrop" hidden></div>
@@ -228,6 +198,24 @@
 })();
 </script>
 
+<div id="uiToggle" class="ui-toggle" role="group" aria-label="Interface">
+  <button data-ui="gamdom">New UI</button>
+  <button data-ui="classic">Classic UI</button>
+</div>
+<script>
+/* the two interfaces share game.js: this page is one of them; the pill swaps to the other */
+(function () {
+  var here = document.body.dataset.ui || 'classic';
+  document.querySelectorAll('#uiToggle button').forEach(function (b) {
+    b.classList.toggle('on', b.dataset.ui === here);
+    b.addEventListener('click', function () {
+      if (b.dataset.ui === here) return;
+      try { localStorage.setItem('joker-ui', b.dataset.ui); } catch (e) {}
+      location.href = b.dataset.ui === 'classic' ? 'classic.html' : './';
+    });
+  });
+})();
+</script>
 <script src="game.js?v=13"></script>
 </body>
 </html>

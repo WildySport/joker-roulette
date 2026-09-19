@@ -1508,8 +1508,7 @@ function init() {
   const mobileMQ = window.matchMedia('(max-width: 760px)');
   const fitFrame = () => {
     const app = document.querySelector('.app');
-    app.style.transform = '';          /* the Gamdom-style page is fluid: no frame scaling */
-    if (true) return;
+    if (document.body.dataset.ui === 'gamdom') { app.style.transform = ''; return; }   /* the new page is fluid */
     if (mobileMQ.matches) {
       app.style.transform = '';
       return;
