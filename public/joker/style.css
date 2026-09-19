@@ -248,7 +248,7 @@ img { display: block; }
 .tile.pop.mine::before { display: none; }
 /* the board cell of the card under the marker, in the final moments: lights up as the marker crosses it, fades as it leaves */
 .cell { transition: transform 0.1s, filter 0.34s ease-out, box-shadow 0.34s ease-out; }
-.cell.under { filter: brightness(1.7); box-shadow: 0 0 0 2px #fff, 0 0 22px rgba(255, 255, 255, 0.55); transition: filter 0.04s, box-shadow 0.04s; z-index: 3; }
+.cell.under { filter: brightness(1.25); box-shadow: 0 0 0 1.5px rgba(0, 231, 1, 0.75), 0 0 14px rgba(0, 231, 1, 0.3); transition: filter 0.04s, box-shadow 0.04s; z-index: 3; }
 /* bets open: a thin beam of light travels slowly round the board's edge over a
    faint ambient glow (user 2026-09-20: "cool yet subtle") — a conic gradient
    masked to a 1.5px ring, its angle animated */
@@ -257,10 +257,10 @@ img { display: block; }
 .bets-open .board::before, .bets-open .panel .bet-cell::before {
   content: '';
   position: absolute;
-  inset: -1.5px;
+  inset: -1px;
   border-radius: inherit;
-  padding: 1.5px;
-  background: conic-gradient(from var(--sweep), transparent 0deg, transparent 246deg, rgba(0, 231, 1, 0.25) 296deg, rgba(0, 231, 1, 0.95) 330deg, rgba(255, 255, 255, 0.9) 338deg, rgba(0, 231, 1, 0.5) 348deg, transparent 360deg);
+  padding: 1px;
+  background: conic-gradient(from var(--sweep), transparent 0deg, transparent 262deg, rgba(0, 231, 1, 0.12) 300deg, rgba(0, 231, 1, 0.55) 332deg, rgba(180, 255, 180, 0.6) 338deg, rgba(0, 231, 1, 0.25) 348deg, transparent 360deg);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
@@ -274,7 +274,7 @@ img { display: block; }
 .bets-open .panel .bet-cell:nth-child(3)::before { animation-delay: -1.8s; }
 .bets-open .panel .bet-cell:nth-child(4)::before { animation-delay: -2.7s; }
 @keyframes sweep { to { --sweep: 360deg; } }
-.bets-open .board, .bets-open .panel .bet-cell { box-shadow: 0 0 0 1px rgba(0, 231, 1, 0.12), 0 0 26px rgba(0, 231, 1, 0.07); }
+.bets-open .board, .bets-open .panel .bet-cell { box-shadow: 0 0 0 1px rgba(0, 231, 1, 0.08), 0 0 22px rgba(0, 231, 1, 0.04); }
 /* the board's own rounded corners must clip the beam's padding box */
 .board { border-radius: var(--radius); }
 /* the win pop */
