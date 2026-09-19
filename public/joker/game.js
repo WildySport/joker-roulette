@@ -1264,8 +1264,10 @@ async function runRound() {
       if (!flipped && left <= 5000) { flipped = true; flipStripToBacks(); }
       if (!shuffled && left <= 3900) { shuffled = true; shuffleStrip(); }
       status.innerHTML = 'PLACE YOUR BETS <span class="tick">• ' + (left / 1000).toFixed(1) + 's</span>';
+      setProgress(left / BET_MS, (left / 1000).toFixed(2) + ' seconds');
     }, 100);
   });
+  setProgress(0, 'Bets closed');
 
   state.phase = 'resolving';
   closeValueMenu();
@@ -1311,8 +1313,18 @@ async function runRound() {
   status.textContent = cardLabel(card) + '  —  '
     + (staked === 0 ? 'NO BET' : winnings > 0 ? 'WON ' + money(winnings) : 'NO WIN');
   status.className = 'status-text ' + (staked > 0 && winnings > 0 ? 'win' : staked > 0 ? 'lose' : '');
+  setProgress(0, cardLabel(card));
 
   await sleep(RESULT_MS);
+}
+
+/* the site's progress bar under the wheel: green while bets are open, red once closed */
+function setProgress(frac, label) {
+  const fill = $('betProgress'), pill = $('betPill');
+  if (!fill || !pill) return;
+  fill.style.width = (Math.max(0, Math.min(1, frac)) * 100) + '%';
+  pill.textContent = label;
+  fill.parentElement.parentElement.classList.toggle('closed', frac <= 0);
 }
 
 async function roundLoop() {
@@ -1320,7 +1332,7 @@ async function roundLoop() {
 }
 
 function setControlsDisabled(disabled) {
-  document.querySelectorAll('.opt, .x2-btn, .value-btn, .value-item, #betAmount, #customChip')
+  document.querySelectorAll('.opt, .x2-btn, .qbtn, .value-btn, .value-item, #betAmount, #customChip')
     .forEach(el => { el.disabled = disabled; });
   $('board').classList.toggle('locked', disabled);
 }
@@ -1428,6 +1440,19 @@ function init() {
       SFX.click();
     }));
 
+  document.querySelectorAll('.qbtn[data-add], .qbtn[data-op]').forEach(btn =>
+    btn.addEventListener('click', () => {
+      const input = $('betAmount');
+      const v = parseFloat(input.value);
+      const cur = isNaN(v) || v < 0 ? 0 : v;
+      let n = cur;
+      if (btn.dataset.add) n = cur + parseFloat(btn.dataset.add);
+      else if (btn.dataset.op === 'half') n = cur / 2;
+      else if (btn.dataset.op === 'max') n = Math.min(state.balance, 10000);
+      input.value = Math.max(0.01, round2(n)).toFixed(2);
+      SFX.click();
+    }));
+
   // repeat-bet control
   $('repeatCheck').addEventListener('click', () => {
     SFX.click();
@@ -1483,6 +1508,8 @@ function init() {
   const mobileMQ = window.matchMedia('(max-width: 760px)');
   const fitFrame = () => {
     const app = document.querySelector('.app');
+    app.style.transform = '';          /* the Gamdom-style page is fluid: no frame scaling */
+    if (true) return;
     if (mobileMQ.matches) {
       app.style.transform = '';
       return;

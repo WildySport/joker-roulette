@@ -7,167 +7,193 @@
 <title>Joker Roulette</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,600;0,700;0,800;1,700;1,800&family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=12">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=13">
 </head>
 <body>
 
-<div class="stage">
-  <div class="app">
+<!-- ══════════ GAMDOM CHROME: the site's top bar ══════════ -->
+<nav class="gnav">
+  <a class="gnav-logo" href="/"><img src="assets/gamdom-logo.png" alt=""><span>Gamdom</span></a>
+  <div class="gnav-links"><span class="on">Originals</span><span>Casino</span><span>Sports</span><span>Rewards</span><span>Affiliates</span></div>
+  <div class="gnav-right">
+    <div class="wallet-pill"><i class="coin">$</i><span class="balance-value" id="balance">$0.00</span><b class="caret">▾</b></div>
+    <button class="wallet-btn" id="resetBalance" hidden>Reset</button>
+    <span class="wallet-btn static">Wallet</span>
+    <button id="soundToggle" class="icon-btn sound-btn" title="Sound on/off"></button>
+  </div>
+</nav>
 
-    <header class="topbar">
-      <div class="logo"><span class="logo-badge">♛</span><em><span>JOKER</span> ROULETTE</em></div>
-      <div class="balance-box">
-        <button id="soundToggle" class="sound-btn" title="Sound on/off"></button>
-        <span class="balance-label">Balance</span>
-        <span class="balance-value" id="balance">$0.00</span>
-        <button id="resetBalance" class="reset-btn" hidden>Reset $100,000</button>
-      </div>
-    </header>
+<main class="page">
 
-    <!-- ══════════ SPINNER ══════════ -->
+  <!-- ══════════ THE GAME ══════════ -->
+  <section class="app game-card">
+
+    <!-- the wheel: a strip of cards under a centre line -->
     <section class="spin-area">
-      <div class="status-text" id="statusText">Place your bets!</div>
-      <div class="marker marker-top">▼</div>
-      <div class="strip-window" id="stripWindow">
-        <div class="strip" id="strip"></div>
-        <div class="strip-fade strip-fade-left"></div>
-        <div class="strip-fade strip-fade-right"></div>
-      </div>
-      <div class="marker marker-bottom">▲</div>
-      <div class="under-strip">
-        <div class="fair-bar" id="fairBar" title="Provably fair: card index = EOS block ID (hex) mod 54">ROUND #1 · EOS BLOCK · connecting…</div>
+      <div class="spin-head">
         <div class="prev-row">
           <span class="prev-label">Previous</span>
           <div class="prev-cards" id="prevCards"></div>
         </div>
+        <div class="status-text" id="statusText">Place your bets</div>
+        <div class="spin-legend"><i class="lg-green"></i>Green<i class="lg-white"></i>White<i class="lg-joker"></i>Joker</div>
       </div>
+      <div class="strip-window" id="stripWindow">
+        <div class="strip" id="strip"></div>
+        <div class="strip-fade strip-fade-left"></div>
+        <div class="strip-fade strip-fade-right"></div>
+        <div class="marker-line"></div>
+      </div>
+      <div class="progress">
+        <div class="progress-track"><div class="progress-fill" id="betProgress"></div></div>
+        <span class="progress-pill" id="betPill">—</span>
+      </div>
+      <div class="fair-bar" id="fairBar" title="Provably fair: card index = EOS block ID (hex) mod 54">ROUND #1 · EOS BLOCK · connecting…</div>
     </section>
 
-    <!-- ══════════ BETTING PANEL ══════════ -->
-    <section class="panel-wrap">
-      <div class="mode-row">
-        <span>Advanced Betting</span>
-        <button class="toggle" id="modeToggle" role="switch" aria-checked="false"><span class="knob"></span></button>
-        <div class="repeat-ctl">
-          <button class="checkbox" id="repeatCheck" role="checkbox" aria-checked="false"></button>
-          <span>Repeat Bet Next Round</span>
-          <span class="repeat-count" id="repeatCount">×5</span>
-          <input id="repeatInput" class="repeat-input" type="number" min="1" max="999" hidden>
-          <button class="edit-btn" id="repeatEdit" title="Set how many rounds to repeat">✎</button>
+    <!-- the bet row, as on the site -->
+    <div class="bet-row" id="betRow">
+      <div class="amount-pill"><i class="coin">$</i><input type="number" id="betAmount" value="1.00" min="0" step="0.01" inputmode="decimal"></div>
+      <button id="clearSimple" class="qbtn clear-btn">Clear</button>
+      <button class="qbtn" data-add="10">+$10</button>
+      <button class="qbtn" data-add="50">+$50</button>
+      <button class="qbtn" data-add="100">+$100</button>
+      <button class="qbtn" data-op="half">1/2</button>
+      <button class="qbtn x2-btn" data-target="betAmount">x2</button>
+      <button class="qbtn" data-op="max">Max</button>
+    </div>
+
+    <div class="mode-row">
+      <label class="mode-switch"><button class="toggle" id="modeToggle" role="switch" aria-checked="false"><span class="knob"></span></button><span>Advanced board</span></label>
+      <div class="repeat-ctl">
+        <button class="checkbox" id="repeatCheck" role="checkbox" aria-checked="false"></button>
+        <span>Repeat next round</span>
+        <span class="repeat-count" id="repeatCount">×5</span>
+        <input id="repeatInput" class="repeat-input" type="number" min="1" max="999" hidden>
+        <button class="edit-btn" id="repeatEdit" title="Set how many rounds to repeat">✎</button>
+      </div>
+      <div class="total-block"><span class="bt-label">Total bet</span><span id="simpleTotal">$0.00</span></div>
+    </div>
+
+    <!-- ── SIMPLE PANEL: the bet cards ── -->
+    <div class="panel" id="simplePanel">
+      <div class="bet-grid">
+
+        <div class="bet-cell cell-jokers">
+          <div class="bet-label"><span>Jokers</span><span class="sel-note">52x · any 26x</span></div>
+          <div class="bet-box">
+            <div class="opt-tray">
+              <button class="opt joker-opt joker-gold" data-key="joker:gold" title="Gold Joker — pays 52x"><img src="assets/joker-gold.png" alt=""></button>
+              <button class="opt joker-opt joker-purple" data-key="joker:purple" title="Purple Joker — pays 52x"><img src="assets/joker-purple.png" alt=""></button>
+              <button class="opt any-opt" data-key="joker:both" title="Any joker — pays 26x"><span class="at">Any joker</span></button>
+            </div>
+            <div class="cell-summary" id="sum-joker"></div>
+          </div>
         </div>
+
+        <div class="bet-cell cell-values">
+          <div class="bet-label"><span>Values</span><span class="sel-note">13x each</span></div>
+          <div class="bet-box">
+            <div class="opt-tray">
+              <button class="value-btn" id="valueBtn"><span id="valueBtnLabel">Pick a value</span><span class="caret">▾</span></button>
+              <div class="value-menu" id="valueMenu" hidden></div>
+            </div>
+            <div class="cell-summary" id="sum-value"></div>
+          </div>
+        </div>
+
+        <div class="bet-cell cell-suits">
+          <div class="bet-label"><span>Suits</span><span class="sel-note">4x each</span></div>
+          <div class="bet-box">
+            <div class="opt-tray">
+              <button class="opt suit-opt black-suit" data-key="suit:spades">&#9824;</button>
+              <button class="opt suit-opt red-suit" data-key="suit:diamonds">&#9830;</button>
+              <button class="opt suit-opt black-suit" data-key="suit:clubs">&#9827;</button>
+              <button class="opt suit-opt red-suit" data-key="suit:hearts">&#9829;</button>
+            </div>
+            <div class="cell-summary" id="sum-suit"></div>
+          </div>
+        </div>
+
+        <div class="bet-cell cell-colours">
+          <div class="bet-label"><span>Colours</span><span class="sel-note">2x</span></div>
+          <div class="bet-box">
+            <div class="opt-tray">
+              <button class="opt colour-opt colour-red" data-key="colour:red" title="Green — pays 2x"><span>Green</span></button>
+              <button class="opt colour-opt colour-black" data-key="colour:black" title="White — pays 2x"><span>White</span></button>
+            </div>
+            <div class="cell-summary" id="sum-colour"></div>
+          </div>
+        </div>
+
       </div>
 
-      <!-- ── ADVANCED BOARD ── -->
-      <div class="board" id="board" hidden>
-        <div class="chip-row">
-          <div class="chips" id="chipTray">
-            <button class="bchip chip-custom selected" data-chip="custom" data-color="custom"><span class="c-dollar">$</span><input id="customChip" value="1.00" inputmode="decimal"></button>
-            <button class="bchip chip-c1" data-chip="1" data-color="c1">$1</button>
-            <button class="bchip chip-c2" data-chip="2" data-color="c2">$2</button>
-            <button class="bchip chip-c5" data-chip="5" data-color="c5">$5</button>
-            <button class="bchip chip-c50" data-chip="50" data-color="c50">$50</button>
-            <button class="bchip chip-c100" data-chip="100" data-color="c100">$100</button>
-            <button class="bchip chip-c500" data-chip="500" data-color="c500">$500</button>
-            <button class="bchip chip-c1k" data-chip="1000" data-color="c1k">$1000</button>
-          </div>
-          <div class="board-total">
-            <span class="bt-label">TOTAL</span>
-            <span id="boardTotal">$0.00</span>
-            <button id="clearBoard" class="clear-btn">CLEAR</button>
+      <div class="bet-summary">
+        <div class="summary-head">
+          <h3>Your bets</h3>
+          <div class="summary-stats">
+            <div class="sum-stat"><span class="bt-label">Total bet</span><span class="summary-total" id="summaryTotal">$0.00</span></div>
+            <div class="sum-stat"><span class="bt-label">Max win</span><span class="summary-max" id="summaryMax">$0.00</span></div>
           </div>
         </div>
-        <div class="board-grid" id="boardGrid"></div>
+        <div class="summary-chips" id="summaryChips"><span class="summary-empty">No bets yet</span></div>
       </div>
+    </div>
 
-      <!-- ── SIMPLE PANEL ── -->
-      <div class="panel" id="simplePanel">
-        <div class="bet-bar">
-          <div class="amount-group">
-            <span class="field-label">Bet Amount</span>
-            <div class="amount-line">
-              <div class="amount-pill">
-                <span class="dollar">$</span>
-                <input type="number" id="betAmount" value="1.00" min="0" step="0.01">
-              </div>
-              <button class="x2-btn" data-target="betAmount">&times;2</button>
-            </div>
-          </div>
-          <div class="total-group">
-            <div class="total-block">
-              <span class="field-label">Total Bet</span>
-              <span id="simpleTotal">$0.00</span>
-            </div>
-            <button id="clearSimple" class="clear-btn">CLEAR</button>
-          </div>
+    <!-- ── ADVANCED BOARD ── -->
+    <div class="board" id="board" hidden>
+      <div class="chip-row">
+        <div class="chips" id="chipTray">
+          <button class="bchip chip-custom selected" data-chip="custom" data-color="custom"><span class="c-dollar">$</span><input id="customChip" value="1.00" inputmode="decimal"></button>
+          <button class="bchip chip-c1" data-chip="1" data-color="c1">$1</button>
+          <button class="bchip chip-c2" data-chip="2" data-color="c2">$2</button>
+          <button class="bchip chip-c5" data-chip="5" data-color="c5">$5</button>
+          <button class="bchip chip-c50" data-chip="50" data-color="c50">$50</button>
+          <button class="bchip chip-c100" data-chip="100" data-color="c100">$100</button>
+          <button class="bchip chip-c500" data-chip="500" data-color="c500">$500</button>
+          <button class="bchip chip-c1k" data-chip="1000" data-color="c1k">$1000</button>
         </div>
-
-        <div class="bet-grid">
-
-          <div class="bet-cell">
-            <div class="bet-label">Jokers <span class="sel-note">52&times; &middot; Any 26&times;</span></div>
-            <div class="bet-box">
-              <div class="opt-tray">
-                <button class="opt joker-opt joker-gold" data-key="joker:gold" title="Gold Joker &mdash; pays 52&times;"></button>
-                <button class="opt joker-opt joker-purple" data-key="joker:purple" title="Purple Joker &mdash; pays 52&times;"></button>
-                <button class="opt any-opt" data-key="joker:both" title="Any joker &mdash; pays 26&times;"><span class="ac">&#9819;</span><span class="at">ANY</span></button>
-              </div>
-              <div class="cell-summary" id="sum-joker"></div>
-            </div>
-          </div>
-
-          <div class="bet-cell">
-            <div class="bet-label">Values <span class="sel-note">13&times; each</span></div>
-            <div class="bet-box">
-              <div class="opt-tray">
-                <button class="value-btn" id="valueBtn"><span id="valueBtnLabel">Pick</span><span class="caret">&#9662;</span></button>
-                <div class="value-menu" id="valueMenu" hidden></div>
-              </div>
-              <div class="cell-summary" id="sum-value"></div>
-            </div>
-          </div>
-
-          <div class="bet-cell">
-            <div class="bet-label">Suits <span class="sel-note">4&times; each</span></div>
-            <div class="bet-box">
-              <div class="opt-tray">
-                <button class="opt suit-opt black-suit" data-key="suit:spades">&#9824;</button>
-                <button class="opt suit-opt red-suit" data-key="suit:diamonds">&#9830;</button>
-                <button class="opt suit-opt black-suit" data-key="suit:clubs">&#9827;</button>
-                <button class="opt suit-opt red-suit" data-key="suit:hearts">&#9829;</button>
-              </div>
-              <div class="cell-summary" id="sum-suit"></div>
-            </div>
-          </div>
-
-          <div class="bet-cell">
-            <div class="bet-label">Colours <span class="sel-note">2&times;</span></div>
-            <div class="bet-box">
-              <div class="opt-tray">
-                <button class="opt colour-opt colour-black" data-key="colour:black" title="White &mdash; pays 2&times;"></button>
-                <button class="opt colour-opt colour-red" data-key="colour:red" title="Green &mdash; pays 2&times;"></button>
-              </div>
-              <div class="cell-summary" id="sum-colour"></div>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="bet-summary">
-          <div class="summary-head">
-            <h3>Bet Summary</h3>
-            <div class="summary-stats">
-              <div class="sum-stat"><span class="bt-label">Total Bet</span><span class="summary-total" id="summaryTotal">$0.00</span></div>
-              <div class="sum-stat"><span class="bt-label">Max Win</span><span class="summary-max" id="summaryMax">$0.00</span></div>
-            </div>
-          </div>
-          <div class="summary-chips" id="summaryChips"><span class="summary-empty">No bets placed yet</span></div>
+        <div class="board-total">
+          <span class="bt-label">Total</span>
+          <span id="boardTotal">$0.00</span>
+          <button id="clearBoard" class="qbtn clear-btn">Clear</button>
         </div>
       </div>
-    </section>
+      <div class="board-grid" id="boardGrid"></div>
+    </div>
 
-  </div>
-</div>
+  </section>
+
+  <!-- ══════════ THE INFO CARD, as under every Gamdom original ══════════ -->
+  <section class="info-card">
+    <div class="info-thumb"><span>♛</span><small>JOKER</small></div>
+    <div class="info-text">
+      <b>Joker Roulette</b>
+      <span>Gamdom Originals</span>
+      <div class="info-tags"><em>Provably fair</em><em>GAMDOM ORIGINALS</em></div>
+    </div>
+    <div class="info-icons">
+      <span class="icon-btn" title="How it works">?</span>
+      <span class="icon-btn" title="Provably fair">✓</span>
+      <span class="icon-btn" title="Payouts">%</span>
+    </div>
+    <span class="info-plus">+</span>
+  </section>
+
+  <p class="info-blurb">A 54-card wheel: the 52 cards plus a gold and a purple joker. Bet on a joker, a value, a suit or a colour — or open the advanced board for straight cards, splits, corners and groups. Every bet pays 52 divided by the outcomes it covers; the round's card is the EOS block hash modulo 54, so anyone can verify it.</p>
+
+  <footer class="gfoot">
+    <div class="gfoot-brand"><img src="assets/gamdom-logo.png" alt=""><span>Gamdom</span></div>
+    <div class="gfoot-cols">
+      <div><b>Info</b><span>About Us</span><span>Careers</span><span>Provably Fair</span></div>
+      <div><b>Originals</b><span>Blackjack</span><span>Crash</span><span>Roulette</span><span>Joker Roulette</span></div>
+      <div><b>Casino</b><span>Lobby</span><span>Slots</span><span>Live Games</span></div>
+      <div><b>Support</b><span>Help Center</span><span>Responsible Gambling</span></div>
+    </div>
+  </footer>
+
+</main>
 
 <div id="valueBackdrop" class="value-backdrop" hidden></div>
 
@@ -202,6 +228,6 @@
 })();
 </script>
 
-<script src="game.js?v=12"></script>
+<script src="game.js?v=13"></script>
 </body>
 </html>
