@@ -350,6 +350,7 @@ input, select { font-family: inherit; }
   border-color: rgba(0, 233, 124, 0.45);
   box-shadow: inset 0 0 8px rgba(0, 233, 124, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.035);
 }
+.tile.joker-tile.gold.mine, .tile.joker-tile.purple.mine { box-shadow: 0 0 10px var(--glow-soft), inset 0 0 0 2px rgba(0, 233, 124, 0.5); }
 .tile.land {
   border-color: var(--green);
   box-shadow: 0 0 14px var(--glow), inset 0 0 10px rgba(0, 233, 124, 0.12);
@@ -1043,7 +1044,8 @@ input, select { font-family: inherit; }
 .zone.cell-lose .stake-stack { filter: grayscale(0.75) brightness(0.75); }
 .cell.cover-hi { border-color: rgba(0, 233, 124, 0.65); filter: brightness(1.5); }
 
-.cell.cell-hit { border-color: var(--green); box-shadow: 0 0 14px var(--glow); }
+.cell.cell-hit { border-color: var(--green); box-shadow: 0 0 14px var(--glow); animation: cellPop 0.55s cubic-bezier(0.2, 0.9, 0.3, 1.4) both; z-index: 4; }
+@keyframes cellPop { 0% { transform: scale(1) translateY(0); } 45% { transform: scale(1.09) translateY(-3px); } 100% { transform: scale(1.04) translateY(-1px); } }
 .cell.cell-win { border-color: var(--green); box-shadow: 0 0 18px var(--glow); filter: none; }
 .cell.cell-win .stake-stack { animation: bump 0.5s ease; }
 .cell.cell-lose .stake-stack { filter: grayscale(0.75) brightness(0.75); }

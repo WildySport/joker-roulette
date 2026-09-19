@@ -244,6 +244,8 @@ img { display: block; }
 
 /* a card your bets cover: a quiet green ring and a dot, on the idle strip and through the spin */
 .tile.mine { box-shadow: inset 0 0 0 2px rgba(0, 231, 1, 0.55), inset 0 -6px 0 rgba(0, 0, 0, 0.22), 0 0 14px rgba(0, 231, 1, 0.18), 0 6px 14px rgba(0, 0, 0, 0.35); }
+.tile.joker-tile.gold.mine, .tile.joker-tile.purple.mine { box-shadow: 0 0 0 2px rgba(0, 231, 1, 0.55), 0 0 14px rgba(0, 231, 1, 0.18), inset 0 -6px 0 rgba(0, 0, 0, 0.22); }
+.tile.joker-tile.gold.land, .tile.joker-tile.purple.land { box-shadow: 0 0 0 2px var(--green), 0 0 22px rgba(0, 231, 1, 0.4), inset 0 -6px 0 rgba(0, 0, 0, 0.22); }
 .tile.mine::before { content: ''; position: absolute; top: 8px; right: 8px; width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); z-index: 2; }
 .tile.pop.mine::before { display: none; }
 /* the board cell of the card under the marker, in the final moments: lights up as the marker crosses it, fades as it leaves */
@@ -289,7 +291,7 @@ img { display: block; }
 @keyframes winIn { from { opacity: 0; transform: translate(-12px, -50%) scale(0.6); } to { opacity: 1; transform: translate(0, -50%) scale(1); } }
 @keyframes winOut { to { opacity: 0; transform: translate(0, -60%) scale(0.92); } }
 @media (max-width: 760px) { .win-pop { left: 50%; transform: translate(-50%, -50%); padding: 10px 20px 12px; } .win-pop b { font-size: 1.6rem; } }
-.tile.land { box-shadow: 0 0 0 2px #fff, 0 0 22px rgba(255, 255, 255, 0.45), inset 0 -6px 0 rgba(0, 0, 0, 0.22); }
+.tile.land { box-shadow: 0 0 0 2px var(--green), 0 0 22px rgba(0, 231, 1, 0.4), inset 0 -6px 0 rgba(0, 0, 0, 0.22); }
 @keyframes land-pop {
   0% { transform: scale(1) translateY(0); }
   16% { transform: scale(1.12) translateY(-2px); }
@@ -537,7 +539,9 @@ img { display: block; }
 .zone.cell-win { background: rgba(0, 231, 1, 0.18); box-shadow: 0 0 14px var(--glow); }
 .zone.cell-lose .stake-stack { filter: grayscale(0.75) brightness(0.75); }
 .cell.cover-hi { box-shadow: 0 0 0 1.5px rgba(255, 255, 255, 0.7); filter: brightness(1.35); }
-.cell.cell-hit { box-shadow: 0 0 0 2px #fff, 0 0 14px rgba(255, 255, 255, 0.4); }
+.cell.cell-hit { box-shadow: 0 0 0 1.5px rgba(0, 231, 1, 0.75), 0 0 14px rgba(0, 231, 1, 0.3); filter: brightness(1.25); animation: cellPop 0.55s cubic-bezier(0.2, 0.9, 0.3, 1.4) both; z-index: 4; }
+/* the landed card's cell pops up very slightly (user 2026-09-20) */
+@keyframes cellPop { 0% { transform: scale(1) translateY(0); } 45% { transform: scale(1.09) translateY(-3px); } 100% { transform: scale(1.04) translateY(-1px); } }
 .cell.cell-win { box-shadow: 0 0 0 2px var(--green), 0 0 18px var(--glow); filter: none; }
 .cell.cell-win .stake-stack { animation: bump 0.5s ease; }
 .cell.cell-lose .stake-stack { filter: grayscale(0.75) brightness(0.75); }

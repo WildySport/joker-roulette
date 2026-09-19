@@ -1193,7 +1193,7 @@ async function spinStrip(card) {
     const idx = Math.round((-x + $('stripWindow').clientWidth / 2 - strip.children[0].offsetWidth / 2) / pitch);
     if (lastTickIdx !== null && idx !== lastTickIdx) {
       SFX.tick();
-      if (performance.now() - spinT0 > 3600) light(idx);
+      if (performance.now() - spinT0 > 2600) light(idx);   /* the lights start a little earlier (user) */
     }
     lastTickIdx = idx;
     requestAnimationFrame(tickWatch);
