@@ -1171,11 +1171,26 @@ async function spinStrip(card) {
   /* wheel ticks: one per card crossing the marker, naturally rate-limited
      to the display frame rate during the launch blur */
   let lastTickIdx = null, ticking = true;
+  const spinT0 = performance.now();
+  let lit = null;
+  /* in the final moments (once the wheel has slowed) each tile lights up as
+     the marker passes over it and fades as it leaves (user 2026-09-20) */
+  const light = (idx) => {
+    const el = strip.children[idx];
+    if (!el) return;
+    if (lit && lit !== el) lit.classList.remove('under');
+    el.classList.add('under');
+    lit = el;
+  };
   const tickWatch = () => {
-    if (!ticking) return;
+    if (!ticking) { if (lit) lit.classList.remove('under'); return; }
     const x = new DOMMatrixReadOnly(getComputedStyle(strip).transform).m41;
-    const idx = Math.round(-x / pitch);
-    if (lastTickIdx !== null && idx !== lastTickIdx) SFX.tick();
+    /* the tile under the centre marker (the inverse of centerOffset) */
+    const idx = Math.round((-x + $('stripWindow').clientWidth / 2 - strip.children[0].offsetWidth / 2) / pitch);
+    if (lastTickIdx !== null && idx !== lastTickIdx) {
+      SFX.tick();
+      if (performance.now() - spinT0 > 3600) light(idx);
+    }
     lastTickIdx = idx;
     requestAnimationFrame(tickWatch);
   };
@@ -1191,6 +1206,7 @@ async function spinStrip(card) {
   strip.style.transform = 'translateX(' + finalX + 'px)';
   await sleep(400);
   ticking = false;
+  if (lit) lit.classList.remove('under');
 
   const winner = strip.children[target];
   winner.classList.add('land');
@@ -1248,6 +1264,7 @@ function renderPrevCards() {
 async function runRound() {
   state.round++;
   state.phase = 'betting';
+  document.body.classList.add('bets-open');     /* the board glows while bets are open (user 2026-09-20) */
   state.boardBets.clear();
   state.eos = { target: null, id: null, source: null };
   clearRoundMarks();
@@ -1276,6 +1293,7 @@ async function runRound() {
   setProgress(0, 'Bets closed');
 
   state.phase = 'resolving';
+  document.body.classList.remove('bets-open');
   closeValueMenu();
   setControlsDisabled(true);
   status.textContent = 'WAITING ON EOS…';

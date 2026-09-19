@@ -246,6 +246,12 @@ img { display: block; }
 .tile.mine { box-shadow: inset 0 0 0 2px rgba(0, 231, 1, 0.55), inset 0 -6px 0 rgba(0, 0, 0, 0.22), 0 0 14px rgba(0, 231, 1, 0.18), 0 6px 14px rgba(0, 0, 0, 0.35); }
 .tile.mine::before { content: ''; position: absolute; top: 8px; right: 8px; width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); z-index: 2; }
 .tile.pop.mine::before { display: none; }
+/* the tile under the marker in the final moments: lights up as the marker crosses it, fades as it leaves */
+.tile { transition: box-shadow 0.3s, transform 0.3s, filter 0.32s ease-out; }
+.tile.under { filter: brightness(1.55); box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.9), 0 0 22px rgba(255, 255, 255, 0.45), inset 0 -6px 0 rgba(0, 0, 0, 0.22); transition: box-shadow 0.05s, filter 0.05s; z-index: 3; }
+/* the board glows while bets are open */
+.bets-open .board, .bets-open .panel .bet-cell { box-shadow: 0 0 0 1px rgba(0, 231, 1, 0.35), 0 0 28px rgba(0, 231, 1, 0.14); animation: boardGlow 2.6s ease-in-out infinite; }
+@keyframes boardGlow { 50% { box-shadow: 0 0 0 1px rgba(0, 231, 1, 0.6), 0 0 44px rgba(0, 231, 1, 0.26); } }
 /* the win pop */
 /* beside the centre line, so the winning card under the marker stays in view */
 .win-pop { position: absolute; left: calc(50% + 64px); top: 50%; transform: translate(0, -50%); z-index: 20; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 14px 30px 16px; border-radius: 14px; background: rgba(11, 15, 22, 0.94); box-shadow: 0 0 0 2px var(--green), 0 0 40px rgba(0, 231, 1, 0.35), 0 20px 50px rgba(0, 0, 0, 0.6); animation: winIn 420ms cubic-bezier(0.2, 0.9, 0.3, 1.35) both; pointer-events: none; }
