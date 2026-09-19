@@ -6,7 +6,7 @@
    (amount pill, Clear, +$10 +$50 +$100, 1/2, x2, Max), bet cards in the
    Hilo idiom, the info card every Original sits on, a footer. Palette
    from the site: charcoal #0b0f16 / #131a24 / #1a2230, white text, grey
-   #8b96a8, Gamdom green #00e701, red #e5322d for the loss states.
+   #8b96a8, Gamdom mint #04f084, red #e5322d for the loss states.
    Every id and class game.js touches is unchanged. */
 
 :root {
@@ -21,16 +21,16 @@
   --text: #ffffff;
   --text-dim: #8b96a8;
   --text-faint: #5d6778;
-  --green: #00e701;
-  --green-hi: #3dff44;
-  --green-dim: #00b301;
+  --green: #04f084;          /* Gamdom mint, sampled from the logo (#04fc84) — not pure green */
+  --green-hi: #4dff9f;
+  --green-dim: #04c46c;
   --green-ink: #04140b;
-  --glow: rgba(0, 231, 1, 0.35);
-  --glow-soft: rgba(0, 231, 1, 0.14);
+  --glow: rgba(4, 240, 132, 0.35);
+  --glow-soft: rgba(4, 240, 132, 0.14);
   --red: #e5322d;
   --tile: #2b3646;           /* the site's "black" tile */
   --tile-hi: #3a4657;
-  --suit-green: #12ea3a;
+  --suit-green: #22ea8e;
   --suit-white: #f4f6f8;
   --gold: #ffc400;
   --purple: #a855f7;
@@ -243,14 +243,13 @@ img { display: block; }
 .tile.joker-tile.purple .hexb { background: rgba(255, 255, 255, 0.5); }
 
 /* a card your bets cover: a quiet green ring and a dot, on the idle strip and through the spin */
-.tile.mine { box-shadow: inset 0 0 0 2px rgba(0, 231, 1, 0.55), inset 0 -6px 0 rgba(0, 0, 0, 0.22), 0 0 14px rgba(0, 231, 1, 0.18), 0 6px 14px rgba(0, 0, 0, 0.35); }
-.tile.joker-tile.gold.mine, .tile.joker-tile.purple.mine { box-shadow: 0 0 0 2px rgba(0, 231, 1, 0.55), 0 0 14px rgba(0, 231, 1, 0.18), inset 0 -6px 0 rgba(0, 0, 0, 0.22); }
-.tile.joker-tile.gold.land, .tile.joker-tile.purple.land { box-shadow: 0 0 0 2px var(--green), 0 0 22px rgba(0, 231, 1, 0.4), inset 0 -6px 0 rgba(0, 0, 0, 0.22); }
-.tile.mine::before { content: ''; position: absolute; top: 8px; right: 8px; width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); z-index: 2; }
+/* a covered card carries only the dot: the cards on the reel do not glow (user 2026-09-20) */
+.tile.joker-tile.gold.land, .tile.joker-tile.purple.land { box-shadow: 0 0 0 2px var(--green), inset 0 -6px 0 rgba(0, 0, 0, 0.22); }
+.tile.mine::before { content: ''; position: absolute; top: 8px; right: 8px; width: 8px; height: 8px; border-radius: 50%; background: var(--green); z-index: 2; }
 .tile.pop.mine::before { display: none; }
 /* the board cell of the card under the marker, in the final moments: lights up as the marker crosses it, fades as it leaves */
 .cell { transition: transform 0.1s, filter 0.34s ease-out, box-shadow 0.34s ease-out; }
-.cell.under { filter: brightness(1.25); box-shadow: 0 0 0 1.5px rgba(0, 231, 1, 0.75), 0 0 14px rgba(0, 231, 1, 0.3); transition: filter 0.04s, box-shadow 0.04s; z-index: 3; }
+.cell.under { filter: brightness(1.25); box-shadow: 0 0 0 1.5px rgba(4, 240, 132, 0.75), 0 0 14px rgba(4, 240, 132, 0.3); transition: filter 0.04s, box-shadow 0.04s; z-index: 3; }
 /* bets open: a thin beam of light travels slowly round the board's edge over a
    faint ambient glow (user 2026-09-20: "cool yet subtle") — a conic gradient
    masked to a 1.5px ring, its angle animated */
@@ -262,7 +261,7 @@ img { display: block; }
   inset: -1px;
   border-radius: inherit;
   padding: 1px;
-  background: conic-gradient(from var(--sweep), transparent 0deg, transparent 262deg, rgba(0, 231, 1, 0.12) 300deg, rgba(0, 231, 1, 0.55) 332deg, rgba(180, 255, 180, 0.6) 338deg, rgba(0, 231, 1, 0.25) 348deg, transparent 360deg);
+  background: conic-gradient(from var(--sweep), transparent 0deg, transparent 262deg, rgba(4, 240, 132, 0.12) 300deg, rgba(4, 240, 132, 0.55) 332deg, rgba(190, 255, 225, 0.6) 338deg, rgba(4, 240, 132, 0.25) 348deg, transparent 360deg);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
@@ -276,12 +275,12 @@ img { display: block; }
 .bets-open .panel .bet-cell:nth-child(3)::before { animation-delay: -1.8s; }
 .bets-open .panel .bet-cell:nth-child(4)::before { animation-delay: -2.7s; }
 @keyframes sweep { to { --sweep: 360deg; } }
-.bets-open .board, .bets-open .panel .bet-cell { box-shadow: 0 0 0 1px rgba(0, 231, 1, 0.08), 0 0 22px rgba(0, 231, 1, 0.04); }
+.bets-open .board, .bets-open .panel .bet-cell { box-shadow: 0 0 0 1px rgba(4, 240, 132, 0.08), 0 0 22px rgba(4, 240, 132, 0.04); }
 /* the board's own rounded corners must clip the beam's padding box */
 .board { border-radius: var(--radius); }
 /* the win pop */
 /* beside the centre line, so the winning card under the marker stays in view */
-.win-pop { position: absolute; left: calc(50% + 64px); top: 50%; transform: translate(0, -50%); z-index: 20; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 14px 30px 16px; border-radius: 14px; background: rgba(11, 15, 22, 0.94); box-shadow: 0 0 0 2px var(--green), 0 0 40px rgba(0, 231, 1, 0.35), 0 20px 50px rgba(0, 0, 0, 0.6); animation: winIn 420ms cubic-bezier(0.2, 0.9, 0.3, 1.35) both; pointer-events: none; }
+.win-pop { position: absolute; left: calc(50% + 64px); top: 50%; transform: translate(0, -50%); z-index: 20; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 14px 30px 16px; border-radius: 14px; background: rgba(11, 15, 22, 0.94); box-shadow: 0 0 0 2px var(--green), 0 0 40px rgba(4, 240, 132, 0.35), 0 20px 50px rgba(0, 0, 0, 0.6); animation: winIn 420ms cubic-bezier(0.2, 0.9, 0.3, 1.35) both; pointer-events: none; }
 .win-pop small { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.22em; color: var(--green); }
 .win-pop b { font-size: 2.2rem; font-weight: 700; color: var(--text); font-variant-numeric: tabular-nums; line-height: 1.1; }
 .win-pop span { font-size: 0.82rem; font-weight: 500; color: var(--text-dim); }
@@ -291,7 +290,7 @@ img { display: block; }
 @keyframes winIn { from { opacity: 0; transform: translate(-12px, -50%) scale(0.6); } to { opacity: 1; transform: translate(0, -50%) scale(1); } }
 @keyframes winOut { to { opacity: 0; transform: translate(0, -60%) scale(0.92); } }
 @media (max-width: 760px) { .win-pop { left: 50%; transform: translate(-50%, -50%); padding: 10px 20px 12px; } .win-pop b { font-size: 1.6rem; } }
-.tile.land { box-shadow: 0 0 0 2px var(--green), 0 0 22px rgba(0, 231, 1, 0.4), inset 0 -6px 0 rgba(0, 0, 0, 0.22); }
+.tile.land { box-shadow: 0 0 0 2px var(--green), inset 0 -6px 0 rgba(0, 0, 0, 0.22), 0 6px 14px rgba(0, 0, 0, 0.35); }
 @keyframes land-pop {
   0% { transform: scale(1) translateY(0); }
   16% { transform: scale(1.12) translateY(-2px); }
@@ -428,7 +427,7 @@ img { display: block; }
 .red-suit { color: var(--suit-green); }
 .black-suit { color: var(--suit-white); }
 .colour-opt { padding: 0 18px; font-weight: 600; font-size: 0.9rem; min-width: 84px; }
-.colour-red { background: linear-gradient(180deg, #1ed85b, #0fb144); color: #fff; }
+.colour-red { background: linear-gradient(180deg, #22f095, #06c26c); color: #062012; }
 .colour-black { background: linear-gradient(180deg, #f6f7f9, #cfd6df); color: #0b0f16; }
 
 .value-btn { display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 44px; background: var(--well); border-radius: 8px; color: var(--text); font-weight: 600; font-size: 0.9rem; padding: 0 14px; min-width: 150px; transition: background 0.15s; }
@@ -460,7 +459,7 @@ img { display: block; }
 .chip { flex-shrink: 0; background: var(--well); border-radius: 6px; padding: 5px 10px; font-size: 0.74rem; font-weight: 500; color: var(--text-dim); white-space: nowrap; }
 .chip b { color: var(--text); font-weight: 600; }
 .chip .pot { font-style: normal; color: var(--green); }
-.chip.chip-win { background: rgba(0, 231, 1, 0.14); color: var(--green); }
+.chip.chip-win { background: rgba(4, 240, 132, 0.14); color: var(--green); }
 .chip.chip-win b { color: var(--green); }
 .chip.chip-lose { background: rgba(229, 50, 45, 0.12); color: #f08a87; }
 .chip.chip-lose b { color: #f08a87; }
@@ -514,7 +513,7 @@ img { display: block; }
 .cell { position: relative; border-radius: 7px; background: var(--well); color: var(--text); font-weight: 600; font-size: 0.74rem; display: flex; align-items: center; justify-content: center; gap: 5px; transition: transform 0.1s, filter 0.12s, box-shadow 0.2s; padding: 0; }
 .cell:hover { transform: translateY(-1px); filter: brightness(1.2); }
 .cell-head { background: var(--well-2); font-size: 0.78rem; }
-.cell-red { background: rgba(18, 234, 58, 0.12); }
+.cell-red { background: rgba(4, 240, 132, 0.13); }
 .cell-red:hover { filter: brightness(1.3); }
 .cell-suit { font-size: 0.95rem; }
 .cell-suit.s-red { color: var(--suit-green); }
@@ -526,7 +525,7 @@ img { display: block; }
 .cell-joker.j-both .y { color: #d3b0ff; }
 .cell-wide { font-size: 0.72rem; letter-spacing: 0.03em; }
 .cell-wide em { font-style: normal; color: var(--text-dim); font-size: 0.6rem; margin-left: 4px; }
-.cell-colour-red { background: linear-gradient(180deg, #1ed85b, #0fb144); color: #fff; }
+.cell-colour-red { background: linear-gradient(180deg, #22f095, #06c26c); color: #062012; }
 .cell-colour-black { background: linear-gradient(180deg, #f6f7f9, #cfd6df); color: #0b0f16; }
 .row-span { display: flex; gap: 4px; }
 .row-span .cell { flex: 1; }
@@ -536,10 +535,10 @@ img { display: block; }
 .zone:hover { background: rgba(255, 255, 255, 0.12); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.5); }
 .zone .stake-stack .pchip { width: 21px; height: 21px; }
 .zone .pchip b { font-size: 0.46rem; }
-.zone.cell-win { background: rgba(0, 231, 1, 0.18); box-shadow: 0 0 14px var(--glow); }
+.zone.cell-win { background: rgba(4, 240, 132, 0.18); box-shadow: 0 0 14px var(--glow); }
 .zone.cell-lose .stake-stack { filter: grayscale(0.75) brightness(0.75); }
 .cell.cover-hi { box-shadow: 0 0 0 1.5px rgba(255, 255, 255, 0.7); filter: brightness(1.35); }
-.cell.cell-hit { box-shadow: 0 0 0 1.5px rgba(0, 231, 1, 0.75), 0 0 14px rgba(0, 231, 1, 0.3); filter: brightness(1.25); animation: cellPop 0.55s cubic-bezier(0.2, 0.9, 0.3, 1.4) both; z-index: 4; }
+.cell.cell-hit { box-shadow: 0 0 0 1.5px rgba(4, 240, 132, 0.75), 0 0 14px rgba(4, 240, 132, 0.3); filter: brightness(1.25); animation: cellPop 0.55s cubic-bezier(0.2, 0.9, 0.3, 1.4) both; z-index: 4; }
 /* the landed card's cell pops up very slightly (user 2026-09-20) */
 @keyframes cellPop { 0% { transform: scale(1) translateY(0); } 45% { transform: scale(1.09) translateY(-3px); } 100% { transform: scale(1.04) translateY(-1px); } }
 .cell.cell-win { box-shadow: 0 0 0 2px var(--green), 0 0 18px var(--glow); filter: none; }
