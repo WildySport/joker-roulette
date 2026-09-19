@@ -478,6 +478,9 @@ function betAmountValue() {
 }
 
 function selectedChip() {
+  /* the new interface has no chip tray: the board places the typed bet amount
+     (user 2026-09-20: "remove the chips and add a panel for users to enter a bet amount") */
+  if (document.body.dataset.ui === 'gamdom') return { amount: betAmountValue(), color: 'custom' };
   const sel = document.querySelector('.bchip.selected');
   if (!sel) return null;
   const color = sel.dataset.color || 'custom';

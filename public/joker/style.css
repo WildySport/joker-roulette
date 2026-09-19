@@ -335,8 +335,9 @@ img { display: block; }
 .qbtn:disabled { opacity: 0.45; cursor: default; }
 .clear-btn { color: var(--text-dim); }
 
-/* the simple bet row only serves the simple panel; the board has its chip tray */
-.game-card:has(#board:not([hidden])) .bet-row { display: none; }
+/* one bet row serves both the board and the simple panel; the board's chip tray is gone; Draw only shows with the board */
+.board .chip-row { display: none; }
+.game-card:has(#board[hidden]) .draw-btn { display: none; }
 
 /* ── mode row ───────────────────────────────────────── */
 .mode-row { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; font-size: 0.82rem; font-weight: 500; color: var(--text-dim); }
@@ -451,7 +452,7 @@ img { display: block; }
 .bchip .c-dollar { font-weight: 700; }
 .bchip input { width: 44px; background: transparent; border: none; outline: none; color: inherit; font-weight: 600; font-size: 0.74rem; font-variant-numeric: tabular-nums; }
 /* draw mode */
-.draw-btn { display: inline-flex; align-items: center; gap: 7px; height: 34px; padding: 0 14px; border-radius: 8px; background: var(--well); color: var(--text-dim); font-weight: 600; font-size: 0.82rem; transition: background 0.15s, color 0.15s; }
+.draw-btn { display: inline-flex; align-items: center; justify-content: center; gap: 7px; color: var(--text-dim); }
 .draw-btn i { width: 18px; height: 18px; border-radius: 4px; background: var(--well-2); position: relative; }
 .draw-btn i::after { content: ''; position: absolute; inset: 4px; border-radius: 2px; background: var(--text-dim); transform: rotate(45deg) scale(0.55); }
 .draw-btn:hover { color: var(--text); }
