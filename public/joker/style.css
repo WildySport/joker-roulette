@@ -55,12 +55,14 @@ img { display: block; }
 [hidden] { display: none !important; }
 
 /* ── the game header (no site chrome — user 2026-09-20: "do not copy gamdom stuff at the top") ── */
+/* the title sits top right (user 2026-09-20: "call it gamdom roulette at the top right"); balance and sound top left */
 .gbar { display: flex; align-items: center; gap: 14px; }
-.gtitle { display: flex; align-items: center; gap: 10px; }
-.gtitle .crown { width: 36px; height: 36px; border-radius: 8px; background: linear-gradient(160deg, #6a4d00, #4b1a80); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+.gbar-left { display: flex; align-items: center; gap: 8px; }
+.gtitle { margin-left: auto; display: flex; align-items: center; gap: 10px; }
 .gtitle b { font-weight: 600; font-size: 1.15rem; }
-.gtitle small { display: block; color: var(--text-dim); font-size: 0.72rem; font-weight: 500; }
-.gbar-right { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+.gtitle small { color: var(--text-dim); font-size: 0.72rem; font-weight: 500; }
+.gtitle .mark { width: 28px; height: auto; }
+[data-brand='wildylabs'] .gtitle .mark { content: url('assets/wildylabs-dagger.png'); }
 .wallet-pill {
   display: flex;
   align-items: center;
@@ -544,6 +546,7 @@ img { display: block; }
 @media (max-width: 760px) {
   .gbar { flex-wrap: wrap; gap: 8px; }
   .gtitle small { display: none; }
+  .gtitle b { font-size: 1rem; }
   .wallet-pill { height: 38px; }
   .icon-btn { width: 38px; height: 38px; }
   .page { padding: 10px 8px 70px; gap: 12px; }
