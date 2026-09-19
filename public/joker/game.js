@@ -1425,6 +1425,42 @@ function init() {
       stroke.add(cell);
       if (cell.dataset.key) placeChip(cell.dataset.key);
     };
+    /* THE TRAIL (user: "have a visible line follow it like mines"): a canvas over
+       the grid draws the stroke's path as a glowing line while the pointer is
+       down, then fades it out over a third of a second */
+    const trail = document.createElement('canvas');
+    trail.className = 'draw-trail';
+    grid.parentElement.appendChild(trail);
+    const tctx = trail.getContext('2d');
+    let pts = [], fade = 1, fading = null;
+    const trailGreen = () => getComputedStyle(document.documentElement).getPropertyValue('--green').trim() || '#00e701';
+    const drawTrail = () => {
+      const r = grid.getBoundingClientRect(), dpr = window.devicePixelRatio || 1;
+      if (trail.width !== Math.round(r.width * dpr) || trail.height !== Math.round(r.height * dpr)) { trail.width = Math.round(r.width * dpr); trail.height = Math.round(r.height * dpr); }
+      trail.style.left = (grid.offsetLeft) + 'px'; trail.style.top = (grid.offsetTop) + 'px'; trail.style.width = r.width + 'px'; trail.style.height = r.height + 'px';
+      tctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      tctx.clearRect(0, 0, r.width, r.height);
+      if (pts.length < 1) return;
+      tctx.globalAlpha = fade;
+      tctx.lineCap = 'round'; tctx.lineJoin = 'round';
+      tctx.strokeStyle = trailGreen(); tctx.shadowColor = trailGreen(); tctx.shadowBlur = 14;
+      tctx.lineWidth = 6;
+      tctx.beginPath();
+      tctx.moveTo(pts[0].x, pts[0].y);
+      for (let i = 1; i < pts.length; i++) { const p = pts[i - 1], q = pts[i]; tctx.quadraticCurveTo(p.x, p.y, (p.x + q.x) / 2, (p.y + q.y) / 2); }
+      const last = pts[pts.length - 1]; tctx.lineTo(last.x, last.y);
+      tctx.stroke();
+      tctx.shadowBlur = 0; tctx.strokeStyle = 'rgba(255,255,255,0.85)'; tctx.lineWidth = 2; tctx.stroke();
+      tctx.beginPath(); tctx.arc(last.x, last.y, 7, 0, Math.PI * 2); tctx.fillStyle = '#fff'; tctx.fill();
+      tctx.globalAlpha = 1;
+    };
+    const addPoint = (e) => { const r = grid.getBoundingClientRect(); pts.push({ x: e.clientX - r.left, y: e.clientY - r.top }); if (pts.length > 400) pts.shift(); drawTrail(); };
+    const fadeTrail = () => {
+      if (fading) cancelAnimationFrame(fading);
+      const t0 = performance.now();
+      const step = (t) => { fade = Math.max(0, 1 - (t - t0) / 320); drawTrail(); if (fade > 0) fading = requestAnimationFrame(step); else { pts = []; fade = 1; fading = null; drawTrail(); } };
+      fading = requestAnimationFrame(step);
+    };
     drawBtn.addEventListener('click', () => {
       state.draw = !state.draw;
       drawBtn.classList.toggle('on', state.draw);
@@ -1438,14 +1474,17 @@ function init() {
       e.preventDefault();
       stroke = new Set();
       try { grid.setPointerCapture(e.pointerId); } catch { /* fine */ }
+      if (fading) { cancelAnimationFrame(fading); fading = null; }
+      pts = []; fade = 1; addPoint(e);
       paint(cell);
     });
     grid.addEventListener('pointermove', (e) => {
       if (!stroke) return;
+      addPoint(e);
       const el = document.elementFromPoint(e.clientX, e.clientY);
       paint(el && el.closest('.cell'));
     });
-    const endStroke = () => { stroke = null; };
+    const endStroke = () => { if (!stroke) return; stroke = null; fadeTrail(); };
     grid.addEventListener('pointerup', endStroke);
     grid.addEventListener('pointercancel', endStroke);
   }

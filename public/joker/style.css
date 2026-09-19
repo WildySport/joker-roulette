@@ -460,6 +460,7 @@ img { display: block; }
 .board.draw .board-grid { touch-action: none; }
 .board.draw .cell { cursor: crosshair; }
 .board.draw .zone { pointer-events: none; }
+.draw-trail { position: absolute; left: 0; top: 0; pointer-events: none; z-index: 6; }
 .board-total { display: flex; align-items: center; gap: 10px; font-variant-numeric: tabular-nums; }
 #boardTotal { font-weight: 700; font-size: 1rem; color: var(--green); }
 .board-total .clear-btn { height: 36px; padding: 0 14px; }
