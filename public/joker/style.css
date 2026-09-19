@@ -187,7 +187,7 @@ img { display: block; }
   animation: slidein 0.35s ease;
 }
 @keyframes slidein { from { transform: translateX(-8px) scale(0.7); opacity: 0; } }
-.pcard.red { background: #0f6e2a; color: var(--suit-green); }
+.pcard.red { color: var(--suit-green); }
 .pcard:first-child { box-shadow: 0 0 0 1.5px var(--text); }
 .pcard.joker .pj { width: 12px; height: auto; }
 .pcard.joker.gold { background: #5a4400; }
@@ -226,10 +226,9 @@ img { display: block; }
 .tile.face .ix b { font-weight: 700; font-size: 1.6rem; color: var(--suit-white); }
 .tile.face .ix i { font-style: normal; font-size: 0.9rem; margin-top: 3px; color: rgba(255, 255, 255, 0.75); }
 .tile.face .pip { position: absolute; left: 50%; top: 60%; transform: translate(-50%, -50%); font-size: 2.6rem; line-height: 1; color: var(--suit-white); }
-.tile.face.red { background: linear-gradient(180deg, #1ed85b, #0fb144 55%, #0b8a36); box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.14), inset 0 -6px 0 rgba(0, 0, 0, 0.22), 0 6px 14px rgba(0, 0, 0, 0.35); }
-.tile.face.red .ix b, .tile.face.red .ix i, .tile.face.red .pip { color: #fff; }
+/* the green suits keep the dark tile — only their pips are green (user 2026-09-20: solid green cards were "not a good change") */
+.tile.face.red .ix b, .tile.face.red .ix i, .tile.face.red .pip { color: var(--suit-green); text-shadow: 0 0 14px rgba(18, 234, 58, 0.25); }
 .tile.face::after { content: ''; position: absolute; right: 8px; bottom: 7px; width: 16px; height: 20px; background: url('assets/gamdom-logo.png') center / contain no-repeat; opacity: 0.22; }
-.tile.face.red::after { filter: brightness(3) grayscale(1); opacity: 0.3; }
 
 .tile.back { background: linear-gradient(180deg, #202938, #161d29 60%, #121822); }
 .tile.back .bk-logo { width: 34px; height: auto; opacity: 0.55; }
@@ -455,8 +454,8 @@ img { display: block; }
 .cell { position: relative; border-radius: 7px; background: var(--well); color: var(--text); font-weight: 600; font-size: 0.74rem; display: flex; align-items: center; justify-content: center; gap: 5px; transition: transform 0.1s, filter 0.12s, box-shadow 0.2s; padding: 0; }
 .cell:hover { transform: translateY(-1px); filter: brightness(1.2); }
 .cell-head { background: var(--well-2); font-size: 0.78rem; }
-.cell-red { background: #0f6e2a; }
-.cell-red:hover { filter: brightness(1.15); }
+.cell-red { background: rgba(18, 234, 58, 0.12); }
+.cell-red:hover { filter: brightness(1.3); }
 .cell-suit { font-size: 0.95rem; }
 .cell-suit.s-red { color: var(--suit-green); }
 .cell-joker { font-size: 1rem; }
@@ -539,10 +538,8 @@ img { display: block; }
 :root[data-brand='wildylabs'] { --green: #c8ff00; --green-hi: #ddff4d; --green-dim: #8fb800; --green-ink: #131800; --glow: rgba(200, 255, 0, 0.35); --glow-soft: rgba(200, 255, 0, 0.14); --suit-green: #d3ff2e; }
 [data-brand='wildylabs'] .gnav-logo img, [data-brand='wildylabs'] .gfoot-brand img, [data-brand='wildylabs'] .tile.face::after, [data-brand='wildylabs'] .bk-logo { content: url('assets/wildylabs-dagger.png'); }
 [data-brand='wildylabs'] .gnav-logo span::after { content: ''; }
-[data-brand='wildylabs'] .tile.face.red { background: linear-gradient(180deg, #d9ff2e, #a5d400 55%, #7a9e00); }
-[data-brand='wildylabs'] .tile.face.red .ix b, [data-brand='wildylabs'] .tile.face.red .ix i, [data-brand='wildylabs'] .tile.face.red .pip { color: #131800; }
 [data-brand='wildylabs'] .colour-red, [data-brand='wildylabs'] .cell-colour-red { background: linear-gradient(180deg, #d9ff2e, #a5d400); color: #131800; }
-[data-brand='wildylabs'] .cell-red, [data-brand='wildylabs'] .pcard.red { background: #5f7a00; }
+[data-brand='wildylabs'] .cell-red { background: rgba(200, 255, 0, 0.12); }
 [data-brand='wildylabs'] .tile.joker-tile .hex img, [data-brand='wildylabs'] .pcard.joker .pj, [data-brand='wildylabs'] .joker-opt img { content: url('assets/wildylabs-dagger.png'); }
 
 /* ══════════════════ MOBILE ══════════════════ */
