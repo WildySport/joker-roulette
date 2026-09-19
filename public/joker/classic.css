@@ -65,6 +65,8 @@ input, select { font-family: inherit; }
   overflow: hidden;
 }
 
+.app, .app * { user-select: none; -webkit-user-select: none; -webkit-user-drag: none; }
+.app input { user-select: text; -webkit-user-select: text; }
 .app {
   position: relative;
   width: 1080px;

@@ -124,6 +124,9 @@ img { display: block; }
 /* ── the page ───────────────────────────────────────── */
 .page { max-width: 1400px; margin: 0 auto; padding: 16px clamp(12px, 2.5vw, 36px) 72px; display: flex; flex-direction: column; gap: 18px; }
 
+/* nothing in the game card can be text-selected or highlighted by a drag — only the inputs (user 2026-09-20) */
+.game-card, .game-card * { user-select: none; -webkit-user-select: none; -webkit-user-drag: none; -webkit-touch-callout: none; }
+.game-card input { user-select: text; -webkit-user-select: text; }
 .game-card {
   position: relative;
   display: flex;
