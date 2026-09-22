@@ -63,7 +63,7 @@
 <body>
   <h1><b>GAMDOM</b> · who's playing</h1>
   <div class="sub">
-    Game <select id="game"><option value="all">All games</option><option value="bowling">Bowling</option></select>
+    Game <select id="game"><option value="all">All games</option><option value="bowling">Bowling</option><option value="yungreal">Yungreal's Toxic Lab</option></select>
     · last <select id="days"><option value="1">24 hours</option><option value="7" selected>7 days</option><option value="30">30 days</option><option value="90">90 days</option></select>
     · <button id="refresh">refresh</button>
     <span id="stamp"></span>
@@ -81,6 +81,9 @@
   const hash = (s) => { let h = 2166136261; for (const c of String(s)) { h ^= c.charCodeAt(0); h = Math.imul(h, 16777619) >>> 0; } return h; };
   /* a PERSON's tag: colour + four letters from their place-and-browser key; the ids they picked up are counted after it */
   const tag = (p) => { const h = hash(p.who); const hue = h % 360; const ids = (p.vids || '').split(',').filter(Boolean); return `<span class="ptag" title="${esc(p.who)}"><i style="background:hsl(${hue} 70% 55%)"></i>${'~' + h.toString(36).slice(0, 4)}${ids.length ? `<small>${ids.length} id${ids.length === 1 ? '' : 's'}</small>` : ''}</span>`; };
+  /* game slugs → names (a slug not listed shows as itself) */
+  const NAMES = { yungreal: "Yungreal's Toxic Lab", bowling: 'Bowling', kahuna: 'Big Kahuna', palace: "Pepino's Millions", carnival: 'Freakshow', surf: 'Surf', derby: 'Derby', empire: 'Empire', smash: 'Head Smash', cannon: 'Siege', mansion: "Pepino's Palace", arena: 'Arena', joker: 'Joker Roulette', dice: 'Dice', portal: 'Portal' };
+  const gname = (g) => NAMES[g] || g;
   let openWho = null, openGame = 'all';
   const mins = (p) => num(Math.round((p || 0) / 2));
   async function loadPlayer() {
@@ -88,7 +91,7 @@
     host.innerHTML = '<div class="detail"><small style="color:var(--dim)">loading…</small></div>';
     let d; try { const r = await fetch(`/api/player?k=${encodeURIComponent(key)}&who=${encodeURIComponent(openWho)}&game=${encodeURIComponent(openGame)}`); d = await r.json(); } catch (e) { host.innerHTML = `<div class="err">${esc(e.message)}</div>`; return; }
     const allGames = d.games || [];
-    const chips = [{ game: 'all', label: 'All games' }, ...allGames.map((g) => ({ game: g.game, label: g.game }))].map((c) => `<span class="chip${openGame === c.game ? ' on' : ''}" data-g="${esc(c.game)}">${esc(c.label)}</span>`).join('');
+    const chips = [{ game: 'all', label: 'All games' }, ...allGames.map((g) => ({ game: g.game, label: gname(g.game) }))].map((c) => `<span class="chip${openGame === c.game ? ' on' : ''}" data-g="${esc(c.game)}">${esc(c.label)}</span>`).join('');
     const shown = openGame === 'all' ? allGames : allGames.filter((g) => g.game === openGame);
     host.innerHTML = `<div class="detail">
       <h3>PLAYER ${tag({ who: openWho })} <span class="x" id="closeDetail">✕ close</span></h3>
@@ -96,13 +99,13 @@
       <div class="grid2">
         <div><h3>BY GAME</h3><div class="wrap"><table>
           <tr><th>GAME</th><th>VISITS</th><th>MINUTES</th><th>TAPS</th><th>THROWS</th><th>STRIKES</th><th>BONUS</th><th>BIGGEST</th><th>FIRST</th><th>LAST</th></tr>
-          ${shown.map((g) => `<tr><td><b>${esc(g.game)}</b></td><td>${num(g.visits)}</td><td>${mins(g.pings)}</td><td>${num(g.taps)}</td><td>${num(g.throws)}</td><td>${num(g.strikes)}</td><td>${g.bonuses ? '<span class="bonus">' + num(g.bonuses) + '</span>' : '—'}</td><td>${g.bigwin ? num(g.bigwin) + '×' : '—'}</td><td>${esc(ago(g.first))}</td><td>${esc(ago(g.last))}</td></tr>`).join('') || '<tr><td colspan="10" style="color:var(--dim)">nothing</td></tr>'}
+          ${shown.map((g) => `<tr><td><b>${esc(gname(g.game))}</b></td><td>${num(g.visits)}</td><td>${mins(g.pings)}</td><td>${num(g.taps)}</td><td>${num(g.throws)}</td><td>${num(g.strikes)}</td><td>${g.bonuses ? '<span class="bonus">' + num(g.bonuses) + '</span>' : '—'}</td><td>${g.bigwin ? num(g.bigwin) + '×' : '—'}</td><td>${esc(ago(g.first))}</td><td>${esc(ago(g.last))}</td></tr>`).join('') || '<tr><td colspan="10" style="color:var(--dim)">nothing</td></tr>'}
         </table></div>
         <h3 style="margin-top:12px">VISITS · NEWEST FIRST</h3><div class="wrap"><table>
           <tr><th>WHEN</th><th>GAME</th><th>STAYED</th><th>MINUTES</th><th>TAPS</th><th>THROWS</th><th>ID</th><th>SCREEN</th><th>CAME FROM</th></tr>
-          ${(d.visits || []).map((v) => { const stay = Math.max(0, (new Date(v.last) - new Date(v.start)) / 60000); return `<tr><td>${new Date(v.start).toLocaleString()}</td><td>${esc(v.game)}</td><td>${stay < 1 ? '< 1 min' : Math.round(stay) + ' min'}</td><td>${mins(v.pings)}</td><td>${num(v.taps)}</td><td>${num(v.throws)}${v.strikes ? ' · ' + num(v.strikes) + ' strikes' : ''}${v.bonuses ? ' · <span class="bonus">' + num(v.bonuses) + ' bonus</span>' : ''}</td><td class="dev">${esc(v.vid ? '#' + v.vid.slice(0, 4) : '—')}</td><td>${v.w ? num(v.w) + 'px' : '—'}</td><td class="dev">${esc(v.ref || 'direct')}</td></tr>`; }).join('') || '<tr><td colspan="9" style="color:var(--dim)">nothing</td></tr>'}
+          ${(d.visits || []).map((v) => { const stay = Math.max(0, (new Date(v.last) - new Date(v.start)) / 60000); return `<tr><td>${new Date(v.start).toLocaleString()}</td><td>${esc(gname(v.game))}</td><td>${stay < 1 ? '< 1 min' : Math.round(stay) + ' min'}</td><td>${mins(v.pings)}</td><td>${num(v.taps)}</td><td>${num(v.throws)}${v.strikes ? ' · ' + num(v.strikes) + ' strikes' : ''}${v.bonuses ? ' · <span class="bonus">' + num(v.bonuses) + ' bonus</span>' : ''}</td><td class="dev">${esc(v.vid ? '#' + v.vid.slice(0, 4) : '—')}</td><td>${v.w ? num(v.w) + 'px' : '—'}</td><td class="dev">${esc(v.ref || 'direct')}</td></tr>`; }).join('') || '<tr><td colspan="9" style="color:var(--dim)">nothing</td></tr>'}
         </table></div></div>
-        <div><h3>LAST EVENTS</h3><div class="ev">${(d.events || []).map((e) => `<span>${new Date(e.t).toLocaleString()}</span><span>${esc(e.game)}</span><span>${esc(e.event)}${e.event === 'throw' ? ' · ' + num(e.n) + ' pins' + (e.mode ? ' · ' + esc(stepName(e.mode)) : '') : e.event === 'ping' ? ' · ' + num(e.n) + ' taps' : e.n ? ' · ' + num(e.n) : ''}</span>`).join('') || '<small style="color:var(--dim)">nothing</small>'}</div></div>
+        <div><h3>LAST EVENTS</h3><div class="ev">${(d.events || []).map((e) => `<span>${new Date(e.t).toLocaleString()}</span><span>${esc(gname(e.game))}</span><span>${esc(e.event)}${e.event === 'throw' ? ' · ' + num(e.n) + ' pins' + (e.mode ? ' · ' + esc(stepName(e.mode)) : '') : e.event === 'ping' ? ' · ' + num(e.n) + ' taps' : e.n ? ' · ' + num(e.n) : ''}</span>`).join('') || '<small style="color:var(--dim)">nothing</small>'}</div></div>
       </div></div>`;
     host.querySelectorAll('.chip').forEach((c) => { c.onclick = () => { openGame = c.dataset.g; loadPlayer(); }; });
     document.getElementById('closeDetail').onclick = () => { openWho = null; host.innerHTML = ''; document.querySelectorAll('tr.prow.open').forEach((r) => r.classList.remove('open')); };
@@ -116,7 +119,7 @@
     catch (e) { out.innerHTML = `<div class="err">${esc(e.message)}</div>`; return; }
     document.getElementById('stamp').textContent = ' · ' + new Date(d.now).toLocaleTimeString();
     const sel = document.getElementById('game'); const have = new Set([...sel.options].map((o) => o.value));
-    for (const g of (d.games || [])) if (g.game && !have.has(g.game)) { const o = document.createElement('option'); o.value = g.game; o.textContent = g.game; sel.appendChild(o); }
+    for (const g of (d.games || [])) if (g.game && !have.has(g.game)) { const o = document.createElement('option'); o.value = g.game; o.textContent = gname(g.game); sel.appendChild(o); }
     const t = d.totals || {}, td = d.today || {}, all = d.all || {};
     const strikeRate = t.throws ? Math.round((100 * (t.strikes || 0)) / t.throws) : 0;
     const perSession = t.sessions ? ((t.throws || 0) / t.sessions).toFixed(1) : '0';
@@ -139,7 +142,7 @@
           <div class="rows">${d.steps.length ? d.steps.slice(0, 10).map((r) => `<div class="row"><span>${esc(stepName(r.mode))} <i style="display:inline-block;height:6px;border-radius:3px;background:var(--green);width:${Math.round((100 * r.c) / maxStep)}px;vertical-align:middle;margin-left:6px"></i></span><span>${num(r.c)}</span></div>`).join('') : '<small style="color:var(--dim)">nothing yet</small>'}</div>
         </div>
         <div class="box"><h3>BY GAME · ${days} DAYS</h3>
-          <div class="rows">${(d.games || []).length ? d.games.map((r) => `<div class="row"><span>${esc(r.game)}</span><span>${num(r.sessions)} players · ${num(Math.round((r.pings || 0) / 2))} min</span></div>`).join('') : '<small style="color:var(--dim)">nothing yet</small>'}</div>
+          <div class="rows">${(d.games || []).length ? d.games.map((r) => `<div class="row"><span>${esc(gname(r.game))}</span><span>${num(r.sessions)} players · ${num(Math.round((r.pings || 0) / 2))} min</span></div>`).join('') : '<small style="color:var(--dim)">nothing yet</small>'}</div>
         </div>
         <div class="box"><h3>WHERE FROM</h3>
           <div class="rows">${d.countries.length ? d.countries.map((r) => `<div class="row"><span>${esc(r.country || '?')}</span><span>${num(r.sessions)} players · ${num(r.throws)} throws</span></div>`).join('') : '<small style="color:var(--dim)">nothing yet</small>'}</div>
