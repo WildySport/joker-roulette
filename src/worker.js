@@ -112,7 +112,7 @@ export default {
       const q = (sql, ...args) => env.DB.prepare(sql).bind(...args).all().then((r) => r.results);
       const [games, visits, events] = await Promise.all([
         q(`SELECT game, COUNT(DISTINCT sid) visits, MIN(t) first, MAX(t) last, SUM(event='ping') pings, SUM(CASE WHEN event='ping' THEN n ELSE 0 END) taps, SUM(event='throw') throws, SUM(event='throw' AND n=10) strikes, SUM(event='bonus') bonuses, MAX(CASE WHEN event='bonuswin' THEN n END) bigwin, COUNT(*) events FROM events WHERE ${WHO}=? GROUP BY game ORDER BY last DESC`, who),
-        q(`SELECT sid, game, MIN(t) start, MAX(t) last, SUM(event='ping') pings, SUM(CASE WHEN event='ping' THEN n ELSE 0 END) taps, SUM(event='throw') throws, SUM(event='throw' AND n=10) strikes, SUM(event='bonus') bonuses, MAX(CASE WHEN event='bonuswin' THEN n END) bigwin, MAX(vid) vid, MAX(w) w, MAX(ref) ref FROM events WHERE ${WHO}=?${G} GROUP BY sid, game ORDER BY start DESC LIMIT 60`, ...gb(who)),
+        q(`SELECT sid, game, MIN(t) start, MAX(t) last, SUM(event='ping') pings, SUM(CASE WHEN event='ping' THEN n ELSE 0 END) taps, SUM(event='throw') throws, SUM(event='throw' AND n=10) strikes, SUM(event='bonus') bonuses, MAX(CASE WHEN event='bonuswin' THEN n END) bigwin, MAX(vid) vid, MAX(w) w, MAX(ref) ref, MAX(country) country, MAX(city) city FROM events WHERE ${WHO}=?${G} GROUP BY sid, game ORDER BY start DESC LIMIT 60`, ...gb(who)),
         q(`SELECT t, game, event, n, mode, sid FROM events WHERE ${WHO}=?${G} ORDER BY t DESC LIMIT 80`, ...gb(who)),
       ]);
       return json({ who, game, games, visits, events });
