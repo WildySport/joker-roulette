@@ -21442,7 +21442,7 @@
   {
    "id": "anim_dance_end",
    "name": "dance_end",
-   "duration": 1.6,
+   "duration": 0.9,
    "fps": 30,
    "loop": false,
    "tracks": [
@@ -21462,30 +21462,46 @@
       },
       {
        "id": "dk2607",
-       "time": 0.45,
-       "value": -729,
+       "time": 0.35,
+       "value": -721,
        "easing": {
         "kind": "easeOut"
        }
       },
       {
        "id": "dk2608",
-       "time": 1.6,
-       "value": -731,
+       "time": 0.55,
+       "value": -723,
        "easing": {
         "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk2609",
+       "time": 0.65,
+       "value": -737,
+       "easing": {
+        "kind": "easeIn"
+       }
+      },
+      {
+       "id": "dk2610",
+       "time": 0.9,
+       "value": -581,
+       "easing": {
+        "kind": "easeIn"
        }
       }
      ]
     },
     {
-     "id": "dt2609",
+     "id": "dt2611",
      "targetKind": "bone",
      "targetId": "bone_legs",
      "prop": "scaleY",
      "keys": [
       {
-       "id": "dk2610",
+       "id": "dk2612",
        "time": 0,
        "value": 1,
        "easing": {
@@ -21493,51 +21509,35 @@
        }
       },
       {
-       "id": "dk2611",
-       "time": 0.45,
-       "value": 0.97,
+       "id": "dk2613",
+       "time": 0.35,
+       "value": 0.96,
        "easing": {
         "kind": "easeOut"
        }
       },
       {
-       "id": "dk2612",
-       "time": 1.6,
-       "value": 0.973,
-       "easing": {
-        "kind": "easeInOut"
-       }
-      }
-     ]
-    },
-    {
-     "id": "dt2613",
-     "targetKind": "bone",
-     "targetId": "bone_torso",
-     "prop": "y",
-     "keys": [
-      {
        "id": "dk2614",
-       "time": 0,
-       "value": -30,
+       "time": 0.55,
+       "value": 0.962,
        "easing": {
         "kind": "easeInOut"
        }
       },
       {
        "id": "dk2615",
-       "time": 0.45,
-       "value": -14,
+       "time": 0.65,
+       "value": 0.98,
        "easing": {
-        "kind": "easeOut"
+        "kind": "easeInOut"
        }
       },
       {
        "id": "dk2616",
-       "time": 1.6,
-       "value": -16,
+       "time": 0.9,
+       "value": 0.78,
        "easing": {
-        "kind": "easeInOut"
+        "kind": "easeIn"
        }
       }
      ]
@@ -21546,28 +21546,44 @@
      "id": "dt2617",
      "targetKind": "bone",
      "targetId": "bone_torso",
-     "prop": "rotation",
+     "prop": "y",
      "keys": [
       {
        "id": "dk2618",
        "time": 0,
-       "value": 0,
+       "value": -30,
        "easing": {
         "kind": "easeInOut"
        }
       },
       {
        "id": "dk2619",
-       "time": 0.45,
-       "value": 6,
+       "time": 0.35,
+       "value": 0,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "dk2620",
+       "time": 0.55,
+       "value": -2,
        "easing": {
         "kind": "easeInOut"
        }
       },
       {
-       "id": "dk2620",
-       "time": 1.6,
-       "value": 5,
+       "id": "dk2621",
+       "time": 0.65,
+       "value": -22,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk2622",
+       "time": 0.9,
+       "value": -6,
        "easing": {
         "kind": "easeInOut"
        }
@@ -21575,13 +21591,13 @@
      ]
     },
     {
-     "id": "dt2621",
+     "id": "dt2623",
      "targetKind": "bone",
-     "targetId": "bone_head",
+     "targetId": "bone_torso",
      "prop": "rotation",
      "keys": [
       {
-       "id": "dk2622",
+       "id": "dk2624",
        "time": 0,
        "value": 0,
        "easing": {
@@ -21589,49 +21605,33 @@
        }
       },
       {
-       "id": "dk2623",
-       "time": 0.45,
+       "id": "dk2625",
+       "time": 0.35,
        "value": 14,
        "easing": {
         "kind": "easeOut"
        }
       },
       {
-       "id": "dk2624",
-       "time": 1.6,
-       "value": 12,
-       "easing": {
-        "kind": "easeInOut"
-       }
-      }
-     ]
-    },
-    {
-     "id": "dt2625",
-     "targetKind": "bone",
-     "targetId": "bone_head",
-     "prop": "y",
-     "keys": [
-      {
        "id": "dk2626",
-       "time": 0,
-       "value": -320,
+       "time": 0.55,
+       "value": 13,
        "easing": {
         "kind": "easeInOut"
        }
       },
       {
        "id": "dk2627",
-       "time": 0.45,
-       "value": -306,
+       "time": 0.65,
+       "value": 4,
        "easing": {
         "kind": "easeInOut"
        }
       },
       {
        "id": "dk2628",
-       "time": 1.6,
-       "value": -308,
+       "time": 0.9,
+       "value": 12,
        "easing": {
         "kind": "easeInOut"
        }
@@ -21641,127 +21641,127 @@
     {
      "id": "dt2629",
      "targetKind": "bone",
-     "targetId": "bone_arm_upper_l",
+     "targetId": "bone_head",
      "prop": "rotation",
      "keys": [
       {
        "id": "dk2630",
        "time": 0,
-       "value": 64,
+       "value": 0,
        "easing": {
         "kind": "easeInOut"
        }
       },
       {
        "id": "dk2631",
-       "time": 0.15000000000000002,
-       "value": 64,
+       "time": 0.35,
+       "value": 22,
        "easing": {
-        "kind": "easeIn"
+        "kind": "easeOut"
        }
       },
       {
        "id": "dk2632",
-       "time": 0.45,
-       "value": 31.9,
+       "time": 0.55,
+       "value": 20,
        "easing": {
-        "kind": "easeOut"
+        "kind": "easeInOut"
        }
       },
       {
        "id": "dk2633",
-       "time": 0.5700000000000001,
-       "value": 34,
+       "time": 0.65,
+       "value": 2,
        "easing": {
-        "kind": "easeOut"
+        "kind": "easeInOut"
        }
       },
       {
        "id": "dk2634",
-       "time": 1.3,
-       "value": 34,
+       "time": 0.9,
+       "value": 10,
        "easing": {
-        "kind": "easeIn"
-       }
-      },
-      {
-       "id": "dk2635",
-       "time": 1.6,
-       "value": 29.72,
-       "easing": {
-        "kind": "easeOut"
-       }
-      },
-      {
-       "id": "dk2636",
-       "time": 1.7200000000000002,
-       "value": 30,
-       "easing": {
-        "kind": "easeOut"
+        "kind": "easeInOut"
        }
       }
      ]
     },
     {
-     "id": "dt2637",
+     "id": "dt2635",
      "targetKind": "bone",
-     "targetId": "bone_arm_lower_l",
-     "prop": "rotation",
+     "targetId": "bone_head",
+     "prop": "y",
      "keys": [
       {
-       "id": "dk2638",
+       "id": "dk2636",
        "time": 0,
-       "value": 92,
+       "value": -320,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk2637",
+       "time": 0.35,
+       "value": -298,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "dk2638",
+       "time": 0.55,
+       "value": -300,
        "easing": {
         "kind": "easeInOut"
        }
       },
       {
        "id": "dk2639",
-       "time": 0.15000000000000002,
-       "value": 92,
+       "time": 0.65,
+       "value": -320,
        "easing": {
-        "kind": "easeIn"
+        "kind": "easeInOut"
        }
       },
       {
        "id": "dk2640",
-       "time": 0.45,
-       "value": 8.54,
+       "time": 0.9,
+       "value": -308,
        "easing": {
-        "kind": "easeOut"
+        "kind": "easeInOut"
        }
-      },
-      {
-       "id": "dk2641",
-       "time": 0.5700000000000001,
-       "value": 14,
-       "easing": {
-        "kind": "easeOut"
-       }
-      },
+      }
+     ]
+    },
+    {
+     "id": "dt2641",
+     "targetKind": "bone",
+     "targetId": "bone_coat_back",
+     "prop": "rotation",
+     "keys": [
       {
        "id": "dk2642",
-       "time": 1.3,
-       "value": 14,
+       "time": 0,
+       "value": 0,
        "easing": {
-        "kind": "easeIn"
+        "kind": "easeInOut"
        }
       },
       {
        "id": "dk2643",
-       "time": 1.6,
-       "value": 16.14,
+       "time": 0.35,
+       "value": -6,
        "easing": {
-        "kind": "easeOut"
+        "kind": "easeInOut"
        }
       },
       {
        "id": "dk2644",
-       "time": 1.7200000000000002,
-       "value": 16,
+       "time": 0.9,
+       "value": 0,
        "easing": {
-        "kind": "easeOut"
+        "kind": "easeInOut"
        }
       }
      ]
@@ -21769,139 +21769,171 @@
     {
      "id": "dt2645",
      "targetKind": "bone",
-     "targetId": "bone_hand_l",
+     "targetId": "bone_arm_upper_l",
      "prop": "rotation",
      "keys": [
       {
        "id": "dk2646",
-       "time": 0.05,
-       "value": 6,
+       "time": 0,
+       "value": 64,
        "easing": {
         "kind": "easeInOut"
        }
       },
       {
        "id": "dk2647",
-       "time": 0.2,
-       "value": 6,
+       "time": 0.35,
+       "value": 40,
        "easing": {
-        "kind": "easeIn"
+        "kind": "easeOut"
        }
       },
       {
        "id": "dk2648",
-       "time": 0.5,
-       "value": 26.8,
-       "easing": {
-        "kind": "easeOut"
-       }
-      },
-      {
-       "id": "dk2649",
-       "time": 0.62,
-       "value": 22,
-       "easing": {
-        "kind": "easeOut"
-       }
-      },
-      {
-       "id": "dk2650",
-       "time": 1.35,
-       "value": 22,
-       "easing": {
-        "kind": "easeIn"
-       }
-      },
-      {
-       "id": "dk2651",
-       "time": 1.6500000000000001,
-       "value": 24.6,
-       "easing": {
-        "kind": "easeOut"
-       }
-      },
-      {
-       "id": "dk2652",
-       "time": 1.77,
-       "value": 24,
-       "easing": {
-        "kind": "easeOut"
-       }
-      }
-     ]
-    },
-    {
-     "id": "dt2653",
-     "targetKind": "bone",
-     "targetId": "bone_arm_upper_r",
-     "prop": "rotation",
-     "keys": [
-      {
-       "id": "dk2654",
-       "time": 0,
-       "value": -64,
+       "time": 0.55,
+       "value": 36,
        "easing": {
         "kind": "easeInOut"
        }
       },
       {
-       "id": "dk2655",
-       "time": 0.15000000000000002,
-       "value": -64,
+       "id": "dk2649",
+       "time": 0.9,
+       "value": 10,
        "easing": {
-        "kind": "easeIn"
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt2650",
+     "targetKind": "bone",
+     "targetId": "bone_arm_lower_l",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk2651",
+       "time": 0,
+       "value": 92,
+       "easing": {
+        "kind": "easeInOut"
        }
       },
       {
-       "id": "dk2656",
-       "time": 0.45,
-       "value": -31.9,
+       "id": "dk2652",
+       "time": 0.35,
+       "value": -30,
        "easing": {
         "kind": "easeOut"
        }
       },
       {
-       "id": "dk2657",
-       "time": 0.5700000000000001,
+       "id": "dk2653",
+       "time": 0.55,
        "value": -34,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk2654",
+       "time": 0.9,
+       "value": -80,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt2655",
+     "targetKind": "bone",
+     "targetId": "bone_hand_l",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk2656",
+       "time": 0,
+       "value": 6,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk2657",
+       "time": 0.4,
+       "value": -40,
        "easing": {
         "kind": "easeOut"
        }
       },
       {
        "id": "dk2658",
-       "time": 1.3,
-       "value": -34,
+       "time": 0.55,
+       "value": -44,
        "easing": {
-        "kind": "easeIn"
+        "kind": "easeInOut"
        }
       },
       {
        "id": "dk2659",
-       "time": 1.6,
-       "value": -29.72,
+       "time": 0.9,
+       "value": -20,
        "easing": {
-        "kind": "easeOut"
-       }
-      },
-      {
-       "id": "dk2660",
-       "time": 1.7200000000000002,
-       "value": -30,
-       "easing": {
-        "kind": "easeOut"
+        "kind": "easeInOut"
        }
       }
      ]
     },
     {
-     "id": "dt2661",
+     "id": "dt2660",
+     "targetKind": "bone",
+     "targetId": "bone_arm_upper_r",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk2661",
+       "time": 0,
+       "value": -64,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk2662",
+       "time": 0.35,
+       "value": -8,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "dk2663",
+       "time": 0.55,
+       "value": -6,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk2664",
+       "time": 0.9,
+       "value": -12,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt2665",
      "targetKind": "bone",
      "targetId": "bone_arm_lower_r",
      "prop": "rotation",
      "keys": [
       {
-       "id": "dk2662",
+       "id": "dk2666",
        "time": 0,
        "value": -92,
        "easing": {
@@ -21909,115 +21941,67 @@
        }
       },
       {
-       "id": "dk2663",
-       "time": 0.15000000000000002,
-       "value": -92,
-       "easing": {
-        "kind": "easeIn"
-       }
-      },
-      {
-       "id": "dk2664",
-       "time": 0.45,
-       "value": -8.54,
-       "easing": {
-        "kind": "easeOut"
-       }
-      },
-      {
-       "id": "dk2665",
-       "time": 0.5700000000000001,
-       "value": -14,
-       "easing": {
-        "kind": "easeOut"
-       }
-      },
-      {
-       "id": "dk2666",
-       "time": 1.3,
-       "value": -14,
-       "easing": {
-        "kind": "easeIn"
-       }
-      },
-      {
        "id": "dk2667",
-       "time": 1.6,
-       "value": -16.14,
+       "time": 0.35,
+       "value": 118,
        "easing": {
         "kind": "easeOut"
        }
       },
       {
        "id": "dk2668",
-       "time": 1.7200000000000002,
-       "value": -16,
+       "time": 0.55,
+       "value": 120,
        "easing": {
-        "kind": "easeOut"
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk2669",
+       "time": 0.9,
+       "value": 96,
+       "easing": {
+        "kind": "easeInOut"
        }
       }
      ]
     },
     {
-     "id": "dt2669",
+     "id": "dt2670",
      "targetKind": "bone",
      "targetId": "bone_hand_r",
      "prop": "rotation",
      "keys": [
       {
-       "id": "dk2670",
-       "time": 0.05,
+       "id": "dk2671",
+       "time": 0,
        "value": -6,
        "easing": {
         "kind": "easeInOut"
        }
       },
       {
-       "id": "dk2671",
-       "time": 0.2,
-       "value": -6,
-       "easing": {
-        "kind": "easeIn"
-       }
-      },
-      {
        "id": "dk2672",
-       "time": 0.5,
-       "value": -26.8,
+       "time": 0.4,
+       "value": 30,
        "easing": {
         "kind": "easeOut"
        }
       },
       {
        "id": "dk2673",
-       "time": 0.62,
-       "value": -22,
+       "time": 0.55,
+       "value": 32,
        "easing": {
-        "kind": "easeOut"
+        "kind": "easeInOut"
        }
       },
       {
        "id": "dk2674",
-       "time": 1.35,
-       "value": -22,
+       "time": 0.9,
+       "value": 20,
        "easing": {
-        "kind": "easeIn"
-       }
-      },
-      {
-       "id": "dk2675",
-       "time": 1.6500000000000001,
-       "value": -24.6,
-       "easing": {
-        "kind": "easeOut"
-       }
-      },
-      {
-       "id": "dk2676",
-       "time": 1.77,
-       "value": -24,
-       "easing": {
-        "kind": "easeOut"
+        "kind": "easeInOut"
        }
       }
      ]
@@ -22025,8 +22009,8 @@
    ],
    "events": [
     {
-     "id": "de2677",
-     "time": 0.45,
+     "id": "de2675",
+     "time": 0.35,
      "name": "bow"
     }
    ]
