@@ -1,0 +1,7738 @@
+{
+ "version": 1,
+ "id": "proj_yungreal",
+ "name": "Yungreal",
+ "stage": {
+  "width": 1019,
+  "height": 1543,
+  "originX": 510,
+  "originY": 1500,
+  "groundY": 1500
+ },
+ "textures": [
+  {
+   "id": "tex_coattail_l",
+   "name": "yungreal_coattail_l",
+   "width": 192,
+   "height": 633,
+   "hidden": false,
+   "locked": false
+  },
+  {
+   "id": "tex_coattail_r",
+   "name": "yungreal_coattail_r",
+   "width": 192,
+   "height": 633,
+   "hidden": false,
+   "locked": false
+  },
+  {
+   "id": "tex_leg_upper_l",
+   "name": "yungreal_leg_upper_l",
+   "width": 187,
+   "height": 575,
+   "hidden": false,
+   "locked": false
+  },
+  {
+   "id": "tex_leg_upper_r",
+   "name": "yungreal_leg_upper_r",
+   "width": 187,
+   "height": 575,
+   "hidden": false,
+   "locked": false
+  },
+  {
+   "id": "tex_leg_lower_l",
+   "name": "yungreal_leg_lower_l",
+   "width": 171,
+   "height": 665,
+   "hidden": false,
+   "locked": false
+  },
+  {
+   "id": "tex_leg_lower_r",
+   "name": "yungreal_leg_lower_r",
+   "width": 171,
+   "height": 665,
+   "hidden": false,
+   "locked": false
+  },
+  {
+   "id": "tex_foot_l",
+   "name": "yungreal_foot_l",
+   "width": 475,
+   "height": 457,
+   "hidden": false,
+   "locked": false
+  },
+  {
+   "id": "tex_foot_r",
+   "name": "yungreal_foot_r",
+   "width": 475,
+   "height": 457,
+   "hidden": false,
+   "locked": false
+  },
+  {
+   "id": "tex_head",
+   "name": "yungreal_head",
+   "width": 440,
+   "height": 538,
+   "hidden": false,
+   "locked": false
+  },
+  {
+   "id": "tex_pelvis",
+   "name": "yungreal_pelvis",
+   "width": 414,
+   "height": 483,
+   "hidden": false,
+   "locked": false
+  },
+  {
+   "id": "tex_torso",
+   "name": "yungreal_torso",
+   "width": 395,
+   "height": 558,
+   "hidden": false,
+   "locked": false
+  },
+  {
+   "id": "tex_arm_upper_l",
+   "name": "yungreal_arm_upper_l",
+   "width": 216,
+   "height": 687,
+   "hidden": false,
+   "locked": false
+  },
+  {
+   "id": "tex_arm_upper_r",
+   "name": "yungreal_arm_upper_r",
+   "width": 216,
+   "height": 687,
+   "hidden": false,
+   "locked": false
+  },
+  {
+   "id": "tex_arm_lower_l",
+   "name": "yungreal_arm_lower_l",
+   "width": 202,
+   "height": 630,
+   "hidden": false,
+   "locked": false
+  },
+  {
+   "id": "tex_arm_lower_r",
+   "name": "yungreal_arm_lower_r",
+   "width": 202,
+   "height": 630,
+   "hidden": false,
+   "locked": false
+  },
+  {
+   "id": "tex_hand_l",
+   "name": "yungreal_hand_l",
+   "width": 240,
+   "height": 532,
+   "hidden": false,
+   "locked": false
+  },
+  {
+   "id": "tex_hand_r",
+   "name": "yungreal_hand_r",
+   "width": 240,
+   "height": 532,
+   "hidden": false,
+   "locked": false
+  }
+ ],
+ "bones": [
+  {
+   "id": "bone_root",
+   "name": "root",
+   "parentId": null,
+   "x": 510,
+   "y": 1500,
+   "rotation": 0,
+   "scaleX": 1,
+   "scaleY": 1,
+   "length": 40,
+   "inheritRotation": true,
+   "inheritScale": true,
+   "rotMin": null,
+   "rotMax": null,
+   "hidden": false,
+   "locked": false
+  },
+  {
+   "id": "bone_pelvis",
+   "name": "pelvis",
+   "parentId": "bone_root",
+   "x": 2,
+   "y": -710,
+   "rotation": 0,
+   "scaleX": 1,
+   "scaleY": 1,
+   "length": 60,
+   "inheritRotation": true,
+   "inheritScale": true,
+   "rotMin": null,
+   "rotMax": null,
+   "hidden": false,
+   "locked": false
+  },
+  {
+   "id": "bone_torso",
+   "name": "torso",
+   "parentId": "bone_pelvis",
+   "x": 0,
+   "y": -22,
+   "rotation": 0,
+   "scaleX": 1,
+   "scaleY": 1,
+   "length": 300,
+   "inheritRotation": true,
+   "inheritScale": true,
+   "rotMin": null,
+   "rotMax": null,
+   "hidden": false,
+   "locked": false
+  },
+  {
+   "id": "bone_head",
+   "name": "head",
+   "parentId": "bone_torso",
+   "x": 3,
+   "y": -406,
+   "rotation": 0,
+   "scaleX": 1,
+   "scaleY": 1,
+   "length": 120,
+   "inheritRotation": true,
+   "inheritScale": true,
+   "rotMin": null,
+   "rotMax": null,
+   "hidden": false,
+   "locked": false
+  },
+  {
+   "id": "bone_hat",
+   "name": "hat",
+   "parentId": "bone_head",
+   "x": 2,
+   "y": -170,
+   "rotation": 0,
+   "scaleX": 1,
+   "scaleY": 1,
+   "length": 60,
+   "inheritRotation": true,
+   "inheritScale": true,
+   "rotMin": null,
+   "rotMax": null,
+   "hidden": false,
+   "locked": false
+  },
+  {
+   "id": "bone_arm_upper_l",
+   "name": "arm_upper_l",
+   "parentId": "bone_torso",
+   "x": -144,
+   "y": -360,
+   "rotation": 0,
+   "scaleX": 1,
+   "scaleY": 1,
+   "length": 220,
+   "inheritRotation": true,
+   "inheritScale": true,
+   "rotMin": null,
+   "rotMax": null,
+   "hidden": false,
+   "locked": false
+  },
+  {
+   "id": "bone_arm_lower_l",
+   "name": "arm_lower_l",
+   "parentId": "bone_arm_upper_l",
+   "x": -28,
+   "y": 214,
+   "rotation": 0,
+   "scaleX": 1,
+   "scaleY": 1,
+   "length": 120,
+   "inheritRotation": true,
+   "inheritScale": true,
+   "rotMin": null,
+   "rotMax": null,
+   "hidden": false,
+   "locked": false
+  },
+  {
+   "id": "bone_hand_l",
+   "name": "hand_l",
+   "parentId": "bone_arm_lower_l",
+   "x": -14,
+   "y": 210,
+   "rotation": 0,
+   "scaleX": 1,
+   "scaleY": 1,
+   "length": 60,
+   "inheritRotation": true,
+   "inheritScale": true,
+   "rotMin": null,
+   "rotMax": null,
+   "hidden": false,
+   "locked": false
+  },
+  {
+   "id": "bone_arm_upper_r",
+   "name": "arm_upper_r",
+   "parentId": "bone_torso",
+   "x": 148,
+   "y": -360,
+   "rotation": 0,
+   "scaleX": 1,
+   "scaleY": 1,
+   "length": 220,
+   "inheritRotation": true,
+   "inheritScale": true,
+   "rotMin": null,
+   "rotMax": null,
+   "hidden": false,
+   "locked": false
+  },
+  {
+   "id": "bone_arm_lower_r",
+   "name": "arm_lower_r",
+   "parentId": "bone_arm_upper_r",
+   "x": 23,
+   "y": 214,
+   "rotation": 0,
+   "scaleX": 1,
+   "scaleY": 1,
+   "length": 120,
+   "inheritRotation": true,
+   "inheritScale": true,
+   "rotMin": null,
+   "rotMax": null,
+   "hidden": false,
+   "locked": false
+  },
+  {
+   "id": "bone_hand_r",
+   "name": "hand_r",
+   "parentId": "bone_arm_lower_r",
+   "x": 11,
+   "y": 210,
+   "rotation": 0,
+   "scaleX": 1,
+   "scaleY": 1,
+   "length": 60,
+   "inheritRotation": true,
+   "inheritScale": true,
+   "rotMin": null,
+   "rotMax": null,
+   "hidden": false,
+   "locked": false
+  },
+  {
+   "id": "bone_prop",
+   "name": "prop",
+   "parentId": "bone_hand_r",
+   "x": 0,
+   "y": 0,
+   "rotation": 0,
+   "scaleX": 1,
+   "scaleY": 1,
+   "length": 200,
+   "inheritRotation": true,
+   "inheritScale": true,
+   "rotMin": null,
+   "rotMax": null,
+   "hidden": false,
+   "locked": false
+  },
+  {
+   "id": "bone_coattail_l",
+   "name": "coattail_l",
+   "parentId": "bone_pelvis",
+   "x": -75,
+   "y": -15,
+   "rotation": 0,
+   "scaleX": 1,
+   "scaleY": 1,
+   "length": 200,
+   "inheritRotation": true,
+   "inheritScale": true,
+   "rotMin": null,
+   "rotMax": null,
+   "hidden": false,
+   "locked": false
+  },
+  {
+   "id": "bone_coattail_r",
+   "name": "coattail_r",
+   "parentId": "bone_pelvis",
+   "x": 74,
+   "y": -15,
+   "rotation": 0,
+   "scaleX": 1,
+   "scaleY": 1,
+   "length": 200,
+   "inheritRotation": true,
+   "inheritScale": true,
+   "rotMin": null,
+   "rotMax": null,
+   "hidden": false,
+   "locked": false
+  },
+  {
+   "id": "bone_leg_upper_l",
+   "name": "leg_upper_l",
+   "parentId": "bone_pelvis",
+   "x": -74,
+   "y": 22,
+   "rotation": 0,
+   "scaleX": 1,
+   "scaleY": 1,
+   "length": 220,
+   "inheritRotation": true,
+   "inheritScale": true,
+   "rotMin": null,
+   "rotMax": null,
+   "hidden": false,
+   "locked": false
+  },
+  {
+   "id": "bone_leg_lower_l",
+   "name": "leg_lower_l",
+   "parentId": "bone_leg_upper_l",
+   "x": -20,
+   "y": 306,
+   "rotation": 0,
+   "scaleX": 1,
+   "scaleY": 1,
+   "length": 200,
+   "inheritRotation": true,
+   "inheritScale": true,
+   "rotMin": null,
+   "rotMax": null,
+   "hidden": false,
+   "locked": false
+  },
+  {
+   "id": "bone_foot_l",
+   "name": "foot_l",
+   "parentId": "bone_leg_lower_l",
+   "x": -26,
+   "y": 288,
+   "rotation": 0,
+   "scaleX": 1,
+   "scaleY": 1,
+   "length": 80,
+   "inheritRotation": true,
+   "inheritScale": true,
+   "rotMin": null,
+   "rotMax": null,
+   "hidden": false,
+   "locked": false
+  },
+  {
+   "id": "bone_leg_upper_r",
+   "name": "leg_upper_r",
+   "parentId": "bone_pelvis",
+   "x": 73,
+   "y": 22,
+   "rotation": 0,
+   "scaleX": 1,
+   "scaleY": 1,
+   "length": 220,
+   "inheritRotation": true,
+   "inheritScale": true,
+   "rotMin": null,
+   "rotMax": null,
+   "hidden": false,
+   "locked": false
+  },
+  {
+   "id": "bone_leg_lower_r",
+   "name": "leg_lower_r",
+   "parentId": "bone_leg_upper_r",
+   "x": 20,
+   "y": 306,
+   "rotation": 0,
+   "scaleX": 1,
+   "scaleY": 1,
+   "length": 200,
+   "inheritRotation": true,
+   "inheritScale": true,
+   "rotMin": null,
+   "rotMax": null,
+   "hidden": false,
+   "locked": false
+  },
+  {
+   "id": "bone_foot_r",
+   "name": "foot_r",
+   "parentId": "bone_leg_lower_r",
+   "x": 23,
+   "y": 288,
+   "rotation": 0,
+   "scaleX": 1,
+   "scaleY": 1,
+   "length": 80,
+   "inheritRotation": true,
+   "inheritScale": true,
+   "rotMin": null,
+   "rotMax": null,
+   "hidden": false,
+   "locked": false
+  }
+ ],
+ "slots": [
+  {
+   "id": "slot_coattail_l",
+   "name": "coattail_l",
+   "boneId": "bone_coattail_l",
+   "attachmentId": "att_coattail_l",
+   "order": 10,
+   "opacity": 1,
+   "tint": "#ffffff",
+   "visible": true
+  },
+  {
+   "id": "slot_coattail_r",
+   "name": "coattail_r",
+   "boneId": "bone_coattail_r",
+   "attachmentId": "att_coattail_r",
+   "order": 11,
+   "opacity": 1,
+   "tint": "#ffffff",
+   "visible": true
+  },
+  {
+   "id": "slot_leg_upper_l",
+   "name": "leg_upper_l",
+   "boneId": "bone_leg_upper_l",
+   "attachmentId": "att_leg_upper_l",
+   "order": 20,
+   "opacity": 1,
+   "tint": "#ffffff",
+   "visible": true
+  },
+  {
+   "id": "slot_leg_upper_r",
+   "name": "leg_upper_r",
+   "boneId": "bone_leg_upper_r",
+   "attachmentId": "att_leg_upper_r",
+   "order": 21,
+   "opacity": 1,
+   "tint": "#ffffff",
+   "visible": true
+  },
+  {
+   "id": "slot_leg_lower_l",
+   "name": "leg_lower_l",
+   "boneId": "bone_leg_lower_l",
+   "attachmentId": "att_leg_lower_l",
+   "order": 22,
+   "opacity": 1,
+   "tint": "#ffffff",
+   "visible": true
+  },
+  {
+   "id": "slot_leg_lower_r",
+   "name": "leg_lower_r",
+   "boneId": "bone_leg_lower_r",
+   "attachmentId": "att_leg_lower_r",
+   "order": 23,
+   "opacity": 1,
+   "tint": "#ffffff",
+   "visible": true
+  },
+  {
+   "id": "slot_foot_l",
+   "name": "foot_l",
+   "boneId": "bone_foot_l",
+   "attachmentId": "att_foot_l",
+   "order": 24,
+   "opacity": 1,
+   "tint": "#ffffff",
+   "visible": true
+  },
+  {
+   "id": "slot_foot_r",
+   "name": "foot_r",
+   "boneId": "bone_foot_r",
+   "attachmentId": "att_foot_r",
+   "order": 25,
+   "opacity": 1,
+   "tint": "#ffffff",
+   "visible": true
+  },
+  {
+   "id": "slot_head",
+   "name": "head",
+   "boneId": "bone_head",
+   "attachmentId": "att_head",
+   "order": 30,
+   "opacity": 1,
+   "tint": "#ffffff",
+   "visible": true
+  },
+  {
+   "id": "slot_pelvis",
+   "name": "pelvis",
+   "boneId": "bone_pelvis",
+   "attachmentId": "att_pelvis",
+   "order": 36,
+   "opacity": 1,
+   "tint": "#ffffff",
+   "visible": true
+  },
+  {
+   "id": "slot_torso",
+   "name": "torso",
+   "boneId": "bone_torso",
+   "attachmentId": "att_torso",
+   "order": 40,
+   "opacity": 1,
+   "tint": "#ffffff",
+   "visible": true
+  },
+  {
+   "id": "slot_arm_upper_l",
+   "name": "arm_upper_l",
+   "boneId": "bone_arm_upper_l",
+   "attachmentId": "att_arm_upper_l",
+   "order": 50,
+   "opacity": 1,
+   "tint": "#ffffff",
+   "visible": true
+  },
+  {
+   "id": "slot_arm_upper_r",
+   "name": "arm_upper_r",
+   "boneId": "bone_arm_upper_r",
+   "attachmentId": "att_arm_upper_r",
+   "order": 51,
+   "opacity": 1,
+   "tint": "#ffffff",
+   "visible": true
+  },
+  {
+   "id": "slot_arm_lower_l",
+   "name": "arm_lower_l",
+   "boneId": "bone_arm_lower_l",
+   "attachmentId": "att_arm_lower_l",
+   "order": 52,
+   "opacity": 1,
+   "tint": "#ffffff",
+   "visible": true
+  },
+  {
+   "id": "slot_arm_lower_r",
+   "name": "arm_lower_r",
+   "boneId": "bone_arm_lower_r",
+   "attachmentId": "att_arm_lower_r",
+   "order": 53,
+   "opacity": 1,
+   "tint": "#ffffff",
+   "visible": true
+  },
+  {
+   "id": "slot_hand_l",
+   "name": "hand_l",
+   "boneId": "bone_hand_l",
+   "attachmentId": "att_hand_l",
+   "order": 56,
+   "opacity": 1,
+   "tint": "#ffffff",
+   "visible": true
+  },
+  {
+   "id": "slot_hand_r",
+   "name": "hand_r",
+   "boneId": "bone_hand_r",
+   "attachmentId": "att_hand_r",
+   "order": 57,
+   "opacity": 1,
+   "tint": "#ffffff",
+   "visible": true
+  }
+ ],
+ "attachments": [
+  {
+   "id": "att_coattail_l",
+   "name": "coattail_l",
+   "textureId": "tex_coattail_l",
+   "x": 0,
+   "y": 0,
+   "rotation": 0,
+   "scaleX": 1.0714520800421274,
+   "scaleY": 0.631911532385466,
+   "pivotX": 0.5,
+   "pivotY": 0.03
+  },
+  {
+   "id": "att_coattail_r",
+   "name": "coattail_r",
+   "textureId": "tex_coattail_r",
+   "x": 0,
+   "y": 0,
+   "rotation": 0,
+   "scaleX": 1.0714520800421274,
+   "scaleY": 0.631911532385466,
+   "pivotX": 0.5,
+   "pivotY": 0.03
+  },
+  {
+   "id": "att_leg_upper_l",
+   "name": "leg_upper_l",
+   "textureId": "tex_leg_upper_l",
+   "x": 0,
+   "y": 0,
+   "rotation": 0,
+   "scaleX": 0.5902365693488408,
+   "scaleY": 0.591304347826087,
+   "pivotX": 0.5,
+   "pivotY": 0.07
+  },
+  {
+   "id": "att_leg_upper_r",
+   "name": "leg_upper_r",
+   "textureId": "tex_leg_upper_r",
+   "x": 0,
+   "y": 0,
+   "rotation": 0,
+   "scaleX": 0.5902365693488408,
+   "scaleY": 0.591304347826087,
+   "pivotX": 0.5,
+   "pivotY": 0.07
+  },
+  {
+   "id": "att_leg_lower_l",
+   "name": "leg_lower_l",
+   "textureId": "tex_leg_lower_l",
+   "x": 0,
+   "y": 0,
+   "rotation": 0,
+   "scaleX": 0.4815650865312265,
+   "scaleY": 0.48120300751879697,
+   "pivotX": 0.5,
+   "pivotY": 0.06
+  },
+  {
+   "id": "att_leg_lower_r",
+   "name": "leg_lower_r",
+   "textureId": "tex_leg_lower_r",
+   "x": 0,
+   "y": 0,
+   "rotation": 0,
+   "scaleX": 0.4815650865312265,
+   "scaleY": 0.48120300751879697,
+   "pivotX": 0.5,
+   "pivotY": 0.06
+  },
+  {
+   "id": "att_foot_l",
+   "name": "foot_l",
+   "textureId": "tex_foot_l",
+   "x": 0,
+   "y": 0,
+   "rotation": 0,
+   "scaleX": 0.3894736842105263,
+   "scaleY": 0.3898840885142255,
+   "pivotX": 0.7,
+   "pivotY": 0.3
+  },
+  {
+   "id": "att_foot_r",
+   "name": "foot_r",
+   "textureId": "tex_foot_r",
+   "x": 0,
+   "y": 0,
+   "rotation": 0,
+   "scaleX": 0.3894736842105263,
+   "scaleY": 0.3898840885142255,
+   "pivotX": 0.3,
+   "pivotY": 0.3
+  },
+  {
+   "id": "att_head",
+   "name": "head",
+   "textureId": "tex_head",
+   "x": 0,
+   "y": -30,
+   "rotation": 0,
+   "scaleX": 0.6660638095640419,
+   "scaleY": 0.66682156133829,
+   "pivotX": 0.5,
+   "pivotY": 0.86
+  },
+  {
+   "id": "att_pelvis",
+   "name": "pelvis",
+   "textureId": "tex_pelvis",
+   "x": 0,
+   "y": 0,
+   "rotation": 0,
+   "scaleX": 0.3928996509336774,
+   "scaleY": 0.39337474120082816,
+   "pivotX": 0.5,
+   "pivotY": 0.25
+  },
+  {
+   "id": "att_torso",
+   "name": "torso",
+   "textureId": "tex_torso",
+   "x": 0,
+   "y": 0,
+   "rotation": 0,
+   "scaleX": 0.7885304659498208,
+   "scaleY": 0.7885304659498208,
+   "pivotX": 0.5,
+   "pivotY": 0.93
+  },
+  {
+   "id": "att_arm_upper_l",
+   "name": "arm_upper_l",
+   "textureId": "tex_arm_upper_l",
+   "x": 0,
+   "y": 0,
+   "rotation": 0,
+   "scaleX": 0.37554585152838427,
+   "scaleY": 0.37554585152838427,
+   "pivotX": 0.5,
+   "pivotY": 0.08
+  },
+  {
+   "id": "att_arm_upper_r",
+   "name": "arm_upper_r",
+   "textureId": "tex_arm_upper_r",
+   "x": 0,
+   "y": 0,
+   "rotation": 0,
+   "scaleX": 0.37554585152838427,
+   "scaleY": 0.37554585152838427,
+   "pivotX": 0.5,
+   "pivotY": 0.08
+  },
+  {
+   "id": "att_arm_lower_l",
+   "name": "arm_lower_l",
+   "textureId": "tex_arm_lower_l",
+   "x": 0,
+   "y": 0,
+   "rotation": 0,
+   "scaleX": 0.38000942951438,
+   "scaleY": 0.38095238095238093,
+   "pivotX": 0.5,
+   "pivotY": 0.1
+  },
+  {
+   "id": "att_arm_lower_r",
+   "name": "arm_lower_r",
+   "textureId": "tex_arm_lower_r",
+   "x": 0,
+   "y": 0,
+   "rotation": 0,
+   "scaleX": 0.38000942951438,
+   "scaleY": 0.38095238095238093,
+   "pivotX": 0.5,
+   "pivotY": 0.1
+  },
+  {
+   "id": "att_hand_l",
+   "name": "hand_l",
+   "textureId": "tex_hand_l",
+   "x": 0,
+   "y": 0,
+   "rotation": 0,
+   "scaleX": 0.28222013170272814,
+   "scaleY": 0.2819548872180451,
+   "pivotX": 0.5,
+   "pivotY": 0.08
+  },
+  {
+   "id": "att_hand_r",
+   "name": "hand_r",
+   "textureId": "tex_hand_r",
+   "x": 0,
+   "y": 0,
+   "rotation": 0,
+   "scaleX": 0.28222013170272814,
+   "scaleY": 0.2819548872180451,
+   "pivotX": 0.5,
+   "pivotY": 0.08
+  }
+ ],
+ "constraints": [],
+ "animations": [
+  {
+   "id": "anim_idle",
+   "name": "idle",
+   "duration": 4,
+   "fps": 30,
+   "loop": true,
+   "tracks": [
+    {
+     "id": "t0",
+     "targetKind": "bone",
+     "targetId": "bone_torso",
+     "prop": "y",
+     "keys": [
+      {
+       "id": "k1",
+       "time": 0,
+       "value": -22,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k2",
+       "time": 2,
+       "value": -25,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k3",
+       "time": 4,
+       "value": -22,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t4",
+     "targetKind": "bone",
+     "targetId": "bone_torso",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k5",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k6",
+       "time": 1,
+       "value": 0.8,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k7",
+       "time": 2,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k8",
+       "time": 3,
+       "value": -0.8,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k9",
+       "time": 4,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t10",
+     "targetKind": "bone",
+     "targetId": "bone_head",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k11",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k12",
+       "time": 1,
+       "value": -0.8,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k13",
+       "time": 2,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k14",
+       "time": 3,
+       "value": 0.8,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k15",
+       "time": 4,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t16",
+     "targetKind": "bone",
+     "targetId": "bone_head",
+     "prop": "y",
+     "keys": [
+      {
+       "id": "k17",
+       "time": 0,
+       "value": -406,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k18",
+       "time": 2,
+       "value": -403,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k19",
+       "time": 4,
+       "value": -406,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t20",
+     "targetKind": "bone",
+     "targetId": "bone_arm_upper_l",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k21",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k22",
+       "time": 1,
+       "value": 1.2,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k23",
+       "time": 3,
+       "value": -1.2,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k24",
+       "time": 4,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t25",
+     "targetKind": "bone",
+     "targetId": "bone_arm_upper_r",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k26",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k27",
+       "time": 1,
+       "value": -1.2,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k28",
+       "time": 3,
+       "value": 1.2,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k29",
+       "time": 4,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t30",
+     "targetKind": "bone",
+     "targetId": "bone_coattail_l",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k31",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k32",
+       "time": 1,
+       "value": 2,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k33",
+       "time": 3,
+       "value": -2,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k34",
+       "time": 4,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t35",
+     "targetKind": "bone",
+     "targetId": "bone_coattail_r",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k36",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k37",
+       "time": 1,
+       "value": -2,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k38",
+       "time": 3,
+       "value": 2,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k39",
+       "time": 4,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t40",
+     "targetKind": "bone",
+     "targetId": "bone_hat",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k41",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k42",
+       "time": 2,
+       "value": -1,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k43",
+       "time": 4,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    }
+   ],
+   "events": []
+  },
+  {
+   "id": "anim_idle_alt",
+   "name": "idle_alt",
+   "duration": 3.6,
+   "fps": 30,
+   "loop": true,
+   "tracks": [
+    {
+     "id": "t44",
+     "targetKind": "bone",
+     "targetId": "bone_pelvis",
+     "prop": "x",
+     "keys": [
+      {
+       "id": "k45",
+       "time": 0,
+       "value": 2,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k46",
+       "time": 0.9,
+       "value": 6,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k47",
+       "time": 2.7,
+       "value": -2,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k48",
+       "time": 3.6,
+       "value": 2,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t49",
+     "targetKind": "bone",
+     "targetId": "bone_pelvis",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k50",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k51",
+       "time": 0.9,
+       "value": 0.6,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k52",
+       "time": 2.7,
+       "value": -0.6,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k53",
+       "time": 3.6,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t54",
+     "targetKind": "bone",
+     "targetId": "bone_leg_upper_l",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k55",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k56",
+       "time": 0.9,
+       "value": -1,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k57",
+       "time": 2.7,
+       "value": 1,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k58",
+       "time": 3.6,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t59",
+     "targetKind": "bone",
+     "targetId": "bone_leg_upper_r",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k60",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k61",
+       "time": 0.9,
+       "value": 1,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k62",
+       "time": 2.7,
+       "value": -1,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k63",
+       "time": 3.6,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t64",
+     "targetKind": "bone",
+     "targetId": "bone_torso",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k65",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k66",
+       "time": 0.9,
+       "value": -0.8,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k67",
+       "time": 2.7,
+       "value": 0.8,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k68",
+       "time": 3.6,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t69",
+     "targetKind": "bone",
+     "targetId": "bone_head",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k70",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k71",
+       "time": 0.9,
+       "value": 0.5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k72",
+       "time": 2.7,
+       "value": -0.5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k73",
+       "time": 3.6,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    }
+   ],
+   "events": []
+  },
+  {
+   "id": "anim_spin_start",
+   "name": "spin_start",
+   "duration": 0.8,
+   "fps": 30,
+   "loop": false,
+   "tracks": [
+    {
+     "id": "t74",
+     "targetKind": "bone",
+     "targetId": "bone_arm_upper_r",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k75",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k76",
+       "time": 0.2,
+       "value": -9,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "k77",
+       "time": 0.5,
+       "value": 1,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k78",
+       "time": 0.8,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t79",
+     "targetKind": "bone",
+     "targetId": "bone_head",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k80",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k81",
+       "time": 0.25,
+       "value": 3,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k82",
+       "time": 0.8,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t83",
+     "targetKind": "bone",
+     "targetId": "bone_torso",
+     "prop": "y",
+     "keys": [
+      {
+       "id": "k84",
+       "time": 0,
+       "value": -22,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k85",
+       "time": 0.3,
+       "value": -19,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k86",
+       "time": 0.8,
+       "value": -22,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    }
+   ],
+   "events": [
+    {
+     "id": "e87",
+     "time": 0.45,
+     "name": "prop_plant"
+    }
+   ]
+  },
+  {
+   "id": "anim_anticipation",
+   "name": "anticipation",
+   "duration": 1.2,
+   "fps": 30,
+   "loop": true,
+   "tracks": [
+    {
+     "id": "t88",
+     "targetKind": "bone",
+     "targetId": "bone_torso",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k89",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k90",
+       "time": 0.3,
+       "value": 0.6,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k91",
+       "time": 0.6,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k92",
+       "time": 0.9,
+       "value": -0.6,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k93",
+       "time": 1.2,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t94",
+     "targetKind": "bone",
+     "targetId": "bone_head",
+     "prop": "y",
+     "keys": [
+      {
+       "id": "k95",
+       "time": 0,
+       "value": -406,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k96",
+       "time": 0.6,
+       "value": -404,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k97",
+       "time": 1.2,
+       "value": -406,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t98",
+     "targetKind": "bone",
+     "targetId": "bone_hat",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k99",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k100",
+       "time": 0.3,
+       "value": 0.8,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k101",
+       "time": 0.9,
+       "value": -0.8,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k102",
+       "time": 1.2,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t103",
+     "targetKind": "bone",
+     "targetId": "bone_arm_upper_r",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k104",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k105",
+       "time": 0.6,
+       "value": -2,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k106",
+       "time": 1.2,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    }
+   ],
+   "events": []
+  },
+  {
+   "id": "anim_small_win",
+   "name": "small_win",
+   "duration": 1.2,
+   "fps": 30,
+   "loop": false,
+   "tracks": [
+    {
+     "id": "t107",
+     "targetKind": "bone",
+     "targetId": "bone_head",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k108",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k109",
+       "time": 0.15,
+       "value": 6,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "k110",
+       "time": 0.45,
+       "value": -3,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k111",
+       "time": 0.7,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t112",
+     "targetKind": "bone",
+     "targetId": "bone_torso",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k113",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k114",
+       "time": 0.2,
+       "value": 1.5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k115",
+       "time": 0.6,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t116",
+     "targetKind": "bone",
+     "targetId": "bone_arm_upper_r",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k117",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k118",
+       "time": 0.2,
+       "value": -9,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "k119",
+       "time": 0.5,
+       "value": 1,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k120",
+       "time": 0.8,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t121",
+     "targetKind": "bone",
+     "targetId": "bone_hand_r",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k122",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k123",
+       "time": 0.25,
+       "value": -6,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k124",
+       "time": 0.6,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t125",
+     "targetKind": "bone",
+     "targetId": "bone_hat",
+     "prop": "y",
+     "keys": [
+      {
+       "id": "k126",
+       "time": 0,
+       "value": -170,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k127",
+       "time": 0.2,
+       "value": -178,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "k128",
+       "time": 0.5,
+       "value": -170,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    }
+   ],
+   "events": [
+    {
+     "id": "e129",
+     "time": 0.5,
+     "name": "prop_tap"
+    }
+   ]
+  },
+  {
+   "id": "anim_big_win",
+   "name": "big_win",
+   "duration": 2.6,
+   "fps": 30,
+   "loop": false,
+   "tracks": [
+    {
+     "id": "t130",
+     "targetKind": "bone",
+     "targetId": "bone_arm_upper_l",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k131",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k132",
+       "time": 0.35,
+       "value": 82,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "k133",
+       "time": 0.55,
+       "value": 72,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k134",
+       "time": 1.9,
+       "value": 75,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k135",
+       "time": 2.6,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t136",
+     "targetKind": "bone",
+     "targetId": "bone_arm_lower_l",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k137",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k138",
+       "time": 0.4,
+       "value": 18,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k139",
+       "time": 2,
+       "value": 12,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k140",
+       "time": 2.6,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t141",
+     "targetKind": "bone",
+     "targetId": "bone_hand_l",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k142",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k143",
+       "time": 0.4,
+       "value": 12,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k144",
+       "time": 2.6,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t145",
+     "targetKind": "bone",
+     "targetId": "bone_arm_upper_r",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k146",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k147",
+       "time": 0.35,
+       "value": -82,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "k148",
+       "time": 0.55,
+       "value": -72,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k149",
+       "time": 1.9,
+       "value": -75,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k150",
+       "time": 2.6,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t151",
+     "targetKind": "bone",
+     "targetId": "bone_arm_lower_r",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k152",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k153",
+       "time": 0.4,
+       "value": -18,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k154",
+       "time": 2,
+       "value": -12,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k155",
+       "time": 2.6,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t156",
+     "targetKind": "bone",
+     "targetId": "bone_hand_r",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k157",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k158",
+       "time": 0.4,
+       "value": -10,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k159",
+       "time": 2.6,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t160",
+     "targetKind": "bone",
+     "targetId": "bone_head",
+     "prop": "y",
+     "keys": [
+      {
+       "id": "k161",
+       "time": 0,
+       "value": -406,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k162",
+       "time": 0.4,
+       "value": -412,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k163",
+       "time": 2.2,
+       "value": -410,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k164",
+       "time": 2.6,
+       "value": -406,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t165",
+     "targetKind": "bone",
+     "targetId": "bone_head",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k166",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k167",
+       "time": 0.4,
+       "value": -4,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k168",
+       "time": 2.2,
+       "value": -3,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k169",
+       "time": 2.6,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t170",
+     "targetKind": "bone",
+     "targetId": "bone_torso",
+     "prop": "y",
+     "keys": [
+      {
+       "id": "k171",
+       "time": 0,
+       "value": -22,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k172",
+       "time": 0.4,
+       "value": -28,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k173",
+       "time": 2.2,
+       "value": -26,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k174",
+       "time": 2.6,
+       "value": -22,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t175",
+     "targetKind": "bone",
+     "targetId": "bone_hat",
+     "prop": "y",
+     "keys": [
+      {
+       "id": "k176",
+       "time": 0,
+       "value": -170,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k177",
+       "time": 0.35,
+       "value": -200,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "k178",
+       "time": 0.7,
+       "value": -165,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k179",
+       "time": 0.9,
+       "value": -172,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k180",
+       "time": 1.1,
+       "value": -170,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t181",
+     "targetKind": "bone",
+     "targetId": "bone_hat",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k182",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k183",
+       "time": 0.4,
+       "value": -8,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k184",
+       "time": 0.8,
+       "value": 5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k185",
+       "time": 1.2,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t186",
+     "targetKind": "bone",
+     "targetId": "bone_coattail_l",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k187",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k188",
+       "time": 0.5,
+       "value": 6,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k189",
+       "time": 2.2,
+       "value": 4,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k190",
+       "time": 2.6,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t191",
+     "targetKind": "bone",
+     "targetId": "bone_coattail_r",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k192",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k193",
+       "time": 0.5,
+       "value": -6,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k194",
+       "time": 2.2,
+       "value": -4,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k195",
+       "time": 2.6,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    }
+   ],
+   "events": [
+    {
+     "id": "e196",
+     "time": 0.35,
+     "name": "burst"
+    }
+   ]
+  },
+  {
+   "id": "anim_loss",
+   "name": "loss",
+   "duration": 1.6,
+   "fps": 30,
+   "loop": false,
+   "tracks": [
+    {
+     "id": "t197",
+     "targetKind": "bone",
+     "targetId": "bone_head",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k198",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k199",
+       "time": 0.25,
+       "value": -5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k200",
+       "time": 0.5,
+       "value": 5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k201",
+       "time": 0.75,
+       "value": -3,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k202",
+       "time": 1,
+       "value": 3,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k203",
+       "time": 1.3,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t204",
+     "targetKind": "bone",
+     "targetId": "bone_torso",
+     "prop": "y",
+     "keys": [
+      {
+       "id": "k205",
+       "time": 0,
+       "value": -22,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k206",
+       "time": 0.5,
+       "value": -18,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k207",
+       "time": 1.6,
+       "value": -22,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t208",
+     "targetKind": "bone",
+     "targetId": "bone_arm_upper_l",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k209",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k210",
+       "time": 0.5,
+       "value": -2,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k211",
+       "time": 1.6,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t212",
+     "targetKind": "bone",
+     "targetId": "bone_arm_upper_r",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k213",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k214",
+       "time": 0.5,
+       "value": 2,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k215",
+       "time": 1.6,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t216",
+     "targetKind": "bone",
+     "targetId": "bone_hat",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k217",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k218",
+       "time": 0.5,
+       "value": 2,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k219",
+       "time": 1.6,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    }
+   ],
+   "events": []
+  },
+  {
+   "id": "anim_bonus_trigger",
+   "name": "bonus_trigger",
+   "duration": 2.2,
+   "fps": 30,
+   "loop": false,
+   "tracks": [
+    {
+     "id": "t220",
+     "targetKind": "bone",
+     "targetId": "bone_torso",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k221",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k222",
+       "time": 0.5,
+       "value": 3,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k223",
+       "time": 1.6,
+       "value": 3,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k224",
+       "time": 2.2,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t225",
+     "targetKind": "bone",
+     "targetId": "bone_head",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k226",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k227",
+       "time": 0.5,
+       "value": 6,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k228",
+       "time": 1.6,
+       "value": 5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k229",
+       "time": 2.2,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t230",
+     "targetKind": "bone",
+     "targetId": "bone_arm_upper_l",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k231",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k232",
+       "time": 0.45,
+       "value": 70,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "k233",
+       "time": 1.6,
+       "value": 64,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k234",
+       "time": 2.2,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t235",
+     "targetKind": "bone",
+     "targetId": "bone_arm_lower_l",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k236",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k237",
+       "time": 0.5,
+       "value": 25,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k238",
+       "time": 1.6,
+       "value": 20,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k239",
+       "time": 2.2,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t240",
+     "targetKind": "bone",
+     "targetId": "bone_hand_l",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k241",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k242",
+       "time": 0.5,
+       "value": 15,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k243",
+       "time": 1.6,
+       "value": 12,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k244",
+       "time": 2.2,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t245",
+     "targetKind": "bone",
+     "targetId": "bone_coattail_l",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k246",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k247",
+       "time": 0.8,
+       "value": 5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k248",
+       "time": 1.8,
+       "value": 4,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k249",
+       "time": 2.2,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t250",
+     "targetKind": "bone",
+     "targetId": "bone_coattail_r",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k251",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k252",
+       "time": 0.8,
+       "value": -5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k253",
+       "time": 1.8,
+       "value": -4,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k254",
+       "time": 2.2,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t255",
+     "targetKind": "bone",
+     "targetId": "bone_hat",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "k256",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k257",
+       "time": 0.6,
+       "value": -12,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k258",
+       "time": 1.4,
+       "value": -10,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k259",
+       "time": 2.2,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "t260",
+     "targetKind": "bone",
+     "targetId": "bone_hat",
+     "prop": "y",
+     "keys": [
+      {
+       "id": "k261",
+       "time": 0,
+       "value": -170,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k262",
+       "time": 0.6,
+       "value": -176,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "k263",
+       "time": 2.2,
+       "value": -170,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    }
+   ],
+   "events": [
+    {
+     "id": "e264",
+     "time": 0.6,
+     "name": "present"
+    }
+   ]
+  },
+  {
+   "id": "anim_dance",
+   "name": "dance",
+   "duration": 2.4,
+   "fps": 30,
+   "loop": true,
+   "tracks": [
+    {
+     "id": "dt0",
+     "targetKind": "bone",
+     "targetId": "bone_pelvis",
+     "prop": "x",
+     "keys": [
+      {
+       "id": "dk1",
+       "time": 0,
+       "value": -8,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk2",
+       "time": 0.6,
+       "value": 12,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk3",
+       "time": 1.2,
+       "value": -8,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk4",
+       "time": 1.7999999999999998,
+       "value": 12,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk5",
+       "time": 2.4,
+       "value": -8,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt6",
+     "targetKind": "bone",
+     "targetId": "bone_pelvis",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk7",
+       "time": 0,
+       "value": -3,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk8",
+       "time": 0.6,
+       "value": 3,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk9",
+       "time": 1.2,
+       "value": -3,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk10",
+       "time": 1.7999999999999998,
+       "value": 3,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk11",
+       "time": 2.4,
+       "value": -3,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt12",
+     "targetKind": "bone",
+     "targetId": "bone_torso",
+     "prop": "y",
+     "keys": [
+      {
+       "id": "dk13",
+       "time": 0,
+       "value": -22,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk14",
+       "time": 0.3,
+       "value": -15,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "dk15",
+       "time": 0.6,
+       "value": -22,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk16",
+       "time": 0.8999999999999999,
+       "value": -15,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "dk17",
+       "time": 1.2,
+       "value": -22,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk18",
+       "time": 1.5,
+       "value": -15,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "dk19",
+       "time": 1.7999999999999998,
+       "value": -22,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk20",
+       "time": 2.1,
+       "value": -15,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "dk21",
+       "time": 2.4,
+       "value": -22,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt22",
+     "targetKind": "bone",
+     "targetId": "bone_torso",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk23",
+       "time": 0,
+       "value": 2.5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk24",
+       "time": 0.6,
+       "value": -2.5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk25",
+       "time": 1.2,
+       "value": 2.5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk26",
+       "time": 1.7999999999999998,
+       "value": -2.5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk27",
+       "time": 2.4,
+       "value": 2.5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt28",
+     "targetKind": "bone",
+     "targetId": "bone_head",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk29",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk30",
+       "time": 0.24,
+       "value": -4,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk31",
+       "time": 0.6,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk32",
+       "time": 0.84,
+       "value": 4,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk33",
+       "time": 1.2,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk34",
+       "time": 1.44,
+       "value": -4,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk35",
+       "time": 1.7999999999999998,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk36",
+       "time": 2.04,
+       "value": 4,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk37",
+       "time": 2.4,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt38",
+     "targetKind": "bone",
+     "targetId": "bone_head",
+     "prop": "y",
+     "keys": [
+      {
+       "id": "dk39",
+       "time": 0,
+       "value": -406,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk40",
+       "time": 0.3,
+       "value": -403,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk41",
+       "time": 0.6,
+       "value": -406,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk42",
+       "time": 0.8999999999999999,
+       "value": -403,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk43",
+       "time": 1.2,
+       "value": -406,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk44",
+       "time": 1.5,
+       "value": -403,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk45",
+       "time": 1.7999999999999998,
+       "value": -406,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk46",
+       "time": 2.1,
+       "value": -403,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk47",
+       "time": 2.4,
+       "value": -406,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt48",
+     "targetKind": "bone",
+     "targetId": "bone_leg_upper_l",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk49",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk50",
+       "time": 0.3,
+       "value": 4,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk51",
+       "time": 0.6,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk52",
+       "time": 1.2,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk53",
+       "time": 1.5,
+       "value": -3,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk54",
+       "time": 1.7999999999999998,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk55",
+       "time": 2.4,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt56",
+     "targetKind": "bone",
+     "targetId": "bone_leg_lower_l",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk57",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk58",
+       "time": 0.3,
+       "value": -6,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk59",
+       "time": 0.6,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk60",
+       "time": 1.2,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk61",
+       "time": 1.5,
+       "value": 4,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk62",
+       "time": 1.7999999999999998,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk63",
+       "time": 2.4,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt64",
+     "targetKind": "bone",
+     "targetId": "bone_leg_upper_r",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk65",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk66",
+       "time": 0.6,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk67",
+       "time": 0.8999999999999999,
+       "value": -4,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk68",
+       "time": 1.2,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk69",
+       "time": 1.7999999999999998,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk70",
+       "time": 2.1,
+       "value": 3,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk71",
+       "time": 2.4,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt72",
+     "targetKind": "bone",
+     "targetId": "bone_leg_lower_r",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk73",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk74",
+       "time": 0.6,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk75",
+       "time": 0.8999999999999999,
+       "value": 6,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk76",
+       "time": 1.2,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk77",
+       "time": 1.7999999999999998,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk78",
+       "time": 2.1,
+       "value": -4,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk79",
+       "time": 2.4,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt80",
+     "targetKind": "bone",
+     "targetId": "bone_coattail_l",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk81",
+       "time": 0,
+       "value": -5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk82",
+       "time": 0.6,
+       "value": 5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk83",
+       "time": 1.2,
+       "value": -5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk84",
+       "time": 1.7999999999999998,
+       "value": 5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk85",
+       "time": 2.4,
+       "value": -5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt86",
+     "targetKind": "bone",
+     "targetId": "bone_coattail_r",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk87",
+       "time": 0,
+       "value": 5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk88",
+       "time": 0.6,
+       "value": -5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk89",
+       "time": 1.2,
+       "value": 5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk90",
+       "time": 1.7999999999999998,
+       "value": -5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk91",
+       "time": 2.4,
+       "value": 5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt92",
+     "targetKind": "bone",
+     "targetId": "bone_arm_upper_l",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk93",
+       "time": 0,
+       "value": 20,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk94",
+       "time": 0.6,
+       "value": 150,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "dk95",
+       "time": 1.2,
+       "value": 20,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk96",
+       "time": 1.7999999999999998,
+       "value": 40,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk97",
+       "time": 2.4,
+       "value": 20,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt98",
+     "targetKind": "bone",
+     "targetId": "bone_arm_lower_l",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk99",
+       "time": 0,
+       "value": 10,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk100",
+       "time": 0.6,
+       "value": 40,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk101",
+       "time": 1.2,
+       "value": 10,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk102",
+       "time": 1.7999999999999998,
+       "value": 25,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk103",
+       "time": 2.4,
+       "value": 10,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt104",
+     "targetKind": "bone",
+     "targetId": "bone_hand_l",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk105",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk106",
+       "time": 0.6,
+       "value": 25,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk107",
+       "time": 1.2,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk108",
+       "time": 2.4,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt109",
+     "targetKind": "bone",
+     "targetId": "bone_arm_upper_r",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk110",
+       "time": 0,
+       "value": -40,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk111",
+       "time": 0.6,
+       "value": -20,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk112",
+       "time": 1.2,
+       "value": -20,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk113",
+       "time": 1.7999999999999998,
+       "value": -150,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "dk114",
+       "time": 2.4,
+       "value": -40,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt115",
+     "targetKind": "bone",
+     "targetId": "bone_arm_lower_r",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk116",
+       "time": 0,
+       "value": -25,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk117",
+       "time": 0.6,
+       "value": -10,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk118",
+       "time": 1.2,
+       "value": -10,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk119",
+       "time": 1.7999999999999998,
+       "value": -40,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk120",
+       "time": 2.4,
+       "value": -25,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt121",
+     "targetKind": "bone",
+     "targetId": "bone_hand_r",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk122",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk123",
+       "time": 1.2,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk124",
+       "time": 1.7999999999999998,
+       "value": -25,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk125",
+       "time": 2.4,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    }
+   ],
+   "events": []
+  },
+  {
+   "id": "anim_dance_alt",
+   "name": "dance_alt",
+   "duration": 2.4,
+   "fps": 30,
+   "loop": true,
+   "tracks": [
+    {
+     "id": "dt126",
+     "targetKind": "bone",
+     "targetId": "bone_pelvis",
+     "prop": "x",
+     "keys": [
+      {
+       "id": "dk127",
+       "time": 0,
+       "value": -8,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk128",
+       "time": 0.6,
+       "value": 12,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk129",
+       "time": 1.2,
+       "value": -8,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk130",
+       "time": 1.7999999999999998,
+       "value": 12,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk131",
+       "time": 2.4,
+       "value": -8,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt132",
+     "targetKind": "bone",
+     "targetId": "bone_pelvis",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk133",
+       "time": 0,
+       "value": -3,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk134",
+       "time": 0.6,
+       "value": 3,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk135",
+       "time": 1.2,
+       "value": -3,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk136",
+       "time": 1.7999999999999998,
+       "value": 3,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk137",
+       "time": 2.4,
+       "value": -3,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt138",
+     "targetKind": "bone",
+     "targetId": "bone_torso",
+     "prop": "y",
+     "keys": [
+      {
+       "id": "dk139",
+       "time": 0,
+       "value": -22,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk140",
+       "time": 0.3,
+       "value": -15,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "dk141",
+       "time": 0.6,
+       "value": -22,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk142",
+       "time": 0.8999999999999999,
+       "value": -15,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "dk143",
+       "time": 1.2,
+       "value": -22,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk144",
+       "time": 1.5,
+       "value": -15,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "dk145",
+       "time": 1.7999999999999998,
+       "value": -22,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk146",
+       "time": 2.1,
+       "value": -15,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "dk147",
+       "time": 2.4,
+       "value": -22,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt148",
+     "targetKind": "bone",
+     "targetId": "bone_torso",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk149",
+       "time": 0,
+       "value": 2.5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk150",
+       "time": 0.6,
+       "value": -2.5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk151",
+       "time": 1.2,
+       "value": 2.5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk152",
+       "time": 1.7999999999999998,
+       "value": -2.5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk153",
+       "time": 2.4,
+       "value": 2.5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt154",
+     "targetKind": "bone",
+     "targetId": "bone_head",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk155",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk156",
+       "time": 0.24,
+       "value": -4,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk157",
+       "time": 0.6,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk158",
+       "time": 0.84,
+       "value": 4,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk159",
+       "time": 1.2,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk160",
+       "time": 1.44,
+       "value": -4,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk161",
+       "time": 1.7999999999999998,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk162",
+       "time": 2.04,
+       "value": 4,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk163",
+       "time": 2.4,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt164",
+     "targetKind": "bone",
+     "targetId": "bone_head",
+     "prop": "y",
+     "keys": [
+      {
+       "id": "dk165",
+       "time": 0,
+       "value": -406,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk166",
+       "time": 0.3,
+       "value": -403,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk167",
+       "time": 0.6,
+       "value": -406,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk168",
+       "time": 0.8999999999999999,
+       "value": -403,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk169",
+       "time": 1.2,
+       "value": -406,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk170",
+       "time": 1.5,
+       "value": -403,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk171",
+       "time": 1.7999999999999998,
+       "value": -406,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk172",
+       "time": 2.1,
+       "value": -403,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk173",
+       "time": 2.4,
+       "value": -406,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt174",
+     "targetKind": "bone",
+     "targetId": "bone_leg_upper_l",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk175",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk176",
+       "time": 0.3,
+       "value": 4,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk177",
+       "time": 0.6,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk178",
+       "time": 1.2,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk179",
+       "time": 1.5,
+       "value": -3,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk180",
+       "time": 1.7999999999999998,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk181",
+       "time": 2.4,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt182",
+     "targetKind": "bone",
+     "targetId": "bone_leg_lower_l",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk183",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk184",
+       "time": 0.3,
+       "value": -6,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk185",
+       "time": 0.6,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk186",
+       "time": 1.2,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk187",
+       "time": 1.5,
+       "value": 4,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk188",
+       "time": 1.7999999999999998,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk189",
+       "time": 2.4,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt190",
+     "targetKind": "bone",
+     "targetId": "bone_leg_upper_r",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk191",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk192",
+       "time": 0.6,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk193",
+       "time": 0.8999999999999999,
+       "value": -4,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk194",
+       "time": 1.2,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk195",
+       "time": 1.7999999999999998,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk196",
+       "time": 2.1,
+       "value": 3,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk197",
+       "time": 2.4,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt198",
+     "targetKind": "bone",
+     "targetId": "bone_leg_lower_r",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk199",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk200",
+       "time": 0.6,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk201",
+       "time": 0.8999999999999999,
+       "value": 6,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk202",
+       "time": 1.2,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk203",
+       "time": 1.7999999999999998,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk204",
+       "time": 2.1,
+       "value": -4,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk205",
+       "time": 2.4,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt206",
+     "targetKind": "bone",
+     "targetId": "bone_coattail_l",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk207",
+       "time": 0,
+       "value": -5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk208",
+       "time": 0.6,
+       "value": 5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk209",
+       "time": 1.2,
+       "value": -5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk210",
+       "time": 1.7999999999999998,
+       "value": 5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk211",
+       "time": 2.4,
+       "value": -5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt212",
+     "targetKind": "bone",
+     "targetId": "bone_coattail_r",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk213",
+       "time": 0,
+       "value": 5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk214",
+       "time": 0.6,
+       "value": -5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk215",
+       "time": 1.2,
+       "value": 5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk216",
+       "time": 1.7999999999999998,
+       "value": -5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk217",
+       "time": 2.4,
+       "value": 5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt218",
+     "targetKind": "bone",
+     "targetId": "bone_arm_upper_l",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk219",
+       "time": 0,
+       "value": 140,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk220",
+       "time": 0.6,
+       "value": 160,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk221",
+       "time": 1.2,
+       "value": 140,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk222",
+       "time": 1.7999999999999998,
+       "value": 160,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk223",
+       "time": 2.4,
+       "value": 140,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt224",
+     "targetKind": "bone",
+     "targetId": "bone_arm_lower_l",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk225",
+       "time": 0,
+       "value": 20,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk226",
+       "time": 0.6,
+       "value": 50,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk227",
+       "time": 1.2,
+       "value": 20,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk228",
+       "time": 1.7999999999999998,
+       "value": 50,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk229",
+       "time": 2.4,
+       "value": 20,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt230",
+     "targetKind": "bone",
+     "targetId": "bone_hand_l",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk231",
+       "time": 0,
+       "value": -20,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk232",
+       "time": 0.3,
+       "value": 20,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk233",
+       "time": 0.6,
+       "value": -20,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk234",
+       "time": 0.8999999999999999,
+       "value": 20,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk235",
+       "time": 1.2,
+       "value": -20,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk236",
+       "time": 1.5,
+       "value": 20,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk237",
+       "time": 1.7999999999999998,
+       "value": -20,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk238",
+       "time": 2.1,
+       "value": 20,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk239",
+       "time": 2.4,
+       "value": -20,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt240",
+     "targetKind": "bone",
+     "targetId": "bone_arm_upper_r",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk241",
+       "time": 0,
+       "value": -160,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk242",
+       "time": 0.6,
+       "value": -140,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk243",
+       "time": 1.2,
+       "value": -160,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk244",
+       "time": 1.7999999999999998,
+       "value": -140,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk245",
+       "time": 2.4,
+       "value": -160,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt246",
+     "targetKind": "bone",
+     "targetId": "bone_arm_lower_r",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk247",
+       "time": 0,
+       "value": -50,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk248",
+       "time": 0.6,
+       "value": -20,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk249",
+       "time": 1.2,
+       "value": -50,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk250",
+       "time": 1.7999999999999998,
+       "value": -20,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk251",
+       "time": 2.4,
+       "value": -50,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt252",
+     "targetKind": "bone",
+     "targetId": "bone_hand_r",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk253",
+       "time": 0,
+       "value": 20,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk254",
+       "time": 0.3,
+       "value": -20,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk255",
+       "time": 0.6,
+       "value": 20,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk256",
+       "time": 0.8999999999999999,
+       "value": -20,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk257",
+       "time": 1.2,
+       "value": 20,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk258",
+       "time": 1.5,
+       "value": -20,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk259",
+       "time": 1.7999999999999998,
+       "value": 20,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk260",
+       "time": 2.1,
+       "value": -20,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk261",
+       "time": 2.4,
+       "value": 20,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    }
+   ],
+   "events": []
+  },
+  {
+   "id": "anim_dance_shimmy",
+   "name": "dance_shimmy",
+   "duration": 2.4,
+   "fps": 30,
+   "loop": true,
+   "tracks": [
+    {
+     "id": "dt262",
+     "targetKind": "bone",
+     "targetId": "bone_pelvis",
+     "prop": "x",
+     "keys": [
+      {
+       "id": "dk263",
+       "time": 0,
+       "value": -8,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk264",
+       "time": 0.6,
+       "value": 12,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk265",
+       "time": 1.2,
+       "value": -8,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk266",
+       "time": 1.7999999999999998,
+       "value": 12,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk267",
+       "time": 2.4,
+       "value": -8,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt268",
+     "targetKind": "bone",
+     "targetId": "bone_pelvis",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk269",
+       "time": 0,
+       "value": -3,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk270",
+       "time": 0.6,
+       "value": 3,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk271",
+       "time": 1.2,
+       "value": -3,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk272",
+       "time": 1.7999999999999998,
+       "value": 3,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk273",
+       "time": 2.4,
+       "value": -3,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt274",
+     "targetKind": "bone",
+     "targetId": "bone_torso",
+     "prop": "y",
+     "keys": [
+      {
+       "id": "dk275",
+       "time": 0,
+       "value": -22,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk276",
+       "time": 0.3,
+       "value": -15,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "dk277",
+       "time": 0.6,
+       "value": -22,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk278",
+       "time": 0.8999999999999999,
+       "value": -15,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "dk279",
+       "time": 1.2,
+       "value": -22,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk280",
+       "time": 1.5,
+       "value": -15,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "dk281",
+       "time": 1.7999999999999998,
+       "value": -22,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk282",
+       "time": 2.1,
+       "value": -15,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "dk283",
+       "time": 2.4,
+       "value": -22,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt284",
+     "targetKind": "bone",
+     "targetId": "bone_torso",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk285",
+       "time": 0,
+       "value": 2.5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk286",
+       "time": 0.6,
+       "value": -2.5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk287",
+       "time": 1.2,
+       "value": 2.5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk288",
+       "time": 1.7999999999999998,
+       "value": -2.5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk289",
+       "time": 2.4,
+       "value": 2.5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt290",
+     "targetKind": "bone",
+     "targetId": "bone_head",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk291",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk292",
+       "time": 0.24,
+       "value": -4,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk293",
+       "time": 0.6,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk294",
+       "time": 0.84,
+       "value": 4,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk295",
+       "time": 1.2,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk296",
+       "time": 1.44,
+       "value": -4,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk297",
+       "time": 1.7999999999999998,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk298",
+       "time": 2.04,
+       "value": 4,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk299",
+       "time": 2.4,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt300",
+     "targetKind": "bone",
+     "targetId": "bone_head",
+     "prop": "y",
+     "keys": [
+      {
+       "id": "dk301",
+       "time": 0,
+       "value": -406,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk302",
+       "time": 0.3,
+       "value": -403,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk303",
+       "time": 0.6,
+       "value": -406,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk304",
+       "time": 0.8999999999999999,
+       "value": -403,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk305",
+       "time": 1.2,
+       "value": -406,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk306",
+       "time": 1.5,
+       "value": -403,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk307",
+       "time": 1.7999999999999998,
+       "value": -406,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk308",
+       "time": 2.1,
+       "value": -403,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk309",
+       "time": 2.4,
+       "value": -406,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt310",
+     "targetKind": "bone",
+     "targetId": "bone_leg_upper_l",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk311",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk312",
+       "time": 0.3,
+       "value": 4,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk313",
+       "time": 0.6,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk314",
+       "time": 1.2,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk315",
+       "time": 1.5,
+       "value": -3,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk316",
+       "time": 1.7999999999999998,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk317",
+       "time": 2.4,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt318",
+     "targetKind": "bone",
+     "targetId": "bone_leg_lower_l",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk319",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk320",
+       "time": 0.3,
+       "value": -6,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk321",
+       "time": 0.6,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk322",
+       "time": 1.2,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk323",
+       "time": 1.5,
+       "value": 4,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk324",
+       "time": 1.7999999999999998,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk325",
+       "time": 2.4,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt326",
+     "targetKind": "bone",
+     "targetId": "bone_leg_upper_r",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk327",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk328",
+       "time": 0.6,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk329",
+       "time": 0.8999999999999999,
+       "value": -4,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk330",
+       "time": 1.2,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk331",
+       "time": 1.7999999999999998,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk332",
+       "time": 2.1,
+       "value": 3,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk333",
+       "time": 2.4,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt334",
+     "targetKind": "bone",
+     "targetId": "bone_leg_lower_r",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk335",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk336",
+       "time": 0.6,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk337",
+       "time": 0.8999999999999999,
+       "value": 6,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk338",
+       "time": 1.2,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk339",
+       "time": 1.7999999999999998,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk340",
+       "time": 2.1,
+       "value": -4,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk341",
+       "time": 2.4,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt342",
+     "targetKind": "bone",
+     "targetId": "bone_coattail_l",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk343",
+       "time": 0,
+       "value": -5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk344",
+       "time": 0.6,
+       "value": 5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk345",
+       "time": 1.2,
+       "value": -5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk346",
+       "time": 1.7999999999999998,
+       "value": 5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk347",
+       "time": 2.4,
+       "value": -5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt348",
+     "targetKind": "bone",
+     "targetId": "bone_coattail_r",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk349",
+       "time": 0,
+       "value": 5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk350",
+       "time": 0.6,
+       "value": -5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk351",
+       "time": 1.2,
+       "value": 5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk352",
+       "time": 1.7999999999999998,
+       "value": -5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk353",
+       "time": 2.4,
+       "value": 5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt354",
+     "targetKind": "bone",
+     "targetId": "bone_arm_upper_l",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk355",
+       "time": 0,
+       "value": 55,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk356",
+       "time": 0.15,
+       "value": 62,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk357",
+       "time": 0.3,
+       "value": 55,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk358",
+       "time": 0.44999999999999996,
+       "value": 62,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk359",
+       "time": 0.6,
+       "value": 55,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk360",
+       "time": 1.2,
+       "value": 62,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk361",
+       "time": 1.7999999999999998,
+       "value": 55,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk362",
+       "time": 2.4,
+       "value": 55,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt363",
+     "targetKind": "bone",
+     "targetId": "bone_arm_lower_l",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk364",
+       "time": 0,
+       "value": 95,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk365",
+       "time": 0.3,
+       "value": 105,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk366",
+       "time": 0.6,
+       "value": 95,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk367",
+       "time": 1.2,
+       "value": 105,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk368",
+       "time": 1.7999999999999998,
+       "value": 95,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk369",
+       "time": 2.4,
+       "value": 95,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt370",
+     "targetKind": "bone",
+     "targetId": "bone_hand_l",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk371",
+       "time": 0,
+       "value": 30,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk372",
+       "time": 0.15,
+       "value": 45,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk373",
+       "time": 0.3,
+       "value": 30,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk374",
+       "time": 0.44999999999999996,
+       "value": 45,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk375",
+       "time": 0.6,
+       "value": 30,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk376",
+       "time": 0.8999999999999999,
+       "value": 45,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk377",
+       "time": 1.2,
+       "value": 30,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk378",
+       "time": 1.5,
+       "value": 45,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk379",
+       "time": 1.7999999999999998,
+       "value": 30,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk380",
+       "time": 2.1,
+       "value": 45,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk381",
+       "time": 2.4,
+       "value": 30,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt382",
+     "targetKind": "bone",
+     "targetId": "bone_arm_upper_r",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk383",
+       "time": 0,
+       "value": -55,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk384",
+       "time": 0.15,
+       "value": -62,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk385",
+       "time": 0.3,
+       "value": -55,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk386",
+       "time": 0.44999999999999996,
+       "value": -62,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk387",
+       "time": 0.6,
+       "value": -55,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk388",
+       "time": 1.2,
+       "value": -62,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk389",
+       "time": 1.7999999999999998,
+       "value": -55,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk390",
+       "time": 2.4,
+       "value": -55,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt391",
+     "targetKind": "bone",
+     "targetId": "bone_arm_lower_r",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk392",
+       "time": 0,
+       "value": -95,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk393",
+       "time": 0.3,
+       "value": -105,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk394",
+       "time": 0.6,
+       "value": -95,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk395",
+       "time": 1.2,
+       "value": -105,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk396",
+       "time": 1.7999999999999998,
+       "value": -95,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk397",
+       "time": 2.4,
+       "value": -95,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt398",
+     "targetKind": "bone",
+     "targetId": "bone_hand_r",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk399",
+       "time": 0,
+       "value": -30,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk400",
+       "time": 0.15,
+       "value": -45,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk401",
+       "time": 0.3,
+       "value": -30,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk402",
+       "time": 0.44999999999999996,
+       "value": -45,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk403",
+       "time": 0.6,
+       "value": -30,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk404",
+       "time": 0.8999999999999999,
+       "value": -45,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk405",
+       "time": 1.2,
+       "value": -30,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk406",
+       "time": 1.5,
+       "value": -45,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk407",
+       "time": 1.7999999999999998,
+       "value": -30,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk408",
+       "time": 2.1,
+       "value": -45,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk409",
+       "time": 2.4,
+       "value": -30,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt410",
+     "targetKind": "bone",
+     "targetId": "bone_head",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk411",
+       "time": 0,
+       "value": 6,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk412",
+       "time": 1.2,
+       "value": -6,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk413",
+       "time": 2.4,
+       "value": 6,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    }
+   ],
+   "events": []
+  },
+  {
+   "id": "anim_dance_spin",
+   "name": "dance_spin",
+   "duration": 1.2,
+   "fps": 30,
+   "loop": false,
+   "tracks": [
+    {
+     "id": "dt414",
+     "targetKind": "bone",
+     "targetId": "bone_pelvis",
+     "prop": "x",
+     "keys": [
+      {
+       "id": "dk415",
+       "time": 0,
+       "value": 2,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk416",
+       "time": 0.15,
+       "value": 16,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "dk417",
+       "time": 0.45,
+       "value": -4,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk418",
+       "time": 0.8,
+       "value": 2,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt419",
+     "targetKind": "bone",
+     "targetId": "bone_torso",
+     "prop": "y",
+     "keys": [
+      {
+       "id": "dk420",
+       "time": 0,
+       "value": -22,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk421",
+       "time": 0.15,
+       "value": -12,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "dk422",
+       "time": 0.5,
+       "value": -26,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk423",
+       "time": 0.9,
+       "value": -22,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt424",
+     "targetKind": "bone",
+     "targetId": "bone_arm_upper_l",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk425",
+       "time": 0,
+       "value": 20,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk426",
+       "time": 0.2,
+       "value": 140,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "dk427",
+       "time": 0.6,
+       "value": 120,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk428",
+       "time": 1.2,
+       "value": 20,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt429",
+     "targetKind": "bone",
+     "targetId": "bone_arm_lower_l",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk430",
+       "time": 0,
+       "value": 10,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk431",
+       "time": 0.2,
+       "value": 50,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk432",
+       "time": 1.2,
+       "value": 10,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt433",
+     "targetKind": "bone",
+     "targetId": "bone_arm_upper_r",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk434",
+       "time": 0,
+       "value": -20,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk435",
+       "time": 0.2,
+       "value": -140,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "dk436",
+       "time": 0.6,
+       "value": -120,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk437",
+       "time": 1.2,
+       "value": -20,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt438",
+     "targetKind": "bone",
+     "targetId": "bone_arm_lower_r",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk439",
+       "time": 0,
+       "value": -10,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk440",
+       "time": 0.2,
+       "value": -50,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk441",
+       "time": 1.2,
+       "value": -10,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt442",
+     "targetKind": "bone",
+     "targetId": "bone_head",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk443",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk444",
+       "time": 0.2,
+       "value": -8,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "dk445",
+       "time": 0.7,
+       "value": 4,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk446",
+       "time": 1.2,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt447",
+     "targetKind": "bone",
+     "targetId": "bone_head",
+     "prop": "y",
+     "keys": [
+      {
+       "id": "dk448",
+       "time": 0,
+       "value": -406,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk449",
+       "time": 0.2,
+       "value": -411,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk450",
+       "time": 1.2,
+       "value": -406,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt451",
+     "targetKind": "bone",
+     "targetId": "bone_coattail_l",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk452",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk453",
+       "time": 0.25,
+       "value": 9,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "dk454",
+       "time": 1.2,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt455",
+     "targetKind": "bone",
+     "targetId": "bone_coattail_r",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk456",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk457",
+       "time": 0.25,
+       "value": -9,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "dk458",
+       "time": 1.2,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    }
+   ],
+   "events": []
+  },
+  {
+   "id": "anim_dance_big",
+   "name": "dance_big",
+   "duration": 1.6,
+   "fps": 30,
+   "loop": false,
+   "tracks": [
+    {
+     "id": "dt459",
+     "targetKind": "bone",
+     "targetId": "bone_torso",
+     "prop": "y",
+     "keys": [
+      {
+       "id": "dk460",
+       "time": 0,
+       "value": -22,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk461",
+       "time": 0.12,
+       "value": -14,
+       "easing": {
+        "kind": "easeIn"
+       }
+      },
+      {
+       "id": "dk462",
+       "time": 0.35,
+       "value": -32,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "dk463",
+       "time": 1.2,
+       "value": -28,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk464",
+       "time": 1.6,
+       "value": -22,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt465",
+     "targetKind": "bone",
+     "targetId": "bone_arm_upper_l",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk466",
+       "time": 0,
+       "value": 20,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk467",
+       "time": 0.35,
+       "value": 172,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "dk468",
+       "time": 1.1,
+       "value": 165,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk469",
+       "time": 1.6,
+       "value": 20,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt470",
+     "targetKind": "bone",
+     "targetId": "bone_arm_lower_l",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk471",
+       "time": 0,
+       "value": 10,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk472",
+       "time": 0.35,
+       "value": 10,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk473",
+       "time": 1.6,
+       "value": 10,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt474",
+     "targetKind": "bone",
+     "targetId": "bone_hand_l",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk475",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk476",
+       "time": 0.4,
+       "value": 30,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk477",
+       "time": 0.7,
+       "value": -10,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk478",
+       "time": 1,
+       "value": 30,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk479",
+       "time": 1.6,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt480",
+     "targetKind": "bone",
+     "targetId": "bone_arm_upper_r",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk481",
+       "time": 0,
+       "value": -20,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk482",
+       "time": 0.35,
+       "value": -172,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "dk483",
+       "time": 1.1,
+       "value": -165,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk484",
+       "time": 1.6,
+       "value": -20,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt485",
+     "targetKind": "bone",
+     "targetId": "bone_arm_lower_r",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk486",
+       "time": 0,
+       "value": -10,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk487",
+       "time": 0.35,
+       "value": -10,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk488",
+       "time": 1.6,
+       "value": -10,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt489",
+     "targetKind": "bone",
+     "targetId": "bone_hand_r",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk490",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk491",
+       "time": 0.4,
+       "value": -30,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk492",
+       "time": 0.7,
+       "value": 10,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk493",
+       "time": 1,
+       "value": -30,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk494",
+       "time": 1.6,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt495",
+     "targetKind": "bone",
+     "targetId": "bone_head",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk496",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk497",
+       "time": 0.35,
+       "value": -12,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "dk498",
+       "time": 1.1,
+       "value": -10,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk499",
+       "time": 1.6,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt500",
+     "targetKind": "bone",
+     "targetId": "bone_head",
+     "prop": "y",
+     "keys": [
+      {
+       "id": "dk501",
+       "time": 0,
+       "value": -406,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk502",
+       "time": 0.35,
+       "value": -414,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk503",
+       "time": 1.1,
+       "value": -412,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk504",
+       "time": 1.6,
+       "value": -406,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt505",
+     "targetKind": "bone",
+     "targetId": "bone_torso",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk506",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk507",
+       "time": 0.35,
+       "value": -3,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk508",
+       "time": 1.1,
+       "value": -2,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk509",
+       "time": 1.6,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt510",
+     "targetKind": "bone",
+     "targetId": "bone_pelvis",
+     "prop": "x",
+     "keys": [
+      {
+       "id": "dk511",
+       "time": 0,
+       "value": 2,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk512",
+       "time": 0.35,
+       "value": 10,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk513",
+       "time": 1.1,
+       "value": 8,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk514",
+       "time": 1.6,
+       "value": 2,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt515",
+     "targetKind": "bone",
+     "targetId": "bone_coattail_l",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk516",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk517",
+       "time": 0.4,
+       "value": 12,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "dk518",
+       "time": 1.2,
+       "value": 8,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk519",
+       "time": 1.6,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt520",
+     "targetKind": "bone",
+     "targetId": "bone_coattail_r",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk521",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk522",
+       "time": 0.4,
+       "value": -12,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "dk523",
+       "time": 1.2,
+       "value": -8,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk524",
+       "time": 1.6,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    }
+   ],
+   "events": [
+    {
+     "id": "de525",
+     "time": 0.35,
+     "name": "arms_up"
+    }
+   ]
+  },
+  {
+   "id": "anim_dance_end",
+   "name": "dance_end",
+   "duration": 2.4,
+   "fps": 30,
+   "loop": false,
+   "tracks": [
+    {
+     "id": "dt526",
+     "targetKind": "bone",
+     "targetId": "bone_torso",
+     "prop": "y",
+     "keys": [
+      {
+       "id": "dk527",
+       "time": 0,
+       "value": -22,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk528",
+       "time": 0.5,
+       "value": 4,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "dk529",
+       "time": 1.7,
+       "value": 2,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk530",
+       "time": 2.4,
+       "value": -22,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt531",
+     "targetKind": "bone",
+     "targetId": "bone_torso",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk532",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk533",
+       "time": 0.5,
+       "value": 6,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk534",
+       "time": 1.7,
+       "value": 5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk535",
+       "time": 2.4,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt536",
+     "targetKind": "bone",
+     "targetId": "bone_head",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk537",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk538",
+       "time": 0.5,
+       "value": 14,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "dk539",
+       "time": 1.7,
+       "value": 12,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk540",
+       "time": 2.4,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt541",
+     "targetKind": "bone",
+     "targetId": "bone_head",
+     "prop": "y",
+     "keys": [
+      {
+       "id": "dk542",
+       "time": 0,
+       "value": -406,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk543",
+       "time": 0.5,
+       "value": -394,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk544",
+       "time": 1.7,
+       "value": -396,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk545",
+       "time": 2.4,
+       "value": -406,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt546",
+     "targetKind": "bone",
+     "targetId": "bone_arm_upper_l",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk547",
+       "time": 0,
+       "value": 20,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk548",
+       "time": 0.5,
+       "value": 60,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "dk549",
+       "time": 1.7,
+       "value": 55,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk550",
+       "time": 2.4,
+       "value": 20,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt551",
+     "targetKind": "bone",
+     "targetId": "bone_arm_lower_l",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk552",
+       "time": 0,
+       "value": 10,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk553",
+       "time": 0.55,
+       "value": 20,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk554",
+       "time": 1.7,
+       "value": 16,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk555",
+       "time": 2.4,
+       "value": 10,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt556",
+     "targetKind": "bone",
+     "targetId": "bone_arm_upper_r",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk557",
+       "time": 0,
+       "value": -20,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk558",
+       "time": 0.45,
+       "value": -80,
+       "easing": {
+        "kind": "easeOut"
+       }
+      },
+      {
+       "id": "dk559",
+       "time": 1.7,
+       "value": -75,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk560",
+       "time": 2.4,
+       "value": -20,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt561",
+     "targetKind": "bone",
+     "targetId": "bone_arm_lower_r",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk562",
+       "time": 0,
+       "value": -10,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk563",
+       "time": 0.5,
+       "value": -30,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk564",
+       "time": 1.7,
+       "value": -24,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk565",
+       "time": 2.4,
+       "value": -10,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt566",
+     "targetKind": "bone",
+     "targetId": "bone_coattail_l",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk567",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk568",
+       "time": 0.7,
+       "value": 6,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk569",
+       "time": 1.9,
+       "value": 5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk570",
+       "time": 2.4,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dt571",
+     "targetKind": "bone",
+     "targetId": "bone_coattail_r",
+     "prop": "rotation",
+     "keys": [
+      {
+       "id": "dk572",
+       "time": 0,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk573",
+       "time": 0.7,
+       "value": -6,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk574",
+       "time": 1.9,
+       "value": -5,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      },
+      {
+       "id": "dk575",
+       "time": 2.4,
+       "value": 0,
+       "easing": {
+        "kind": "easeInOut"
+       }
+      }
+     ]
+    }
+   ],
+   "events": [
+    {
+     "id": "de576",
+     "time": 0.5,
+     "name": "bow"
+    }
+   ]
+  }
+ ],
+ "referenceLayers": []
+}
