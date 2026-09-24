@@ -22,7 +22,7 @@
    "id": "tex_legs",
    "name": "yungreal_legs",
    "width": 337,
-   "height": 469,
+   "height": 503,
    "hidden": false,
    "locked": false
   },
@@ -490,9 +490,9 @@
    "y": 0,
    "rotation": 0,
    "scaleX": 1.6646884272997033,
-   "scaleY": 1.6652452025586353,
+   "scaleY": 1.6679920477137178,
    "pivotX": 0.4919786096256685,
-   "pivotY": 1.0179257362355953
+   "pivotY": 1.0166865315852205
   },
   {
    "id": "att_torso",
