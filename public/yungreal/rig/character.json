@@ -11,14 +11,6 @@
  },
  "textures": [
   {
-   "id": "tex_coat_back",
-   "name": "yungreal_coat_back",
-   "width": 67,
-   "height": 135,
-   "hidden": false,
-   "locked": false
-  },
-  {
    "id": "tex_legs",
    "name": "yungreal_legs",
    "width": 337,
@@ -374,21 +366,11 @@
  ],
  "slots": [
   {
-   "id": "slot_coat_back",
-   "name": "coat_back",
-   "boneId": "bone_coat_back",
-   "attachmentId": "att_coat_back",
-   "order": 0,
-   "opacity": 1,
-   "tint": "#ffffff",
-   "visible": true
-  },
-  {
    "id": "slot_legs",
    "name": "legs",
    "boneId": "bone_legs",
    "attachmentId": "att_legs",
-   "order": 1,
+   "order": 0,
    "opacity": 1,
    "tint": "#ffffff",
    "visible": true
@@ -398,7 +380,7 @@
    "name": "skirt",
    "boneId": "bone_skirt",
    "attachmentId": "att_skirt",
-   "order": 2,
+   "order": 1,
    "opacity": 1,
    "tint": "#ffffff",
    "visible": true
@@ -408,7 +390,7 @@
    "name": "torso",
    "boneId": "bone_torso",
    "attachmentId": "att_torso",
-   "order": 3,
+   "order": 2,
    "opacity": 1,
    "tint": "#ffffff",
    "visible": true
@@ -418,7 +400,7 @@
    "name": "arm_upper_l",
    "boneId": "bone_arm_upper_l",
    "attachmentId": "att_arm_upper_l",
-   "order": 4,
+   "order": 3,
    "opacity": 1,
    "tint": "#ffffff",
    "visible": true
@@ -428,7 +410,7 @@
    "name": "arm_upper_r",
    "boneId": "bone_arm_upper_r",
    "attachmentId": "att_arm_upper_r",
-   "order": 5,
+   "order": 4,
    "opacity": 1,
    "tint": "#ffffff",
    "visible": true
@@ -438,7 +420,7 @@
    "name": "hand_l",
    "boneId": "bone_hand_l",
    "attachmentId": "att_hand_l",
-   "order": 6,
+   "order": 5,
    "opacity": 1,
    "tint": "#ffffff",
    "visible": true
@@ -448,7 +430,7 @@
    "name": "hand_r",
    "boneId": "bone_hand_r",
    "attachmentId": "att_hand_r",
-   "order": 7,
+   "order": 6,
    "opacity": 1,
    "tint": "#ffffff",
    "visible": true
@@ -458,7 +440,7 @@
    "name": "arm_lower_l",
    "boneId": "bone_arm_lower_l",
    "attachmentId": "att_arm_lower_l",
-   "order": 8,
+   "order": 7,
    "opacity": 1,
    "tint": "#ffffff",
    "visible": true
@@ -468,7 +450,7 @@
    "name": "arm_lower_r",
    "boneId": "bone_arm_lower_r",
    "attachmentId": "att_arm_lower_r",
-   "order": 9,
+   "order": 8,
    "opacity": 1,
    "tint": "#ffffff",
    "visible": true
@@ -478,7 +460,7 @@
    "name": "head",
    "boneId": "bone_head",
    "attachmentId": "att_head",
-   "order": 10,
+   "order": 9,
    "opacity": 1,
    "tint": "#ffffff",
    "visible": true
@@ -488,7 +470,7 @@
    "name": "eyes",
    "boneId": "bone_eyes",
    "attachmentId": "att_eyes",
-   "order": 11,
+   "order": 10,
    "opacity": 1,
    "tint": "#ffffff",
    "visible": true
@@ -498,25 +480,13 @@
    "name": "mouth",
    "boneId": "bone_mouth",
    "attachmentId": "att_mouth",
-   "order": 12,
+   "order": 11,
    "opacity": 1,
    "tint": "#ffffff",
    "visible": true
   }
  ],
  "attachments": [
-  {
-   "id": "att_coat_back",
-   "name": "coat_back",
-   "textureId": "tex_coat_back",
-   "x": 0,
-   "y": 0,
-   "rotation": 0,
-   "scaleX": 1.671641791044776,
-   "scaleY": 1.6666666666666667,
-   "pivotX": 0.5,
-   "pivotY": -0.3466666666666667
-  },
   {
    "id": "att_legs",
    "name": "legs",
