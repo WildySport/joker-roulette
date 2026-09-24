@@ -1,1 +1,0 @@
-var e=`/yungreal/assets/readout-CtzP0SLp.webp`;export{e as t};
