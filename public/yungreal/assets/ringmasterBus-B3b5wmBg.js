@@ -1,1 +1,0 @@
-var e=new Map,t={on(t,n){let r=e.get(t)??[];return r.push(n),e.set(t,r),()=>e.set(t,(e.get(t)??[]).filter(e=>e!==n))},emit(t){(e.get(t)??[]).forEach(e=>e())}};export{t};
