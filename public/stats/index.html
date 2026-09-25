@@ -63,7 +63,7 @@
 <body>
   <h1><b>GAMDOM</b> · who's playing</h1>
   <div class="sub">
-    Game <select id="game"><option value="all">All games</option><option value="bowling">Bowling</option><option value="yungreal">Yungreal's Toxic Lab</option></select>
+    Game <select id="game"><option value="all">All games</option><option value="bowling">Bowling</option><option value="yungreal">Yungreal's Toxic Lab</option><option value="heist">Sunset Heist</option></select>
     · last <select id="days"><option value="1">24 hours</option><option value="7" selected>7 days</option><option value="30">30 days</option><option value="90">90 days</option></select>
     · <button id="refresh">refresh</button>
     <span id="stamp"></span>
@@ -82,7 +82,7 @@
   /* a PERSON's tag: colour + four letters from their place-and-browser key; the ids they picked up are counted after it */
   const tag = (p) => { const h = hash(p.who); const hue = h % 360; const ids = (p.vids || '').split(',').filter(Boolean); return `<span class="ptag" title="${esc(p.who)}"><i style="background:hsl(${hue} 70% 55%)"></i>${'~' + h.toString(36).slice(0, 4)}${ids.length ? `<small>${ids.length} id${ids.length === 1 ? '' : 's'}</small>` : ''}</span>`; };
   /* game slugs → names (a slug not listed shows as itself) */
-  const NAMES = { yungreal: "Yungreal's Toxic Lab", bowling: 'Bowling', kahuna: 'Big Kahuna', palace: "Pepino's Millions", carnival: 'Freakshow', surf: 'Surf', derby: 'Derby', empire: 'Empire', smash: 'Head Smash', cannon: 'Siege', mansion: "Pepino's Palace", arena: 'Arena', joker: 'Joker Roulette', dice: 'Dice', portal: 'Portal' };
+  const NAMES = { yungreal: "Yungreal's Toxic Lab", heist: 'Sunset Heist', bowling: 'Bowling', kahuna: 'Big Kahuna', palace: "Pepino's Millions", carnival: 'Freakshow', surf: 'Surf', derby: 'Derby', empire: 'Empire', smash: 'Head Smash', cannon: 'Siege', mansion: "Pepino's Palace", arena: 'Arena', joker: 'Joker Roulette', dice: 'Dice', portal: 'Portal' };
   const gname = (g) => NAMES[g] || g;
   let openWho = null, openGame = 'all';
   const mins = (p) => num(Math.round((p || 0) / 2));
